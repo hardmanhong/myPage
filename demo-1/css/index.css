@@ -1,0 +1,627 @@
+.wrap {
+    width: 1280px;
+    margin: 0 auto;
+}
+
+
+/*设为行内块状元素*/
+
+.inline-block {
+    display: inline-block;
+}
+/*页面中的<hr>*/
+.common-line {
+    border: none;
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+}
+
+
+/*header*/
+
+.header {
+    height: 56px;
+    background-color: #fff;
+}
+
+.header-left {
+    float: left;
+    margin: 13px 0 13px 60px;
+}
+
+.header-left .header-left-text {
+    float: right;
+    /*父浮动了，子的margin,padding无效，所以只能也设置浮动*/
+    margin: 5px 0 5px 10px;
+    font: 21px "黑体";
+}
+
+.header-right {
+    float: right;
+}
+
+.header-right-item {
+    float: left;
+    width: 65px;
+    margin-left: 28px;
+    font-size: 14px;
+    text-align: center;
+    /*水平对齐*/
+}
+
+.header-right-item span {
+    color: #e74f4d;
+}
+
+.header-right-item a {
+    font-family: "微软雅黑";
+    line-height: 56px;
+    color: #000;
+}
+
+.header-right-item a:hover {
+    border-bottom: 3px solid #e74f4d;
+    color: #e74f4d;
+}
+
+.header-right-user {
+    margin-right: 10px;
+}
+
+
+/*banner*/
+
+.banner {
+    position: relative;
+}
+
+.banner-title {
+    position: absolute;
+    top: 231px;
+    left: 118px;
+    font: 60px "微软雅黑";
+    color: #fff;
+}
+
+.banner-description {
+    position: absolute;
+    top: 310px;
+    left: 125px;
+    font: 21px "微软雅黑";
+    color: #fff;
+}
+
+.banner-link {
+    position: absolute;
+    top: 431px;
+    left: 132px;
+    width: 332px;
+    height: 64px;
+    font: 30px "微软雅黑";
+    line-height: 64px;/* 与高同高，垂直居中*/
+    text-align: center;/* 水平居中*/
+    color: #fff;
+    background-color: #e74f4d;
+}
+
+
+/*introduce*/
+
+.introduce {
+    margin-bottom: 67px;
+}
+
+.introduce-item {
+    float: left;
+}
+
+.introduce-item-img {
+    margin: 46px 145px;
+}
+
+.img-last {
+    margin-right: 0;
+}
+
+.introduce-item-text {
+    padding: 0 90px;
+    width: 155px;
+    height: 52px;
+    border-right: 2px solid #bbb;
+    text-align: center;
+}
+
+.introduce-item-span {
+    font: 14px "黑体";
+    color: #828383;
+}
+
+.text-last {
+    padding-right: 0;
+    border: none;
+}
+
+
+/*more*/
+
+.more {
+    padding: 90px 0 82px 0;
+    background-color: #ededec;
+}
+
+.more-img {
+    margin: auto;
+}
+
+.more-text {
+    margin-top: 48px;
+    text-align: center;
+}
+
+.more-span {
+    font: 54px "黑体";
+    color: #bbb;
+}
+
+
+/*world*/
+
+.world {
+    position: relative;
+}
+
+.world-txet {
+    position: absolute;
+    top: 54px;
+    left: 450px;
+    height: 67px;
+    text-align: center;
+}
+
+.world-city-title {
+    font: 21px "微软雅黑";
+    color: #ededec;
+}
+
+.world-city-description {
+    font: 12px "微软雅黑";
+    color: #ededec;
+}
+
+.world-choose {
+    position: absolute;
+    top: 210px;
+    left: 126px;
+}
+
+.world-area {}
+
+.world-province {}
+
+.world-city {}
+
+.world-item {
+    float: left;
+    margin-right: 28px;
+    width: 238px;
+    height: 37px;
+    background-color: #fff;
+}
+
+.world-item:hover {
+    outline: 1px solid #be4e48;/*跟border不同，鼠标移上去时不会抖动*/
+}
+
+.world-item .world-input {
+    border: none;
+    outline: none;
+    width: 219px;
+    height: 33px;
+    font: 12px "微软雅黑";
+    text-indent: 9px;
+    color: #ccc;
+}
+
+.world-item .world-img-msg {
+    float: right;
+    margin: 9px 0;
+}
+
+.world-search-btn {
+    float: left;
+    width: 238px;
+    height: 38px;
+    background-color: #be4e48;
+}
+
+.world-search-btn .world-search {
+    font: 14px "微软雅黑";
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+}
+
+
+/*点击输入框出现下拉列表（暂时不会做，以后做）*/
+
+
+/*.select{
+    appearance:none;
+    -webkit-appearance:none;
+    width: 238px;
+    padding-left:47px; 
+    font:12px "微软雅黑";
+    line-height: 26px;
+    background-color: #ccc;
+
+}
+
+}*/
+
+
+/*world-paint*/
+
+.world-paint {
+    padding-top: 63px;
+    padding-bottom: 115px;
+    background-color: #f7f7f7;
+}
+
+.paint-show {
+    float: left;
+    width: 220px;
+    height: 389px;
+    margin-left: 36px;
+    text-align: center;
+}
+
+.paint-first {
+    margin-left: 147px;
+}
+
+.paint-img {
+    border: 1px solid #e1e1e1;
+    padding: 11px 7px;
+    background-color: #fff;
+}
+
+.paint-text-city {
+    font: 12px "微软雅黑";
+    line-height: 26px;
+}
+
+.paint-text-local {
+    font: 12px "微软雅黑";
+    line-height: 26px;
+    color: #dadada;
+}
+
+
+/*content*/
+
+.content {}
+    /*content中四个一样的<div>提取公共代码*/
+.content-common {
+    float: left;
+    padding: 166px 70px 210px 66px;
+    width: 288px;
+    height: 190px;
+    text-align: center;
+}
+/*content中三个<a>提取公共代码*/
+.common-link-more {
+    margin: 52px auto 25px auto;
+    width: 107px;
+    height: 34px;
+    border: 1px solid #e25c60;
+    text-align: center;
+    font: 12px/34px "微软雅黑";
+    color: #e25c60;
+}
+
+/*content-up*/
+
+
+/*content-upleft*/
+
+.content-upleft {
+    float: left;
+    position: relative;
+    width: 852px;
+}
+
+.content-upleft-text {
+    position: absolute;
+    top: 134px;
+    left: 240px;
+    text-align: center;
+}
+
+.content-upleft-h2 {
+    font: 50px "微软雅黑";
+    color: #fff;
+}
+
+.content-upleft-h1 {
+    margin-top: -40px;
+    font: 158px "微软雅黑";
+    color: #fff;
+}
+
+.content-upleft-h3 {
+    font: 22px "微软雅黑";
+    margin-top: -20px;
+    color: #fff;
+}
+
+/*content-upright*/
+
+.content-upright {}
+
+.content-upright-title {
+    font: 25px "微软雅黑";
+}
+
+.content-upright-titleNum {
+    color: #e74f4d;
+}
+
+.content-upright-article {
+    text-align: left;
+    font: 12px "宋体";
+    line-height: 30px;
+    color: #aaa;
+}
+
+.content-upright-circleList {
+    width: 146px;
+    margin: 52px 84px 25px 85px;
+}
+/*画圆*/
+.content-upright-circle {
+    float: left;
+    margin: 0 13px;
+    border: 1px solid #929293;
+    border-radius: 6px;
+    width: 12px;
+    height: 12px;
+}
+
+.circle-first {
+    background-color: #929293;
+}
+
+
+/*content-down*/
+
+.content-common-bgRed {
+    padding-bottom: 166px;
+    background-color: #e74f4d;
+}
+
+.content-down-title {
+    font: 21px "黑体";
+}
+
+.down-title-fir {
+    color: #fff;
+}
+
+.down-title-sec {
+    color: #323333;
+}
+
+.down-link-more-fir {
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+.content-common-bgWhi {
+    padding-bottom: 166px;
+}
+
+.content-down-line {
+    background-color: #aaa;
+}
+
+.content-downright-img {
+    float: left;
+    padding-left: 2px;
+}
+
+
+/*joinus*/
+
+.joinus {
+    margin: 119px 138px 167px 138px;
+}
+
+
+/*joinus-up*/
+
+.joinus-up {
+    margin: 0 auto;
+    width: 427px;
+    text-align: center;
+}
+
+.joinus-up-title {
+    font: 21px "黑体";
+}
+
+.joinus-up-line {
+    background-color: #eb6664;
+}
+
+.joinus-up-description {
+    font: 12px "微软雅黑";
+    color: #aaa;
+}
+
+
+/*joinus-down*/
+
+.joinus-down {
+    margin: 107px 0 167px 0;
+}
+
+.joinus-down-left {
+    float: left;
+    width: 290px;
+}
+
+.provision-middle {
+    margin: 40px 0 20px 0;
+}
+
+.downL-provision-title {
+    margin-bottom: 27px;
+    font: 14px "微软雅黑";
+    color: #231815;
+}
+
+.joinus-downL-article {
+    font: 12px "宋体";
+    color: #9d9b9a;
+}
+
+.downL-provision-more {
+    text-align: right;
+}
+
+.joinus-img-msg {}
+
+.downL-provision-more-text {
+    font: 12px "宋体";
+    color: #9d9b9a;
+}
+
+.joinus-down-right {
+    float: right;
+}
+
+.form-common {
+    margin-bottom: 14px;
+}
+
+.form-common-term {
+    float: left;
+    width: 310px;
+    height: 41px;
+    margin-right: 18px;
+    background-color: #edecee;
+}
+
+.form-common-text {
+    margin-left: 18px;
+    font: 12px/41px "宋体";
+    color: #231815;
+}
+
+.common-input {
+    height: 41px;
+    background-color: #edecee;
+    outline: none;
+    border: none;
+}
+
+.info-input {
+    width: 245px;
+}
+
+.contact-input {
+    width: 220px;
+}
+
+.describe {
+    width: 638px;
+    background-color: #edecee;
+}
+
+.describe-text {}
+
+.describe-textarea {
+    padding-left: 18px;
+    overflow: hidden;
+    resize: none;
+    height: 99px;
+    width: 620px;
+}
+
+.application-btn {
+    width: 638px;
+    height: 41px;
+    border: none;
+    outline: none;
+    background-color: #edecee;
+    font: 14px/41px "黑体";
+}
+
+
+/*footer*/
+
+.contactus {
+    padding: 91px 382px 75px 383px;
+    background-color: #32353e;
+}
+
+.contactus-text {
+    text-align: center;
+}
+
+.contactus-text-title {
+    font: 21px "黑体";
+    color: #fff;
+}
+
+.contactus-text-details {
+    font: 12px/18px "宋体";
+    color: #fff;
+}
+
+.contactus-input {
+    width: 432px;
+    height: 39px;
+    margin: 30px 0 38px 0;
+    border: 1px solid #989a9f;
+    text-indent: 9px;
+}
+
+.contactus-sumbit {
+    width: 81px;
+    margin-left: -8px;
+    height: 41px;
+    line-height: 41px;
+    color: #e7e7e8;
+    background-color: #6f7178;
+}
+
+.contactus-link {
+    padding: 0 145px;
+}
+
+.contactus-img {
+    float: left;
+    margin-right: 30px;
+}
+
+.toTop {
+    height: 55px;
+    background-color: #2f2f38;
+}
+
+.toTop-left {
+    float: left;
+    margin-left: 100px;
+}
+
+.toTop-right {
+    float: right;
+    margin-right: 40px;
+}
+
+.toTop-common-text {
+    font: 12px/55px "宋体";
+    color: #fff;
+}
