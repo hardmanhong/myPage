@@ -12,9 +12,10 @@ a{
 	display: block;
 	
 }
+
 img{
 	border: none;
-	display: block;
+	display: inline-block;
 }
 .clearfloat{
 	zoom:1;
@@ -25,4 +26,8 @@ img{
 	content: "";
 	visibility: hidden;
 	height: 0;
+}
+.inline-block {
+	display: inline-block;
+	
 }
