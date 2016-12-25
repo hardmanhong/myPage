@@ -5,7 +5,7 @@
 <div>page-2:页面完成从psd素材切图到页面完成共耗时3天。重构了代码，整理了命名规范,css书写规范。</div><br>
 <div>预览地址(谷歌浏览器)：https://hardmanhong.github.io/myPage/page-2/index.html</div>
 <div><br></div>
-<h2>javascript-practice</h2><br>
+<h2>javascript-practice</h2>
 <div>两个练习</div><br>
 <div>一.sort，实现了插入数据与对数据进行排序，主要是setInterval函数的应用及排序算法的实现</div><br>
 <div>预览地址https://hardmanhong.github.io/myPage/javascript-practice/sort/sort.html</div>
