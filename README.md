@@ -9,6 +9,7 @@ page-2:页面完成从psd素材切图到页面完成共耗时3天。重构了代
 javascript-practice
 两个练习 
 一.sort，实现了插入数据与对数据进行排序，主要是setInterval函数的应用及排序算法的实现
+
 二.rotation，实现了轮播图的效果,主要是加强setInterval函数的练习和事件的练习
 
 
