@@ -1,0 +1,81 @@
+@charset "utf-8";
+
+/* CSS Document */
+
+
+/*css 重置样式*/
+
+body,
+header,
+section
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+input,
+textarea,
+p,
+blockquote,
+th,
+td {
+    margin: 0;
+    padding: 0
+}
+i {
+    font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+li {
+    list-style: none
+}
+
+a {
+    text-decoration: none;
+    display: block;
+    color: #FFF
+}
+
+img {
+    border: none;
+}
+.display-block {
+    display: block;
+}
+
+.clearfloat:after {
+    display: block;
+    clear: both;
+    content: "";
+    visibility: hidden;
+    height: 0
+}
+
+.clearfloat {
+    zoom: 1
+}
