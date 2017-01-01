@@ -1,92 +1,197 @@
 html {
-	width: 100%;
-	height: 100%;
-}
-body {
-	width: 100%;
-	height: 100%;
-	font-size: 0.875em;
-	font-family: "微软雅黑";
-}
-#header {
-	/*position: absolute;*/
-	padding: 5em 0 2em 0;
-	/*top: 0;*/
-	/*left: 0;*/
-	width: 33%;
-	/*height: 100%;*/
-	background: url(../images/bg1.jpg) no-repeat;
-	/*background-color: #ccc;*/
-	color: rgba(255,255,255,0.9);
-}
-#header .headerImg {
-	/*margin-top: 5em;*/
-	text-align: center;
+    width: 100%;
+    height: 100%;
 }
 
-#header .headerImg img{
-	max-width: 75px;
-	border-radius: 100%;
-	box-shadow: 0 0 0 2px rgba(205,170,125,0.5);
+body {
+    width: 100%;
+    height: 100%;
+    font-size: 0.875em;
+    font-family: "微软雅黑";
 }
+
+#header {
+    position: fixed;
+    padding: 5em 0 2em 0;
+    width: 33.3%;
+    height: 100%;
+    background: url(../images/bg1.jpg) no-repeat;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+#header .headerImg {
+    text-align: center;
+}
+
+#header .headerImg img {
+    max-width: 75px;
+    border-radius: 100%;
+    box-shadow: 0 0 0 2px rgba(205, 170, 125, 0.5);
+}
+
 #header .intro {
-	margin-top: 2.5em;
-	padding: 0 5em;
+    margin-top: 2.5em;
+    padding: 0 5em;
 }
+
 #header .contact {
-	margin-top: 6em;
-	padding: 0 5em;
+    margin-top: 6em;
+    padding: 0 5em;
 }
+
 #header .contact i {
-	display: inline-block;
-	width: 32px;
-	height: 32px;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
 }
+
 #header .contact .contact-div {
-	margin-top: 1em;
-	border-radius: 5px;
+    margin: 1em 1em;
+    border-radius: 5px;
+    display: inline-block;
 }
+
 #header .contact .contact-div:hover {
-	background-color: rgba(205,170,125,0.13);
+    background-color: rgba(205, 170, 125, 0.13);
 }
-#header .contact .gmail i{
-	background: url(../images/icon.png) no-repeat;
-	background-position: 0px -209px;
+
+#header .contact .gmail i {
+    background: url(../images/icon.png) no-repeat;
+    background-position: 0px -209px;
 }
+
 #header .contact .github {
-	max-width: 32px;
+    max-width: 32px;
 }
-#header .contact .github a{
-	max-width: 32px;
+
+#header .contact .github a {
+    max-width: 32px;
 }
-#header .contact .github a i{
-	background: url(../images/icon.png) no-repeat;
-	background-position: -38px -209px;
+
+#header .contact .github a i {
+    background: url(../images/icon.png) no-repeat;
+    background-position: -38px -209px;
 }
+
 #header .contact .github a i:hover {
-	background-position: -79px -209px;
+    background-position: -79px -209px;
 }
+
 #header .contact .wechat {
-	position: relative;
+    position: relative;
 }
-#header .contact .wechat i{
-	background: url(../images/icon.png) no-repeat;
-	background-position: -124px -209px;
+
+#header .contact .wechat i {
+    background: url(../images/icon.png) no-repeat;
+    background-position: -124px -209px;
 }
+
 #header .contact .wechat i:hover {
-	background-position: -173px -209px;
+    background-position: -173px -209px;
 }
+
 #header .contact .my-wechat {
-	position: absolute;
-	display: none;
-	top: 0;
-	left: 50px;
-	width:200px;
-	height: 200px;
-	background: url(../images/icon.png) -5px 0 no-repeat;
-	
+    position: absolute;
+    display: none;
+    top: 0;
+    left: 50px;
+    width: 200px;
+    height: 200px;
+    background: url(../images/icon.png) -5px 0 no-repeat;
 }
+
 #header .footer {
-	margin-top: 10em;
-	text-align: center;
+    margin-top: 9em;
+    text-align: center;
+}
+
+#content {
+    float: right;
+    position: relative;
+    padding: 3em;
+    width: calc(100% - 33.3%);
+    box-sizing: border-box;
+}
+
+#content>div {
+    margin: 0 0 2em 0;
+}
+#content h3 {
+	margin-top: 1em;
+}
+#content a {
+	color: inherit;
+}
+#content .util {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.5em 1em;
+    box-sizing: border-box;
+    width: 100%;
+}
+#content .util .change-theme {
+	cursor: pointer;
+}
+#content .util .date {
+    display: inline-block;
+    float: right;
+    line-height: calc(50/21);
+}
+#content .show {
+	display: block;
+	opacity: 1;
+}
+#content .title {
+		display: inline-block;
+    margin-bottom: 1em;
+    font-size: 2em;
+    text-shadow: 1px 1px 2px rgba(139, 129, 76, 0.7);
+}
+#content .title img {
+	margin-left: 0.1em;
+}
+#content p {
+    font-size: 1em;
+    line-height: 2em;
+    color: #858585;
+    color: inherit;
+}
+
+#content .study {
+    margin-top: 2em;
+}
+
+#content .study .skill,
+#content .Collections .projects,
+#content .hobby .inserted {
+    text-align: center;
+    /*color: inherit;*/
+}
+#content .study .skill ul li img {
+    border-radius: 50%;
+}
+
+#content .study .skill ul li img:hover {
+    box-shadow: 0 0 5px 5px rgba(139, 105, 105, 0.8);
+}
+
+#content .study .skill ul li,
+#content .hobby .inserted ul li,
+#content .Collections .projects ul li {
+    display: inline-block;
+    margin: 1em 3em;
+}
+
+#content .Collections .title span {
+    color: #ccc;
+    opacity: 0.7;
+    font-size: 0.8em;
+}
+#content .hobby .inserted {
+    padding: 2em 0;
+}
+
+#content .hobby .inserted .run {
+    border-radius: 10px;
 }

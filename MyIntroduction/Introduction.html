@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="style/introduction.css">
 </head>
 
-<body>
+<body class="clearfloat">
     <header id="header">
         <section class="headerImg">
             <img src="images/logo.jpg">
@@ -21,27 +21,103 @@
             <p>我现在是一名即将毕业的大三学生，喜欢热爱编程、跑步、电影、音乐。</p>
         </section>
         <section class="contact">
-        		<div class="gmail contact-div">
-	            <i></i>
-	            <span>hardmanhong@gmail.com</span>
+            <h1>联系</h1>
+            <div class="wechat contact-div">
+                <i class="wechat-i"></i>
+                <div class="my-wechat"></div>
             </div>
             <div class="github contact-div">
-	            <a href="https://github.com/hardmanhong/" target="_blank"><i></i></a>
-	            <!-- <span>https://github.com/hardmanhong/</span> -->
+                <a href="https://github.com/hardmanhong/" target="_blank"><i></i></a>
             </div>
-            <div class="wechat contact-div">
-	            <i class="wechat-i"></i>
-	            <div class="my-wechat"></div>
+            <div class="gmail contact-div">
+                <i></i>
+                <span>goandup@qq.com</span>
             </div>
-
         </section>
         <section class="footer">
-            <p>© Go And Up'page 2016<br>Designed and developed by Silence Hong.</p>
+            <p>© Go And Up'page 2016
+                <br>Designed and developed by Silence Hong.</p>
         </section>
     </header>
-    <div class="content"></div>
-    <script type="text/javascript" src="javascript/introduction.js"></script>
+    <div id="content">
+        <div class="util">
+            <img class="change-theme" src="images/dark.png" title="切换主题">
+            <div class="date">
+                <span></span> 年 <span></span> 月 <span></span> 日
+            </div>
+        </div>
+        <div class="study">
+            <h2 class="title">学习<img class="arrow" src="images/down.png"></h2>
+            <div class="show">
+                <p>在校期间，我在学校的课程中接触了前端编程，由此产生了极大的兴趣，正所谓师父领进门，修行在个人，在前端的学习上，虽然只有一个人独自学习，遇到困难时，只能靠Google，但解决困难后那一种成就感，尤其看到自己的项目一步一步搭建，代码量越来越多的时候，是无法言喻的！显然现在的我非常稚嫩，但——努力吧！以下是我目前比较熟练的技能：</p>
+                <div class="skill">
+                    <ul>
+                        <li><img src="images/HTML.png"></li>
+                        <li><img src="images/css.png"></li>
+                        <li><img src="images/js.png"></li>
+                    </ul>
+                </div>
+                <p>2017,我继续在学习前端的路上。Go And Up.</p>
+            </div>
+        </div>
+        <div class="Collections">
+            <h2 class="title">个人作品<span> —— 点击图片预览</span><img class="arrow" src="images/down.png"></h2>
+            <div class="show">
+                <div class="projects">
+                    <ul>
+                        <li>
+                            <a href="https://hardmanhong.github.io/myPage/page-1/index.html" target="_blank">
+                                <img src="images/project-1-84.png">
+                            </a>
+                            <h3><a href="https://hardmanhong.github.io/myPage/page-1/index.html" target="_blank">第一个页面</a></h3>
+                        </li>
+                        <li>
+                            <a href="https://hardmanhong.github.io/myPage/javascript-practice/sort/sort.html" target="_blank">
+                                <img src="images/project-3-300.png">
+                            </a>
+                            <h3><a href="https://hardmanhong.github.io/myPage/page-1/index.html" target="_blank">插入与排序</a></h3>
+                        </li>
+                        <li>
+                            <a href="https://hardmanhong.github.io/myPage/page-2/index.html" target="_blank">
+                                <img src="images/project-2-300.png">
+                            </a>
+                            <h3><a href="https://hardmanhong.github.io/myPage/page-1/index.html" target="_blank">第二个页面</a></h3>
+                        </li>
+                        <li>
+                            <a href="https://hardmanhong.github.io/myPage/javascript-practice/rotation/rotation.html" target="_blank">
+                                <img src="images/project-4-300.png" alt="">
+                            </a>
+                            <h3><a href="https://hardmanhong.github.io/myPage/page-1/index.html" target="_blank">js轮播图</a></h3>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="hobby">
+            <h2 class="title">爱好<img class="arrow" src="images/down.png"></h2>
+            <div class="show">
+                <p>1.前端编程 —— 是一门化腐朽为神奇的艺术。</p>
+                <p>2.知乎 —— 大牛云集，多看，多思考，多学习。</p>
+                <p>3.跑步 —— 喜欢大汗淋漓的感觉。</p>
+                <p>4.电影/纪录片 —— 体味百样人生，虽然人生比电影难多了。</p>
+                <div class="inserted">
+                    <ul>
+                        <li><img src="images/web.png">
+                            <h3>前端编程</h3></li>
+                        <li><img src="images/zhihu.png">
+                            <h3>知乎</h3></li>
+                        <li><img src="images/run.png" class="run">
+                            <h3>跑步</h3></li>
+                        <li><img src="images/film.png">
+                            <h3>电影/纪录片</h3></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- <h2 class="title">感谢阅读</h2> -->
+    </div>
     <script type="text/javascript" src="javascript/header.js"></script>
+    <script type="text/javascript" src="javascript/content.js"></script>
 </body>
 
 </html>

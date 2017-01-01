@@ -7,4 +7,4 @@ window.onload = function () {
 	wechat_i.addEventListener("mouseout",function () {
 		myWechat.style.display = "none";
 	});
-}
+}																																																																																																																																																							
