@@ -12,6 +12,9 @@
 <div><br></div>
 <div>二.rotation，实现了轮播图的效果,主要是加强setInterval函数的练习和事件的练习</div><br>
 <div>预览地址https://hardmanhong.github.io/myPage/javascript-practice/rotation/rotation.html</div><br>
-<h2>MyIntroduction-个人简历网站</h2><br>
+<h2>MyIntroduction-个人在线简历1.0</h2><br>
+预览地址https://hardmanhong.github.io/myPage/MyIntroduction/Introduction.html
+<h2>Mr-Hong-个人在线简历2.0</h2><br>
+预览地址https://hardmanhong.github.io/myPage/Mr-Hong/index.html
 
->>>>>>> 2c87493dc890ac6569a9867fd663250248f887ca
+
