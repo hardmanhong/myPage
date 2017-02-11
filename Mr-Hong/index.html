@@ -17,7 +17,6 @@
     <header class="header">
         <!-- top-bar -->
         <div class="top-bar">
-            <h1 class="text-center">Go And Up</h1>
         </div>
         <!-- top-bar -->
         <!-- intro -->
@@ -28,7 +27,7 @@
                 <div class="job">web前端开发</div>
                 <div class="intro-details">
                     <p>
-                        乐观开朗，积极向上。学习能力强，喜欢挑战，喜欢接受新事物，具有责任心，和团队意识，具有良好的沟通能力。热爱前端。
+                        应届毕业生一枚。乐观，积极向上。学习能力强，喜欢挑战，喜欢接受新事物，具有责任心，和团队意识，具有良好的沟通能力。热爱前端。
                     </p>
                 </div>
             </div>
@@ -58,14 +57,14 @@
         <nav id="nav-wrapper" class="navbar nav-wrapper">
             <div class="container text-center sm-device">
                 <ul class="nav-items list-inline">
-                    <li class="skills"><a href="#skills-section">专业技能</a></li>
-                    <li class="projects"><a href="#projects-section">项目经验</a></li>
-                    <li class="education"><a href="#education-section">教育背景</a></li>
-                    <li class="hobby"><a href="#hobby-section">兴趣爱好</a></li>
+                    <li class="skills"><a href="#skills-section" class="scrollto">专业技能</a></li>
+                    <li class="projects"><a href="#projects-section" class="scrollto">项目经验</a></li>
+                    <li class="education"><a href="#education-section" class="scrollto">教育背景</a></li>
+                    <li class="hobby"><a href="#hobby-section" class="scrollto">兴趣爱好</a></li>
                 </ul>
             </div>
             <div class="nav-bar">
-                <p>导航栏</p>
+                <p>洪子群</p>
             </div>
             <button type="button" id="navbar-toggle-btn" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
@@ -106,6 +105,16 @@
                             <div class="desc">
                                 遵循 W3C 规范，写出规范化、语义化的代码。熟悉CSS3，熟悉盒模型、浮动，定位，BFC 等概念。了解响应式布局
                             </div>
+                            <div class="examples">
+                                <div class="example">
+                                    <i class="glyphicon glyphicon-hand-right"></i>
+                                    <a href="https://hardmanhong.github.io/myPage/page-1/index.html" target="_blank">Demo-1</a>
+                                </div>
+                                <div class="example">
+                                    <i class="glyphicon glyphicon-hand-right"></i>
+                                    <a href="https://hardmanhong.github.io/myPage/page-2/index.html" target="_blank">Demo-2</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!-- item -->
@@ -121,6 +130,12 @@
                             <h4 class="skill-name">JavaScript &amp; jQuery</h4>
                             <div class="desc">
                                 熟悉原生 JS 和 jQuery,利用 JS 和 jQery 实现常见效果，能够不依赖库手写 tab 切换、轮播等效果。掌握事件模型、DOM 操作、闭包、原型链、面向对象、封装等知识
+                            </div>
+                            <div class="examples">
+                                <div class="example">
+                                    <i class="glyphicon glyphicon-hand-right"></i>
+                                    <a href="https://hardmanhong.github.io/myPage/javascript-practice/rotation/rotation.html" target="_blank">JS原生轮播图</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -173,6 +188,24 @@
                 <h2 class="section-title">教育背景</h2>
                 <span class="section-line"></span>
             </div>
+           	<!-- row -->
+            <div class="row">
+            		<!-- col -->
+                <div class="item col-xs-12 col-sm-12">
+                    <div class="item-inner">
+                        <hgroup>
+                            <h3 class="degree">大学专科 软件技术</h3>
+                            <h4 class="college">河源职业技术学院</h4>
+                            <h5 class="time">2014 - 2017</h5>
+                        </hgroup>
+                        <div class="desc">
+                            在校期间，我在学校的课程中接触了前端编程，由此产生了极大的兴趣，正所谓师父领进门，修行在个人，在前端的学习上，虽然只有一个人独自学习。遇到困难时，只能 <strong>Google</strong> + <strong>网上提问</strong>，但解决困难后那一种成就感，尤其看到自己每次都有收获、都有进步、代码量越来越多的时候，是真的开心。
+                        </div>
+                    </div>
+                </div>
+            		<!-- col -->
+            </div>
+           	<!-- row -->
         </section>
         <!-- education-section -->
         <!-- hobby-section -->
@@ -181,6 +214,39 @@
                 <h2 class="section-title">兴趣爱好</h2>
                 <span class="section-line"></span>
             </div>
+            <!-- carousel轮播插件 -->
+            <div id="plugins-carousel" class="plugins-carousel carousel slide" data-ride="carousel" data-interval="3000">
+                <!-- 轮播按钮 -->
+                <ol class="carousel-indicators">
+                    <li data-target="#plugins-carousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#plugins-carousel" data-slide-to="1"></li>
+                    <li data-target="#plugins-carousel" data-slide-to="2"></li>
+                </ol>
+                <!-- 轮播按钮 -->
+                <!-- 轮播内容 -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <h3 class="hobby">跑步</h3>
+                        <div class="desc">
+                            慢跑，真正让我感到了跑步的意义，从 3km 、5km 再到 10km,原本只是单纯想锻炼身体，其实更重要地锻炼了心志。
+                        </div>
+                    </div>
+                    <div class="item">
+                        <h3 class="hobby">读书</h3>
+                        <div class="desc">
+                            深处互联网浪潮，每天都在变化，只有跟上脚步，活到老，学到老，才不会落后。
+                        </div>
+                    </div>
+                    <div class="item">
+                        <h3 class="hobby">看博客</h3>
+                        <div class="desc">
+                            喜欢看知乎，简书等博客，看看别人的想法，看看前端发展的脚步。
+                        </div>
+                    </div>
+                </div>
+                <!-- 轮播内容 -->
+            </div>
+            <!-- carousel轮播插件 -->
         </section>
         <!-- hobby-section -->
     </div>
@@ -198,6 +264,8 @@
     <script type="text/javascript" src="plugins/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- jquery.easypiechart-->
     <script type="text/javascript" src="plugins/jquery-easypiechart/jquery.easypiechart.min.js"></script>
+    <!-- jquery.scrollTo -->
+    <script type="text/javascript" src="plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
 </body>
 

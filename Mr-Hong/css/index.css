@@ -6,8 +6,11 @@ body {
     overflow-x: hidden;
 }
 
+
+/*=================================== header ========================================*/
+
 .header {
-    background-color: #795548;
+    background-color: #4CAF50;
     color: #fff;
 }
 
@@ -16,11 +19,14 @@ body {
     padding-bottom: 120px;
 }
 
+
+/*=================================== intro ========================================*/
+
 .header .intro {
     position: relative;
     padding-top: 90px;
     padding-bottom: 60px;
-    background: #694a3e;
+    background-color: #449d48;
     font-size: 16px;
 }
 
@@ -48,12 +54,20 @@ body {
     margin-bottom: 30px;
 }
 
+.header .intro .intro-details {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
 .header .contact {
     padding-top: 30px;
     padding-bottom: 30px;
-    background: #593f35;
+    background-color: #3d8b40;
     font-size: 16px;
 }
+
+
+/*=================================== contact ========================================*/
 
 .header .contact ul {
     margin-bottom: 0;
@@ -72,13 +86,16 @@ body {
     color: rgba(255, 255, 255, 0.8);
 }
 
+
+/*=================================== nav-wrapper ========================================*/
+
 .header .nav-wrapper {
     position: relative;
+    width: 100%;
     height: 60px;
-    background: #49332b;
     padding-top: 20px;
     padding-bottom: 20px;
-    width: 100%;
+    background-color: #357a38;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
@@ -96,8 +113,12 @@ body {
     text-decoration: none;
 }
 
+.nav-wrapper .nav-items li.active a {
+    color: #fff;
+}
+
 .nav-wrapper .nav-items a:hover {
-    color: rgba(255, 255, 255, 1);
+    color: #fff;
 }
 
 .nav-wrapper .nav-bar {
@@ -110,7 +131,7 @@ body {
     left: 0;
     width: 100%;
     z-index: 100;
-    background: #795548;
+    background-color: #4CAF50;
 }
 
 .nav-wrapper .navbar-toggle {
@@ -119,7 +140,6 @@ body {
     top: 0;
     right: 0;
     margin-top: 13px;
-    background-color: #795548;
 }
 
 .navbar-toggle .icon-bar {
@@ -143,7 +163,6 @@ body {
         top: 60px;
         left: 0;
         width: 100%;
-        background-color: #795548;
     }
     .nav-wrapper .nav-items {
         margin: 7.5px -15px;
@@ -156,7 +175,7 @@ body {
         padding-bottom: 10px;
     }
     .nav-wrapper .nav-items li:hover {
-        background-color: #49332b;
+        background-color: #3d8b40;
         color: #fff;
     }
     .nav-wrapper .nav-bar {
@@ -164,10 +183,10 @@ body {
         position: absolute;
         top: 0;
         left: 0;
-        font-size: 24px;
+        font-size: 21px;
         color: rgba(255, 255, 255, 0.6);
         margin: 13px 0 13px 15px;
-        letter-spacing: 5px;
+        letter-spacing: 3px;
     }
 }
 
@@ -178,7 +197,7 @@ body {
 }
 
 
-/* wrapper */
+/*=================================== wrapper ========================================*/
 
 .wrapper {
     padding-top: 60px;
@@ -186,12 +205,9 @@ body {
 }
 
 .wrapper .section {
-    -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
-    -moz-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
-    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
     padding: 45px;
-    background: #fff;
     margin-bottom: 45px;
+    background-color: #fff;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     -ms-border-radius: 2px;
@@ -201,6 +217,13 @@ body {
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
     text-align: center;
+    -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    -moz-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+}
+
+.section .desc {
+    color: #666;
 }
 
 .section .section-top {
@@ -210,44 +233,64 @@ body {
 
 .section-top .section-title {
     margin-top: 0;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
     font-size: 24px;
 }
 
 .section-top .section-line {
     display: block;
-    margin: 0 auto;
     width: 96px;
     height: 2px;
-    background-color: #795548;
+    margin: 0 auto;
+    background-color: #4CAF50;
 }
+
+
+/*=================================== skills-section ========================================*/
 
 .skills-section .pri-skills {
     margin-bottom: 60px;
 }
 
 .skills-section .subtitle {
-    font-size: 18px;
-    color: #8a8a8a;
     margin-top: 0;
     margin-bottom: 45px;
+    font-size: 18px;
     font-weight: 300;
+    color: #8a8a8a;
 }
 
 .pri-skills .item {
     margin-bottom: 45px;
 }
 
+.item .examples {
+    margin-top: 20px;
+}
+
+.examples .example {
+    margin-bottom: 10px;
+}
+
+.examples .example i {
+    margin-right: 5px;
+}
+
+.examples .example a {
+    color: #4CAF50;
+    text-decoration: underline;
+}
+
 .pri-skills .chart {
+    position: relative;
     width: 110px;
     height: 110px;
-    vertical-align: middle;
-    position: relative;
     margin: 0 auto;
-    text-align: center;
+    margin-bottom: 30px;
     font-size: 20px;
     font-weight: 300;
-    margin-bottom: 30px;
+    vertical-align: middle;
+    text-align: center;
 }
 
 .chart span {
@@ -260,25 +303,76 @@ body {
     top: 0;
 }
 
-.pri-skills .desc {
-    color: #666;
-}
-
 .other-skills .skill-list {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 6px 30px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #f5f5f5;
     -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
     -moz-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
-    padding: 6px 30px;
-    display: inline-block;
-    margin-right: 10px;
-    border: 1px solid #f5f5f5;
-    font-weight: 500;
-    margin-bottom: 15px;
-    font-size: 16px;
 }
 
 
-/* footer */
+/*=================================== education-section ========================================*/
+
+.education-section .item-inner {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.education-section .item-inner .degree {
+    color: #4CAF50;
+}
+
+.education-section .item-inner .time {
+    color: #8a8a8a;
+    margin-bottom: 15px;
+}
+
+
+/*=================================== hobby-section ========================================*/
+
+.hobby-section .plugins-carousel {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.plugins-carousel .carousel-indicators {
+    bottom: 0;
+    margin-bottom: 0;
+}
+
+.plugins-carousel .carousel-indicators li {
+    width: 10px;
+    height: 10px;
+    margin: 0;
+    margin-right: 5px;
+    background-color: #bdbdbd;
+    border: none;
+}
+
+.plugins-carousel .carousel-indicators .active {
+    width: 10px;
+    height: 10px;
+    margin: 0;
+    margin-right: 5px;
+    background-color: #4CAF50;
+}
+
+.plugins-carousel .carousel-inner .hobby {
+    color: #4CAF50;
+}
+
+.carousel-inner .item {
+    margin-bottom: 45px;
+}
+
+
+/*=================================== footer ========================================*/
 
 .footer .container {
     padding: 30px;
