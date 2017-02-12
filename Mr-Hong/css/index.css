@@ -6,6 +6,10 @@ body {
     overflow-x: hidden;
 }
 
+p {
+    line-height: 1.5;
+}
+
 
 /*=================================== header ========================================*/
 
@@ -113,7 +117,8 @@ body {
     text-decoration: none;
 }
 
-.nav-wrapper .nav-items li.active a {
+.nav-wrapper .nav-items li.active
+ a {
     color: #fff;
 }
 
@@ -222,6 +227,12 @@ body {
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
 }
 
+@media (max-width: 767px) {
+    .wrapper .section {
+        padding: 30px;
+    }
+}
+
 .section .desc {
     color: #666;
 }
@@ -314,6 +325,32 @@ body {
     -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
     -moz-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+}
+
+
+/*=================================== projects-section ========================================*/
+
+.projects-section .projects .pro-name>i {
+    margin-right: 5px;
+}
+
+.projects-section .projects .pro-name>a {
+    font-size: 18px;
+    text-decoration: underline;
+    color: #4CAF50;
+}
+
+.projects-section .projects .pro-desc {
+    padding: 0 45px;
+    border-left: 3px solid #4CAF50;
+    text-align: left;
+    color: #666;
+}
+
+@media (max-width: 767px) {
+    .projects-section .projects .pro-name {
+        margin-bottom: 12px;
+    }
 }
 
 
