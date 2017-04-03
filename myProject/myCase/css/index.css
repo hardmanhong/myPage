@@ -301,19 +301,19 @@ body {
   background-color: #38404a;
 }
 
-.quote-page .quote-page-buttom {
+.quote-page .quote-page-bottom {
   padding-bottom: 6.133em;
   text-align: center;
   background-color: #323a45;
 }
 
-.quote-page-buttom h1 {
+.quote-page-bottom h1 {
   font-size: 12.83em;
   height: 0.68em;
   color: #5d718c;
 }
 
-.quote-page-buttom .quote-desc {}
+.quote-page-bottom .quote-desc {}
 
 .quote-desc p {
   font-size: 2.158em;
@@ -355,6 +355,15 @@ body {
 }
 
 
+/* commin a*/
+a.common {
+  margin-top: 1.6em;
+  padding: 1.06em 1.733em;
+  border-radius: 5px;
+  font-size: 1.422em;
+  text-align: center;
+  background-color: var(--color-green);
+}
 /* mobile-page */
 
 .page-show .mobile-page {
@@ -387,22 +396,19 @@ body {
 
 .mobile-page-left .download {}
 
-.download a {
-  margin-top: 1.6em;
-  padding: 1.06em 1.733em;
-  border-radius: 5px;
-  font-size: 1.422em;
-  text-align: center;
-  background-color: var(--color-green);
-}
+
 
 .mobile-page .mobile-page-right {
   margin-right: 2em;
 }
 
-
+/*our*/
 /* our-clients*/
-
+.our p.under-title {
+  margin-bottom: 1em;
+  font-size: 1.422em;
+  color: #6d7989;
+}
 .our-clients {
   padding: 2.933em 0;
   text-align: center;
@@ -410,32 +416,68 @@ body {
 }
 
 .our-clients .our-clients-top {
-
+  
 }
 
-.our-clients-top p {
-  margin-bottom: 1em;
-  font-size: 1.422em;
-  color: #6d7989;
+.our-clients .our-clients-bottom {
+  padding: 7em 0;
 }
 
-.our-clients .our-clients-buttom {
-  padding: 7.133em 0;
-}
-
-.our-clients-buttom ul li {
+.our-clients-bottom ul li {
   display: inline-block;
   margin-right: 3.5%;
 }
 
-.our-clients-buttom ul li img,
-.our-clients-buttom ul li span {
+.our-clients-bottom ul li img,
+.our-clients-bottom ul li span {
   vertical-align: middle;
 }
-.our-clients-buttom ul li span {
+.our-clients-bottom ul li span {
   color: #1a1a1a;
 }
-
+/* price-table */
+.price-table {
+  padding: 7.8em 0;
+  background-color: #f1f1f1;
+  text-align: center;
+}
+.price-table .price-table-top {
+  
+}
+.price-table .price-table-bottom {
+  margin-top: 5.8em;
+}
+.price-table-bottom ul li {
+  display: inline-block;
+  margin: 0 1em;
+   /*margin: 0 1em;*/
+}
+.price-table-bottom .item {
+  border: 1px solid #a6a6a6;
+  color: #999;
+}
+.item .item-top {
+  border-bottom: 1px solid #a6a6a6;
+}
+.item-top p {
+  margin-bottom: 0.27em;
+  font-size: 1.4em;
+}
+.item-top p.title {
+  margin: 0.4375em 0;
+}
+.item .item-bottom {
+  padding: 4.1em 0 3.2em 0;
+  border-top : 1px solid #ccc;
+}
+.item-bottom p {
+  font-size: 1.46em;
+  line-height: 1.8em;
+}
+.item-bottom a.common {
+  margin: 4em 2em 0 2em;
+  padding: 1em 2em;
+}
 /* 1155 - 1440 正常显示 
  * 1155 以下 图片太大 导致换行
  *
