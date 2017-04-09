@@ -16,7 +16,7 @@
 <a href="https://hardmanhong.github.io/myPage/Mr-Hong/index.html">
 预览地址</a>
 <h2>适配所有电脑分辨率下的网站</h2><br>
-<a href="https://hardmanhong.github.io/myPage/myProject/myCase/index.html">预览</a>
+<a href="https://hardmanhong.github.io/myPage/myCase/index.html">预览</a>
 
 
 
