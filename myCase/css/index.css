@@ -78,6 +78,7 @@ body {
   display: block;
   padding: 0.55em 0.78em;
   border-radius: 1.39em;
+  transition: all 0.5s;
 }
 .header-nav-right ul a.active {
   background-color: #ff4b5a;
