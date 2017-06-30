@@ -12,6 +12,9 @@ a {
 	display: block;
 	text-decoration: none;
 }
+ul,li {
+	list-style: none;
+}
 input {
 	border: none;
 }
@@ -112,27 +115,70 @@ input {
 	display: -webkit-flex;
 	margin-bottom: 1.3rem;
 }
-.user-form .user-form-item input {
+.user-form .country {
+	position: relative;
+}
+.user-form .user-form-item input,
+.user-form .user-form-item .country-text {
 	flex: 1;
 	-webkit-flex: 1;
 	width: 25.8rem;
 	height: 4.1rem;
+	line-height: 4.1rem;
 	box-shadow: 0 1px 2px #d1d1d1;
 	border-radius: 0.3rem;
 	padding-left: 2.5rem;
+	background-color: #fff;
+	color: #000;
+}
+.user-form .user-form-item input.onblur {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.user-form .user-form-item .country-text {
+	border-top-left-radius: 0.3rem;
+	border-bottom-left-radius: 0.3rem;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.user-form .user-form-item .country-list {
+	display: none;
+	position: absolute;
+	top: 4.1rem;
+	left: 0;
+}
+.user-form .user-form-item .country-list li{
+	width: 25.8rem;
+	height: 4.1rem;
+	line-height: 4.1rem;
+	border-radius: 0.3rem;
+	padding-left: 2.5rem;
+	background-color: #fff;
+	color: #000;
+}
+.user-form .user-form-item .country-list li.touch {
+	background-color: #38474f;
+	color: #fff;
 }
 .user-form .user-form-item i {
+	display: none;
 	width: 3.7rem;
 	height: 4.1rem;
 	text-align: center;
 	line-height: 4.1rem;
 	background-color: #fff;
+	border-top-right-radius: 0.3rem;
+	border-bottom-right-radius: 0.3rem;
 }
 .user-form .user-form-item i.select {
+	display: block;
 	background-color: #38474f;
 }
 .user-form .user-form-item i.right {
 	color: #84b262;
+}
+.user-form .user-form-item i.error {
+	color: #d55f5f;
 }
 .user-form .phone input,
 .user-form .phone .phone-input {
@@ -149,12 +195,8 @@ input {
 .user-form .phone .phone-input input {
 	width: 10.55rem;
 }
-.user-form .phone .phone-input i {
-	color: #d55f5f;
-}
-.user-form .user-form-btn {
-	/*margin: 0 auto;*/
-}
+
+
 .user-form .user-form-btn .next-btn{
 	margin: 0 auto;
 	width: 14.1rem;

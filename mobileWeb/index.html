@@ -32,35 +32,46 @@
     </div>
   </section>
   <section class="user-form">
-  	<div class="user-form-item">
-  		<input type="text" placeholder="Select a Country">
+  	<div class="user-form-item country">
+  		<!-- <input type="text" placeholder="Select a Country"> -->
+		<span class="country-text">Select a Country</span>
   		<i class="fa fa-angle-down fa-2x select"></i>
+  		<ul class="country-list">
+  			<li class="country-item">China</li>
+  			<li class="country-item">USA</li>
+  			<li class="country-item">Japan</li>
+  			<li class="country-item">UK</li>
+  		</ul>
   	</div>
   	<div class="user-form-item">
-  		<input type="text" placeholder="Full Name">
-  		<!-- <i class="fa fa-angle-down fa-2x"></i> -->
-  	</div>
-  	<div class="user-form-item">
-  		<input type="text" placeholder="1243 Kingdom Avenue">
+  		<input class="form-input" type="text" placeholder="Full Name">
   		<i class="right fa fa-check fa-2x"></i>
   	</div>
   	<div class="user-form-item">
-  		<input type="text" placeholder="Town / City">
+  		<input class="form-input" type="text" placeholder="1243 Kingdom Avenue">
+  		<i class="right fa fa-check fa-2x"></i>
+  	</div>
+  	<div class="user-form-item">
+  		<input class="form-input" type="text" placeholder="Town / City">
+  		<i class="right fa fa-check fa-2x"></i>
   	</div>
   	<div class="user-form-item phone">
-  		<input type="text" placeholder="Postcode / Zip">
+  		<input class="form-input" type="text" placeholder="Postcode / Zip">
+  		<i class="right fa fa-check fa-2x"></i>
   		<div class="phone-input">
-  			<input type="text" placeholder="Phone">
-  			<i class="fa fa-close"></i>
+  			<input class="form-input" type="text" placeholder="Phone">
+  			<i class="error fa fa-close fa-2x"></i>
   		</div>
   	</div>
 	<div class="user-form-item">
-  		<input type="text" placeholder="E-Mail Address">
+  		<input class="form-input" type="text" placeholder="E-Mail Address">
+  		<i class="right fa fa-check fa-2x"></i>
   	</div>
   	<div class="user-form-btn">
   		<a href="#" class="next-btn">Next  -  your order</a>
   	</div>
   </section>
+  <script type="text/javascript" src="js/index.js"></script>
 </body>
 
 </html>
