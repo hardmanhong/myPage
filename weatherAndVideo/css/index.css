@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,body {
+	font-family: "Helvetica","Microsoft YaHei";
+    font-size: 10px;
+    color: #fff;
+}
+input {
+	border: none;
+}
+.frame {
+    height: 100%;
+}
+
+.sidebar-show body,
+.sidebar-hide body {
+    height: 100%;
+}
+
+.sidebar-show .eyepetizer-video {
+    overflow: hidden;
+    height: 100%;
+    -webkit-transition: -webkit-transform 400ms;
+    -webkit-transform: translate3d(80%, 0, 0);
+}
+
+.sidebar-hide .eyepetizer-video {
+    overflow: hidden;
+    height: 100%;
+    -webkit-transition: -webkit-transform 400ms;
+    -webkit-transform: translate3d(0, 0, 0);
+}
+
+.meizu-weather {
+    position: absolute;
+    z-index: 1;
+    width: 80%;
+    height: 100%;
+	padding: 1rem;
+    background-color: #000;
+}
+.meizu-weather .weather-search {
+	display: flex;
+	display: -webkit-flex;
+}
+.weather-search .search-input {
+    display: block;
+    flex: 1;
+    -webkit-flex: 1;
+    width: 19.4rem;
+    height: 3rem;
+    border-top-left-radius: 0.2rem;
+    border-bottom-left-radius: 0.2rem;
+    padding-left: 2.5rem;
+    background: rgba(255,255,255,0.23);
+    color: #fff;
+}
+.weather-search .search-input::-webkit-input-placeholder {
+	color: #fff;
+}
+.weather-search .search-btn {
+	display: block;
+    flex: 1;
+    -webkit-flex: 1;
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+    text-align: center;
+    border-top-right-radius: 0.2rem;
+    border-bottom-right-radius: 0.2rem;
+	background: rgba(255,255,255,0.23);
+}
+
+.meizu-weather .weather-info {
+}
+.meizu-weather .weather-info .city-info {
+	margin: 1rem 0;
+}
+.meizu-weather .weather-info .city-info .city-name {
+	font-size: 2rem;
+	margin-right: 1rem;
+}
+.meizu-weather .weather-info .city-info .city-week {
+	
+}
+.meizu-weather .weather-info dl {
+}
+.meizu-weather .weather-info dl dt {
+	display: flex;
+	display: -webkit-flex;
+	background-color: orange;
+	margin-bottom: 1rem; 
+}
+.weather-info dl dt .weather-info-left {
+	flex: 1;
+	-webkit-flex: 1;
+	width: 20rem;
+	line-height: 2rem;
+}
+.weather-info dl dt .weather-info-right {
+	width: 8rem;
+	line-height: 4rem;
+}
+
+
+.eyepetizer-video {
+    background-color: green;
+    position: relative;
+    z-index: 2;
+    height: 2000px;
+}

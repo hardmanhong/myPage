@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" class="frame sidebar-show">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>jsonp</title>
+  <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css ">
+  <link rel="stylesheet" href="css/index.css ">
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=2QyDPaVd1yCBD8FeYoQrl3zqR9VoAPRl"></script>
+</head>
+
+<body>
+  <section class="meizu-weather">
+    <div class="weather-search">
+      <input type="text" placeholder="搜索城市天气" class="search-input">
+      <i class="fa fa-search search-btn fa-2x"></i>
+    </div>
+    <div class="weather-info">
+      <div class="city-info">
+        <span class="city-name"></span>
+        <span class="city-week">星期六</span>
+      </div>
+      <dl>
+        <dt>
+          <div class="weather-info-left">
+            <h3>今天</h3>
+            <p>多云 | 优</p>
+          </div>
+          <div class="weather-info-right">
+            <p>32° / 26°</p>
+          </div>
+        </dt>
+        <dt>
+          <div class="weather-info-left">
+            <h3>今天</h3>
+            <p>多云 | 优</p>
+          </div>
+          <div class="weather-info-right">
+            <p>32° / 26°</p>
+          </div>
+        </dt>
+        <dt>
+          <div class="weather-info-left">
+            <h3>今天</h3>
+            <p>多云 | 优</p>
+          </div>
+          <div class="weather-info-right">
+            <p>32° / 26°</p>
+          </div>
+        </dt>
+        <dt>
+          <div class="weather-info-left">
+            <h3>今天</h3>
+            <p>多云 | 优</p>
+          </div>
+          <div class="weather-info-right">
+            <p>32° / 26°</p>
+          </div>
+        </dt>
+        <dt>
+          <div class="weather-info-left">
+            <h3>今天</h3>
+            <p>多云 | 优</p>
+          </div>
+          <div class="weather-info-right">
+            <p>32° / 26°</p>
+          </div>
+        </dt>
+      </dl>
+    </div>
+  </section>
+  <section class="eyepetizer-video"></section>
+  <div id="allmap"></div>
+  <script type="text/javascript" src="js/index.js"></script>
+  <script>
+    function getMeizuCitiesJson(data) {
+      var cityNameEl = document.getElementsByClassName("city-name")[0];
+      var newCityName = cityNameEl.innerText;
+      var id;
+      for(var value of data.cities) {
+        value.city === newCityName && (id = value.cityid);
+      }
+      var searchBtn = document.getElementsByClassName("search-btn")[0];
+      searchBtn.onclick = function () {
+        console.log(id)//获取到当前城市的ID
+      }
+    }
+    
+  </script>
+  <script>
+  // 百度地图API功能
+  var map = new BMap.Map("allmap");
+  var point = new BMap.Point(116.331398, 39.897445);
+  map.centerAndZoom(point, 12);
+
+  function myFun(result) {
+    var cityName = result.name;
+    map.setCenter(cityName);
+    var _reCityName = cityName.replace(/市/, "");
+    var _cityName = document.getElementsByClassName("city-name")[0];
+    _cityName.innerText = _reCityName;
+  }
+  var myCity = new BMap.LocalCity();
+  myCity.get(myFun);
+  
+  var script = document.createElement("script");
+  script.src="json/meizu_cities.json";
+  setTimeout(function () {//设置500ms延迟执行，调用百度地图API后再执行，防止获取不到 span 的值
+    document.body.appendChild(script);
+  }, 500)
+  </script>
+</body>
+
+</html>
