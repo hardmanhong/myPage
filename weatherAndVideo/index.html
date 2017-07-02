@@ -9,7 +9,10 @@
   <title>jsonp</title>
   <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css ">
   <link rel="stylesheet" href="css/index.css ">
+  <!-- 百度地图API -->
   <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=2QyDPaVd1yCBD8FeYoQrl3zqR9VoAPRl"></script>
+  <script type="text/javascript" src="lib/CryptoJS/hmac-sha1.js"></script>
+  <script type="text/javascript" src="lib/CryptoJS/enc-base64.js"></script>
 </head>
 
 <body>
@@ -76,19 +79,13 @@
   <div id="allmap"></div>
   <script type="text/javascript" src="js/index.js"></script>
   <script>
-    function getMeizuCitiesJson(data) {
-      var cityNameEl = document.getElementsByClassName("city-name")[0];
-      var newCityName = cityNameEl.innerText;
-      var id;
-      for(var value of data.cities) {
-        value.city === newCityName && (id = value.cityid);
-      }
-      var searchBtn = document.getElementsByClassName("search-btn")[0];
-      searchBtn.onclick = function () {
-        console.log(id)//获取到当前城市的ID
-      }
-    }
-    
+  var showWeather = function(data) {
+        var t = document.getElementsByClassName("eyepetizer-video")[0];
+        console.log(t)
+        console.log(data);
+        // t.innerText(data);
+  }
+  
   </script>
   <script>
   // 百度地图API功能
@@ -105,12 +102,8 @@
   }
   var myCity = new BMap.LocalCity();
   myCity.get(myFun);
+
   
-  var script = document.createElement("script");
-  script.src="json/meizu_cities.json";
-  setTimeout(function () {//设置500ms延迟执行，调用百度地图API后再执行，防止获取不到 span 的值
-    document.body.appendChild(script);
-  }, 500)
   </script>
 </body>
 
