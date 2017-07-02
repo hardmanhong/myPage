@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css ">
   <link rel="stylesheet" href="css/index.css ">
   <!-- 百度地图API -->
-  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=2QyDPaVd1yCBD8FeYoQrl3zqR9VoAPRl"></script>
+  <!-- <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=2QyDPaVd1yCBD8FeYoQrl3zqR9VoAPRl"></script> -->
   <script type="text/javascript" src="lib/CryptoJS/hmac-sha1.js"></script>
   <script type="text/javascript" src="lib/CryptoJS/enc-base64.js"></script>
 </head>
@@ -78,30 +78,32 @@
   <section class="eyepetizer-video"></section>
   <div id="allmap"></div>
   <script type="text/javascript" src="js/index.js"></script>
-  <script>
-  var showWeather = function(data) {
-        var t = document.getElementsByClassName("eyepetizer-video")[0];
-        console.log(t)
-        console.log(data);
-        // t.innerText(data);
-  }
-  
+  // <script type="text/javascript" src="js/callbackFun.js">
+  // var showWeather = function(data) {
+  //       var t = document.getElementsByClassName("eyepetizer-video")[0];
+  //       // console.log(t)
+  //       console.log("daily: ",data);
+  //       // t.innerText(data);
+  // }
+  // var showNowWeather = function (data) {
+  //   console.log("now: ",data)
+  // }
   </script>
   <script>
   // 百度地图API功能
-  var map = new BMap.Map("allmap");
-  var point = new BMap.Point(116.331398, 39.897445);
-  map.centerAndZoom(point, 12);
+  // var map = new BMap.Map("allmap");
+  // var point = new BMap.Point(116.331398, 39.897445);
+  // map.centerAndZoom(point, 12);
 
-  function myFun(result) {
-    var cityName = result.name;
-    map.setCenter(cityName);
-    var _reCityName = cityName.replace(/市/, "");
-    var _cityName = document.getElementsByClassName("city-name")[0];
-    _cityName.innerText = _reCityName;
-  }
-  var myCity = new BMap.LocalCity();
-  myCity.get(myFun);
+  // function myFun(result) {
+  //   var cityName = result.name;
+  //   map.setCenter(cityName);
+  //   var _reCityName = cityName.replace(/市/, "");
+  //   var _cityName = document.getElementsByClassName("city-name")[0];
+  //   _cityName.innerText = _reCityName;
+  // }
+  // var myCity = new BMap.LocalCity();
+  // myCity.get(myFun);
 
   
   </script>
