@@ -1,4 +1,10 @@
-### mobileWeb-移动前端web app页面 [预览](https://hardmanhong.github.io/myPage/mobileWeb/index.html)
+### weatherAndVideo [预览(移动端)](https://hardmanhong.github.io/myPage/weatherAndVideo/index.html)
+* 运用原生 JSONP 跨域调用心和天气API
+* 实现查看当前城市天气、搜索指定城市天气
+* 还有陆续功能，待完善...
+
+---
+### mobileWeb-移动前端web app页面 [预览(移动端)](https://hardmanhong.github.io/myPage/mobileWeb/index.html)
 * flex 布局的运用
 * meta标签在移动页面的运用
 * 移动页面 touch 事件的运用
