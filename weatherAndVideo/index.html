@@ -16,79 +16,75 @@
 </head>
 
 <body>
-  <section class="meizu-weather">
+  <section class="weather">
+  <!-- 上半部分 -->
+  <div class="weather-top">
+    <!-- 搜索栏 -->
     <div class="weather-search">
       <input type="text" placeholder="搜索城市天气" class="search-input">
       <i class="fa fa-search search-btn fa-2x"></i>
     </div>
-    <div class="weather-info">
-      <div class="city-info">
-        <span class="city-name"></span>
-        <span class="city-week">星期六</span>
+    <!-- 现在天气 -->
+    <div class="weather-now">
+        <img class="weather-now-icon" src="img/3d_60/0.png" alt="">
+        <h1>
+          <span class="weather-now-tem"></span>° |
+          <span class="weather-now-text"></span>
+        </h1>
+        <h2><span class="weather-now-city"></span></h2>
       </div>
-      <dl>
-        <dt>
-          <div class="weather-info-left">
-            <h3>今天</h3>
-            <p>多云 | 优</p>
+  </div>
+  <!-- 下半部分 -->
+  <div class="weather-bottom">
+    <ul class="weather-daily">
+      <li class="weather-daily-item today">
+        <div class="daily-item-left">
+          <h3>今天</h3>
+          <span class="text-day"></span>
+        </div>
+        <div class="daily-item-right">
+          <img class="weather-daily-icon" src="img/3d_60/0.png" alt="">
+          <div class="daily-item-text">
+            <h3><span class="temperature-low"></span>° /
+            <span class="temperature-high"></span>°</h3>
+            <span class="daily-date"></span>
           </div>
-          <div class="weather-info-right">
-            <p>32° / 26°</p>
+        </div>
+      </li>
+      <li class="weather-daily-item tomorrow">
+        <div class="daily-item-left">
+          <h3>明天</h3>
+          <span class="text-day"></span>
+        </div>
+        <div class="daily-item-right">
+          <img class="weather-daily-icon" src="img/3d_60/0.png" alt="">
+          <div class="daily-item-text">
+            <h3><span class="temperature-low"></span>° /
+            <span class="temperature-high"></span>°</h3>
+            <span class="daily-date"></span>
           </div>
-        </dt>
-        <dt>
-          <div class="weather-info-left">
-            <h3>今天</h3>
-            <p>多云 | 优</p>
+        </div>
+      </li>
+      <li class="weather-daily-item day-after-tomorrow">
+        <div class="daily-item-left">
+          <h3>后天</h3>
+          <span class="text-day"></span>
+        </div>
+        <div class="daily-item-right">
+          <img class="weather-daily-icon" src="img/3d_60/0.png" alt="">
+          <div class="daily-item-text">
+            <h3><span class="temperature-low"></span>° /
+            <span class="temperature-high"></span>°</h3>
+            <span class="daily-date"></span>
           </div>
-          <div class="weather-info-right">
-            <p>32° / 26°</p>
-          </div>
-        </dt>
-        <dt>
-          <div class="weather-info-left">
-            <h3>今天</h3>
-            <p>多云 | 优</p>
-          </div>
-          <div class="weather-info-right">
-            <p>32° / 26°</p>
-          </div>
-        </dt>
-        <dt>
-          <div class="weather-info-left">
-            <h3>今天</h3>
-            <p>多云 | 优</p>
-          </div>
-          <div class="weather-info-right">
-            <p>32° / 26°</p>
-          </div>
-        </dt>
-        <dt>
-          <div class="weather-info-left">
-            <h3>今天</h3>
-            <p>多云 | 优</p>
-          </div>
-          <div class="weather-info-right">
-            <p>32° / 26°</p>
-          </div>
-        </dt>
-      </dl>
-    </div>
+        </div>
+      </li>
+    </ul>
+  </div>
   </section>
   <section class="eyepetizer-video"></section>
   <div id="allmap"></div>
   <script type="text/javascript" src="js/index.js"></script>
-  // <script type="text/javascript" src="js/callbackFun.js">
-  // var showWeather = function(data) {
-  //       var t = document.getElementsByClassName("eyepetizer-video")[0];
-  //       // console.log(t)
-  //       console.log("daily: ",data);
-  //       // t.innerText(data);
-  // }
-  // var showNowWeather = function (data) {
-  //   console.log("now: ",data)
-  // }
-  </script>
   <script>
   // 百度地图API功能
   // var map = new BMap.Map("allmap");
