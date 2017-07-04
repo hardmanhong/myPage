@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" class="frame sidebar-show">
+<html lang="en" class="frame sidebar-hide">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -10,7 +11,7 @@
   <link rel="stylesheet" href="css/index.css">
   <script type="text/javascript" src="lib/CryptoJS/hmac-sha1.js"></script>
   <script type="text/javascript" src="lib/CryptoJS/enc-base64.js"></script>
-  <!-- <script type="text/javascript" src="js/index.js"></script> -->
+  <script type="text/javascript" src="js/tool.js"></script>
 </head>
 
 <body>
@@ -18,16 +19,16 @@
     <!-- 上半部分 -->
     <div class="weather-top">
       <!-- 搜索栏 -->
-      <div class="weather-search">
-        <input type="text" placeholder="搜索城市天气" class="search-input">
-        <i class="fa fa-search search-btn fa-2x"></i>
+      <div class="weather-search search">
+        <input type="text" placeholder="城市" class="search-input city-name">
+        <i class="search-city search-btn fa fa-search fa-2x"></i>
       </div>
       <!-- 现在天气 -->
       <div class="weather-now">
         <img class="weather-now-icon" src="img/3d_60/0.png" alt="">
         <h1>
           <span class="weather-now-tem">23</span>° |
-          <span class="weather-now-text">30</span>°
+          <span class="weather-now-text">晴</span>
         </h1>
         <h2><span class="weather-now-city">深圳</span></h2>
       </div>
@@ -80,9 +81,78 @@
       </ul>
     </div>
   </section>
-  <section class="eyepetizer-video"></section>
-  <div id="allmap"></div>
-  <script type="text/javascript" src="js/index.js"></script>
+  <section class="movie">
+    <!-- 顶部按钮 -->
+    <div class="movie-top">
+      <a href="#" class="see-weather">天气</a>
+      <a href="#" class="see-topMovie">Top10电影</a>
+    </div>
+    <!-- 下方电影内容区 -->
+    <div class="movie-bottom">
+      <!-- 搜索区域 -->
+      <div class="search-area">
+        <!-- 搜索电影 -->
+        <div class="movie-search search">
+          <input type="text" placeholder="电影" class="movie-name search-input">
+          <i class="search-btn search-movie fa fa-search fa-2x"></i>
+        </div>
+        <!-- 电影搜索结果 -->
+        <div class="movie-search-result">
+          <div class="movie-result-desc movie-desc">
+              <h2><span class="movie-result-title"></span><span class="movie-result-year">1994</span></h2>
+              <p>类型:<span class="movie-result-type">动画/喜剧/喜剧</span></p>
+              <p>豆瓣评分:<span class="movie-result-rating">7.0</span>/10</p>
+              <a href="#" class="movie-result-alt">详情</a>
+              <a href="#" class="return-search">返回</a>
+            </div>
+            <div class="movie-poster">
+              <img src="img/t.jpg" alt="" class="movie-result-poster">
+            </div>
+        </div>
+      </div>
+      <!-- 即将上映电影 -->
+      <div class="soon-movie">
+      <h1>近期上映</h1>
+        <ul>
+          <li>
+            <div class="soon-movie-desc movie-desc">
+              <h2 class="soon-movie-title">梵蒂冈博物馆3D</h2>
+              <p>类型:<span class="soon-movie-type">动画/喜剧/喜剧</span></p>
+              <p>豆瓣评分:<span class="soon-movie-rating">7.0</span>/10</p>
+              <a href="#" class="soon-movie-alt" target="_blank">详情</a>
+            </div>
+            <div class="movie-poster">
+              <img src="img/t.jpg" alt="" class="soon-movie-poster">
+            </div>
+          </li>
+          <li>
+          <div class="soon-movie-desc movie-desc">
+            <h2 class="soon-movie-title">梵蒂冈博物馆3D</h2>
+            <p>类型:<span class="soon-movie-type">动画/喜剧/喜剧</span></p>
+            <p>豆瓣评分:<span class="soon-movie-rating">7.0</span>/10</p>
+            <a href="#" class="soon-movie-alt" target="_blank">详情</a>
+          </div>
+          <div class="movie-poster">
+            <img src="img/t.jpg" alt="" class="soon-movie-poster">
+          </div>
+          </li>
+           <li>
+          <div class="soon-movie-desc movie-desc">
+            <h2 class="soon-movie-title">梵蒂冈博物馆3D</h2>
+            <p>类型:<span class="soon-movie-type">动画/喜剧/喜剧</span></p>
+            <p>豆瓣评分:<span class="soon-movie-rating">7.0</span>/10</p>
+            <a href="#" class="soon-movie-alt" target="_blank">详情</a>
+          </div>
+          <div class="movie-poster">
+            <img src="img/t.jpg" alt="" class="soon-movie-poster">
+          </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <script type="text/javascript" src="js/weather.js"></script>
+  <script type="text/javascript" src="js/movie.js"></script>
 </body>
 
 </html>

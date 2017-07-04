@@ -11,6 +11,12 @@ body {
     color: #fff;
 }
 
+a {
+    text-decoration: none;
+    display: block;
+    color: #fff;
+}
+
 input {
     border: none;
 }
@@ -38,37 +44,30 @@ h6 {
     height: 100%;
 }
 
-.sidebar-show .eyepetizer-video {
+.sidebar-show .movie {
     overflow: hidden;
     height: 100%;
     -webkit-transition: -webkit-transform 400ms;
     -webkit-transform: translate3d(80%, 0, 0);
 }
 
-.sidebar-hide .eyepetizer-video {
+.sidebar-hide .movie {
     overflow: hidden;
     height: 100%;
     -webkit-transition: -webkit-transform 400ms;
     -webkit-transform: translate3d(0, 0, 0);
 }
-.weather {
-    position: absolute;
-    z-index: 1;
-    width: 80%;
-    height: 100%;
-    background-color: #21b5fb;
-}
-/* 上半部分 */
-.weather .weather-top {
-    background: url(../img/top-bg.jpg) no-repeat;
-    background-size: cover;
-}
-.weather .weather-top .weather-search {
+
+
+/* 搜索栏 */
+
+.search {
     display: flex;
     display: -webkit-flex;
     padding: 1.2rem 0.9rem;
 }
-.weather-search .search-input {
+
+.search .search-input {
     display: block;
     flex: 5;
     -webkit-flex: 5;
@@ -81,11 +80,11 @@ h6 {
     color: #fff;
 }
 
-.weather-search .search-input::-webkit-input-placeholder {
+.search .search-input::-webkit-input-placeholder {
     color: #fff;
 }
 
-.weather-search .search-btn {
+.search .search-btn {
     display: block;
     flex: 1;
     -webkit-flex: 1;
@@ -96,6 +95,25 @@ h6 {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     background: rgba(255, 255, 255, 0.23);
+}
+
+
+/* 天气界面*/
+
+.weather {
+    position: absolute;
+    z-index: 1;
+    width: 80%;
+    height: 100%;
+    background-color: #21b5fb;
+}
+
+
+/* 上半部分 */
+
+.weather .weather-top {
+    background: url(../img/top-bg.jpg) no-repeat;
+    background-size: cover;
 }
 
 .weather .weather-top .weather-now {
@@ -201,9 +219,130 @@ h1 {
     }
 }
 
-.eyepetizer-video {
-    background-color: green;
+
+/* 电影区*/
+
+.movie {
+    background: url(../img/movie.jpg) no-repeat;
+    background-size: cover;
     position: relative;
     z-index: 2;
     height: 2000px;
 }
+
+
+/* 顶部按钮*/
+
+.movie .movie-top {
+    display: flex;
+    display: -webkit-flex;
+}
+
+.movie .movie-top .see-weather,
+.movie .movie-top .see-topMovie {
+    font-size: 2rem;
+    flex: 1;
+    -webkit-flex: 1;
+    padding: 1rem;
+    background-color: rgba(19, 49, 75, 0.23);
+    text-align: center;
+    margin-right: 1rem;
+    border-radius: 10px;
+}
+
+.movie .movie-top .see-topMovie {
+    margin-right: 0;
+}
+
+
+/* 下方电影内容区*/
+
+.movie .movie-bottom {}
+
+
+/* 搜索区 */
+
+.movie .movie-bottom .search-area {
+    position: relative;
+}
+
+
+/*搜索结果 */
+
+.movie-bottom .search-area .movie-search-result {
+    display: none;
+    position: fixed;
+    width: 100%;
+    background-color: #54c3c7;
+    padding: 1.5rem 0.5rem;
+    border-radius: 0.5rem;
+    z-index: 1;
+}
+
+.movie-search-result .movie-result-desc a {
+    display: inline-block;
+    margin-right: 3rem;
+}
+
+
+/*即将上映电影*/
+
+.movie-bottom .soon-movie {
+    z-index: 2;
+}
+
+.movie-bottom .soon-movie h1 {
+    font-size: 2rem;
+    flex: 1;
+    -webkit-flex: 1;
+    padding: 1rem;
+    background-color: rgba(19, 49, 75, 0.23);
+    text-align: center;
+    margin-right: 1rem;
+    border-radius: 10px;
+}
+
+.movie-bottom .soon-movie ul li,
+.movie-search-result {
+    display: flex;
+    display: -webkit-flex;
+    margin: 0.8rem auto;
+}
+
+.movie-desc {
+    flex: 5;
+    -webkit-flex: 5;
+    padding-left: 2rem;
+    font-size: 2rem;
+}
+
+.movie-desc h2 {
+    color: #380d0d;
+    margin-top: 0;
+}
+
+.movie-desc p {
+    color: #000;
+}
+
+.movie-desc p span {
+    color: #980707;
+}
+
+.movie-desc a {
+    width: 7rem;
+    height: 3rem;
+    line-height: 3rem;
+    margin-top: 1rem;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+    border-radius: 0.3rem;
+}
+
+.movie-poster {
+    flex: 2;
+    -webkit-flex: 2;
+}
+
+.movie-poster img {}
