@@ -67,8 +67,8 @@ window.addEventListener("load", function() {
                     callback(response); //处理响应 
                 } finally {
                     //删除该函数, 并移除相应script元素 
-                    delete window[cbname];
-                    script.parentNode.removeChild(script);
+                    // delete window[cbname];
+                    // script.parentNode.removeChild(script);
                 }
             }
             //创建script标签并添加到DOM中去
