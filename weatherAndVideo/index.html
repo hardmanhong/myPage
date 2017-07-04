@@ -6,26 +6,25 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <title>jsonp</title>
-  <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css ">
-  <link rel="stylesheet" href="css/index.css ">
-  <!-- 百度地图API -->
-  <!-- <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=2QyDPaVd1yCBD8FeYoQrl3zqR9VoAPRl"></script> -->
+  <title>天气</title>
+  <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/index.css">
   <script type="text/javascript" src="lib/CryptoJS/hmac-sha1.js"></script>
   <script type="text/javascript" src="lib/CryptoJS/enc-base64.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
 </head>
 
 <body>
   <section class="weather">
-  <!-- 上半部分 -->
-  <div class="weather-top">
-    <!-- 搜索栏 -->
-    <div class="weather-search">
-      <input type="text" placeholder="搜索城市天气" class="search-input">
-      <i class="fa fa-search search-btn fa-2x"></i>
-    </div>
-    <!-- 现在天气 -->
-    <div class="weather-now">
+    <!-- 上半部分 -->
+    <div class="weather-top">
+      <!-- 搜索栏 -->
+      <div class="weather-search">
+        <input type="text" placeholder="搜索城市天气" class="search-input">
+        <i class="fa fa-search search-btn fa-2x"></i>
+      </div>
+      <!-- 现在天气 -->
+      <div class="weather-now">
         <img class="weather-now-icon" src="img/3d_60/0.png" alt="">
         <h1>
           <span class="weather-now-tem">23</span>° |
@@ -33,76 +32,57 @@
         </h1>
         <h2><span class="weather-now-city">深圳</span></h2>
       </div>
-  </div>
-  <!-- 下半部分 -->
-  <div class="weather-bottom">
-    <ul class="weather-daily">
-      <li class="weather-daily-item today">
-        <div class="daily-item-left">
-          <h3>今天</h3>
-          <span class="text-day">大雨</span>
-        </div>
-        <div class="daily-item-right">
-          <img class="weather-daily-icon" src="img/3d_60/0.png" alt="">
-          <div class="daily-item-text">
-            <h3><span class="temperature-low">25</span>° /
-            <span class="temperature-high">32</span>°</h3>
-            <span class="daily-date">2017-07-04</span>
+    </div>
+    <!-- 下半部分 -->
+    <div class="weather-bottom">
+      <ul class="weather-daily">
+        <li class="weather-daily-item today">
+          <div class="daily-item-left">
+            <h3>今天</h3>
+            <span class="text-day">大雨</span>
           </div>
-        </div>
-      </li>
-      <li class="weather-daily-item tomorrow">
-        <div class="daily-item-left">
-          <h3>明天</h3>
-          <span class="text-day">大雨</span>
-        </div>
-        <div class="daily-item-right">
-          <img class="weather-daily-icon" src="img/3d_60/0.png" alt="">
-          <div class="daily-item-text">
-            <h3><span class="temperature-low">25</span>° /
+          <div class="daily-item-right">
+            <img class="weather-daily-icon" src="img/3d_60/0.png" alt="">
+            <div class="daily-item-text">
+              <h3><span class="temperature-low">25</span>° /
+            <span class="temperature-high">32</span>°</h3>
+              <span class="daily-date">2017-07-04</span>
+            </div>
+          </div>
+        </li>
+        <li class="weather-daily-item tomorrow">
+          <div class="daily-item-left">
+            <h3>明天</h3>
+            <span class="text-day">大雨</span>
+          </div>
+          <div class="daily-item-right">
+            <img class="weather-daily-icon" src="img/3d_60/0.png" alt="">
+            <div class="daily-item-text">
+              <h3><span class="temperature-low">25</span>° /
             <span class="temperature-high">25</span>°</h3>
-            <span class="daily-date">2017-07-04</span>
+              <span class="daily-date">2017-07-04</span>
+            </div>
           </div>
-        </div>
-      </li>
-      <li class="weather-daily-item day-after-tomorrow">
-        <div class="daily-item-left">
-          <h3>后天</h3>
-          <span class="text-day">大雨</span>
-        </div>
-        <div class="daily-item-right">
-          <img class="weather-daily-icon" src="img/3d_60/0.png" alt="">
-          <div class="daily-item-text">
-            <h3><span class="temperature-low">31</span>° /
+        </li>
+        <li class="weather-daily-item day-after-tomorrow">
+          <div class="daily-item-left">
+            <h3>后天</h3>
+            <span class="text-day">大雨</span>
+          </div>
+          <div class="daily-item-right">
+            <img class="weather-daily-icon" src="img/3d_60/0.png" alt="">
+            <div class="daily-item-text">
+              <h3><span class="temperature-low">31</span>° /
             <span class="temperature-high">32</span>°</h3>
-            <span class="daily-date">2017-07-04</span>
+              <span class="daily-date">2017-07-04</span>
+            </div>
           </div>
-        </div>
-      </li>
-    </ul>
-  </div>
+        </li>
+      </ul>
+    </div>
   </section>
   <section class="eyepetizer-video"></section>
   <div id="allmap"></div>
-  <script type="text/javascript" src="js/index.js"></script>
-  <script>
-  // 百度地图API功能
-  // var map = new BMap.Map("allmap");
-  // var point = new BMap.Point(116.331398, 39.897445);
-  // map.centerAndZoom(point, 12);
-
-  // function myFun(result) {
-  //   var cityName = result.name;
-  //   map.setCenter(cityName);
-  //   var _reCityName = cityName.replace(/市/, "");
-  //   var _cityName = document.getElementsByClassName("city-name")[0];
-  //   _cityName.innerText = _reCityName;
-  // }
-  // var myCity = new BMap.LocalCity();
-  // myCity.get(myFun);
-
-  
-  </script>
 </body>
 
 </html>
