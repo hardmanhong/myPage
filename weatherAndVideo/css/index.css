@@ -51,7 +51,6 @@ h6 {
     -webkit-transition: -webkit-transform 400ms;
     -webkit-transform: translate3d(0, 0, 0);
 }
-
 .weather {
     position: absolute;
     z-index: 1;
@@ -59,7 +58,6 @@ h6 {
     height: 100%;
     background-color: #21b5fb;
 }
-
 /* 上半部分 */
 .weather .weather-top {
     background: url(../img/top-bg.jpg) no-repeat;
@@ -70,7 +68,6 @@ h6 {
     display: -webkit-flex;
     padding: 1.2rem 0.9rem;
 }
-
 .weather-search .search-input {
     display: block;
     flex: 5;
