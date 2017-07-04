@@ -1,4 +1,4 @@
-window.onload = function() {
+window.addEventListener("load", function() {
     var eyepetizerVideo = document.getElementsByClassName("eyepetizer-video")[0];
     var html = document.getElementsByClassName("frame")[0];
 
@@ -167,4 +167,6 @@ window.onload = function() {
             getWeather(city);
         }
     }
-}
+
+
+});
