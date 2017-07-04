@@ -1,8 +1,7 @@
 window.onload = function() {
-    var meizuWeather = document.getElementsByClassName("meizu-weather")[0];
     var eyepetizerVideo = document.getElementsByClassName("eyepetizer-video")[0];
     var html = document.getElementsByClassName("frame")[0];
-    eyepetizerVideo.onclick = function() {
+    eyepetizerVideo.ontouchstart = function() {
         html.className = html.className == "frame sidebar-show" ? "frame sidebar-hide" : "frame sidebar-show";
     }
     /**
@@ -111,6 +110,7 @@ window.onload = function() {
         weatherNowTem.innerText = nowWeather.temperature;
         weatherNowText.innerText = nowWeather.text;
         getJSONP(dailyUrl, dailyWeatherCallBack, city);
+        eyepetizerVideo.innerText += "现在天气data:  " +data;
     }
     /**
      * [getWeather 获取天气函数]
@@ -140,9 +140,10 @@ window.onload = function() {
     }
     init();
     /**
-     * [onclick 点击搜索城市天气]
+     * [ontouchstart 点击搜索城市天气]
      */
-    searchBtn.onclick = function() {
+    searchBtn.ontouchstart = function() {
+    	eyepetizerVideo.innerText = "ontouchstart";
         var city = searchInput.value;
         getWeather(city);
     }
