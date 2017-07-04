@@ -110,7 +110,6 @@ window.onload = function() {
         weatherNowTem.innerText = nowWeather.temperature;
         weatherNowText.innerText = nowWeather.text;
         getJSONP(dailyUrl, dailyWeatherCallBack, city);
-        eyepetizerVideo.innerText += "现在天气data:  " +data;
     }
     /**
      * [getWeather 获取天气函数]
@@ -143,7 +142,6 @@ window.onload = function() {
      * [ontouchstart 点击搜索城市天气]
      */
     searchBtn.ontouchstart = function() {
-    	eyepetizerVideo.innerText = "ontouchstart";
         var city = searchInput.value;
         getWeather(city);
     }
