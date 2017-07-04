@@ -64,11 +64,11 @@ h6 {
 .weather .weather-top {
     background: url(../img/top-bg.jpg) no-repeat;
     background-size: cover;
-    background-position: 0px;
+    background-position: -80px;
 }
 @media only screen and (min-width: 360px) {
     .weather .weather-top {
-        background-position: -45px;
+        background-position: 0px;
     }
 }
 @media only screen and (min-width: 412px) {
