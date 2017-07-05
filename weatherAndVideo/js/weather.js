@@ -2,12 +2,18 @@ window.addEventListener("load", function() {
     getElemByClassname("see-weather");
     getElemByClassname("frame");
     seeWeather.onclick = function() {
-        initWeather();
-        frame.className = frame.className == "frame sidebar-show" ? "frame sidebar-hide" : "frame sidebar-show";
-    }
-    /**
-     * [getWeatherUrl 获取天气api]
-     */
+            initWeather();
+            getElemByClassname("top-movie");
+            getElemByClassname("weather");
+            weather.style["z-index"] = 1;
+            topMovie.style["z-index"] = 0;
+            toggleSideBar(frame, frame.className, "left");
+            removeClassName(frame, "sidebar-right-hide");
+            
+        }
+        /**
+         * [getWeatherUrl 获取天气api]
+         */
     function getWeatherUrl() {
         var _time = Math.round(new Date().getTime() / 1000);
         var _str = "ts=" + _time + "&ttl=30&uid=U4A2739901";

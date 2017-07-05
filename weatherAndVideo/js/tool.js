@@ -40,19 +40,46 @@ function getJSONP(url, callback, array) {
     document.body.appendChild(script);
 }
 /**
-     * [getElemByClassname 以类名获取元素]
-     * @param  {[String]} className     [类名]
-     * @param  {[Boolean]} getCollection [true:获取该类名的元素集合，false:获取该类名的单个类名]
-     */
-    function getElemByClassname(className, getCollection) {
-        var arr = className.trim().split(/\-/);
-        for (let i = 1; i < arr.length; i++) {
-            arr[i] = arr[i].substr(0, 1).toUpperCase() + arr[i].substr(1);
-        }
-        var name = arr.join("");
-        if (getCollection) {
-            window[name] = document.getElementsByClassName(className);
-        } else {
-            window[name] = document.getElementsByClassName(className)[0];
-        }
+ * [getElemByClassname 以类名获取元素]
+ * @param  {[String]} className     [类名]
+ * @param  {[Boolean]} getCollection [true:获取该类名的元素集合，false:获取该类名的单个类名]
+ */
+function getElemByClassname(className, getCollection) {
+    var arr = className.trim().split(/\-/);
+    for (let i = 1; i < arr.length; i++) {
+        arr[i] = arr[i].substr(0, 1).toUpperCase() + arr[i].substr(1);
     }
+    var name = arr.join("");
+    if (getCollection) {
+        window[name] = document.getElementsByClassName(className);
+    } else {
+        window[name] = document.getElementsByClassName(className)[0];
+    }
+}
+/**
+ * [toggleSideBar 切换类名]
+ * @param  {[element]} elem      [指定元素]
+ * @param  {[String]} className [类名]
+ */
+function toggleSideBar(elem, className, direction) {
+    (className.indexOf(direction) === -1) && (className = className + " sidebar-"+ direction + "-hide");
+    var reStr = direction + "-";
+    var re = new RegExp(reStr + "[a-z]*");
+    className = className.replace(re, function(old) {
+        var newStr = old === (reStr + "show") ? (reStr + "hide") : (reStr + "show");
+        return newStr;
+    });
+    elem.className = className;
+}
+/**
+ * [removeClassName 移除指定元素的类名]
+ * @param  {[element]} elem      [指定元素]
+ * @param  {[String]} className [类名]
+ */
+function removeClassName(elem, className) {
+    var re = new RegExp(className);
+    elem.className = elem.className.replace(re, function() {
+        return '';
+    });
+
+}
