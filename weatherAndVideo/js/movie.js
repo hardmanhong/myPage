@@ -1,27 +1,37 @@
+var soonMovieTitle = document.getElementsByClassName("soon-movie-title");//标题
+var soonMovieType = document.getElementsByClassName("soon-movie-type");//类型
+var soonMovieRating = document.getElementsByClassName("soon-movie-rating");//评分
+var soonMovieAlt = document.getElementsByClassName("soon-movie-alt");//详情
+var soonMoviePoster = document.getElementsByClassName("soon-movie-poster");//海报
+
+var searchMovie = document.getElementsByClassName("search-movie")[0];//搜索按钮
+var returnSearch = document.getElementsByClassName("return-search")[0];//返回
+var movieName = document.getElementsByClassName("movie-name")[0];//搜索框
+var movieSearchResult = document.getElementsByClassName("movie-search-result")[0];//搜索区域
+
+var movieResultTitle = document.getElementsByClassName("movie-result-title")[0];//标题
+var movieResultYear = document.getElementsByClassName("movie-result-year")[0];//年份
+var movieResultType = document.getElementsByClassName("movie-result-type")[0];//类型
+var movieResultRating = document.getElementsByClassName("movie-result-rating")[0];//评分
+var movieResultAlt = document.getElementsByClassName("movie-result-alt")[0];//详情
+var movieResultPoster = document.getElementsByClassName("movie-result-poster")[0];//海报
+
+var frame = document.getElementsByClassName("frame")[0];
+var seeTopMovie = document.getElementsByClassName("see-topMovie")[0];
+var topMovie = document.getElementsByClassName("top-movie")[0];
+
+var weather = document.getElementsByClassName("weather")[0];
+
 /**
  * [initMovie 初始化函数]
  */
 function initMovie() {
-    getElemByClassname("soon-movie-title", true); //标题
-    getElemByClassname("soon-movie-type", true); //类型
-    getElemByClassname("soon-movie-rating", true); //评分
-    getElemByClassname("soon-movie-alt", true); //详情
-    getElemByClassname("soon-movie-poster", true); //海报
+    
 
     var soonArray = [0, 3];
     getSoonMovie(soonArray);
 
-    getElemByClassname("search-movie"); //搜索按钮
-    getElemByClassname("return-search"); //返回
-    getElemByClassname("movie-name"); //搜索框
-    getElemByClassname("movie-search-result"); //搜索区域
-
-    getElemByClassname("movie-result-title"); //标题
-    getElemByClassname("movie-result-year"); //年份
-    getElemByClassname("movie-result-type"); //类型
-    getElemByClassname("movie-result-rating"); //评分
-    getElemByClassname("movie-result-alt"); //详情
-    getElemByClassname("movie-result-poster"); //海报
+    
     searchMovie.onclick = function() {
         var movie = movieName.value;
         var searchArray = [movie, 0, 1];
@@ -32,12 +42,9 @@ function initMovie() {
         movieSearchResult.style.display = "none";
     }
 
-    getElemByClassname("frame");
-    getElemByClassname("see-topMovie");
-    getElemByClassname("top-movie");
+    
 
     seeTopMovie.onclick = function() {
-        getElemByClassname("weather");
         topMovie.style["z-index"] = 1;
         weather.style["z-index"] = 0;
         toggleSideBar(frame, frame.className, "right");

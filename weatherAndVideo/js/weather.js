@@ -1,14 +1,26 @@
-getElemByClassname("see-weather");
-getElemByClassname("frame");
+var seeWeather = document.getElementsByClassName("see-weather")[0];
+var frame = document.getElementsByClassName("frame")[0];
+var searchCity = document.getElementsByClassName("search-city")[0];
+var cityName = document.getElementsByClassName("city-name")[0];
+var weatherNowIcon = document.getElementsByClassName("weather-now-icon")[0];
+var weatherNowTem = document.getElementsByClassName("weather-now-tem")[0];
+var weatherNowText = document.getElementsByClassName("weather-now-text")[0];
+var weatherNowCity = document.getElementsByClassName("weather-now-city")[0];
+
+var textDay = document.getElementsByClassName("text-day");
+var weatherDailyIcon = document.getElementsByClassName("weather-daily-icon");
+var temperatureLow = document.getElementsByClassName("temperature-low");
+var temperatureHigh = document.getElementsByClassName("temperature-high");
+var dailyDate = document.getElementsByClassName("daily-date");
 seeWeather.onclick = function() {
         initWeather();
-        getElemByClassname("top-movie");
-        getElemByClassname("weather");
+        var topMovie = document.getElementsByClassName("top-movie")[0];
+        var weather = document.getElementsByClassName("weather")[0];
         weather.style["z-index"] = 1;
         topMovie.style["z-index"] = 0;
         toggleSideBar(frame, frame.className, "left");
         removeClassName(frame, "sidebar-right-hide");
-        
+
     }
     /**
      * [getWeatherUrl 获取天气api]
@@ -70,17 +82,6 @@ function getWeather(array) {
  * [init 初始化函数]
  */
 function initWeather() {
-    getElemByClassname("search-city");
-    getElemByClassname("city-name");
-    getElemByClassname("weather-now-icon");
-    getElemByClassname("weather-now-tem");
-    getElemByClassname("weather-now-text");
-    getElemByClassname("weather-now-city");
-    getElemByClassname("text-day", true);
-    getElemByClassname("weather-daily-icon", true);
-    getElemByClassname("temperature-low", true);
-    getElemByClassname("temperature-high", true);
-    getElemByClassname("daily-date", true);
     var city = cityName.value;
     var _arr = city === "" ? ["ip"] : [city];
     getWeather(_arr);
