@@ -154,11 +154,11 @@
   	
   </section>
   <script type="text/javascript">
-  var mo = document.getElementsByClassName("movie")[0];
-  alert(mo);
-  mo.onclick = function () {
-    alert("click");
-  }
+    var mo = getElemByClassname("movie");
+    mo.onclick = function () {
+      /* body... */
+      alert("click");
+    }
   </script>
   <script type="text/javascript" src="js/weather.js"></script>
   <script type="text/javascript" src="js/movie.js"></script>
