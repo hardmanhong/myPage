@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="frame sidebar-left-hide sidebar-right-hide">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -11,6 +12,12 @@
   <script type="text/javascript" src="lib/CryptoJS/hmac-sha1.js"></script>
   <script type="text/javascript" src="lib/CryptoJS/enc-base64.js"></script>
   <script type="text/javascript" src="js/tool.js"></script>
+  <style type="text/css">
+  .loadText {
+    text-align: center;
+    background-color: red;
+  }
+  </style>
 </head>
 
 <body>
@@ -98,60 +105,34 @@
         <!-- 电影搜索结果 -->
         <div class="movie-search-result">
           <div class="movie-result-desc movie-desc">
-              <h2><span class="movie-result-title"></span><span class="movie-result-year">1994</span></h2>
-              <p>类型:<span class="movie-result-type">动画/喜剧/喜剧</span></p>
-              <p>豆瓣评分:<span class="movie-result-rating">7.0</span>/10</p>
-              <a href="#" class="movie-result-alt">详情</a>
-              <a href="#" class="return-search">返回</a>
-            </div>
-            <div class="movie-poster">
-              <img alt="" class="movie-result-poster">
-            </div>
+            <h2><span class="movie-result-title"></span><span class="movie-result-year">1994</span></h2>
+            <p>类型:<span class="movie-result-type">动画/喜剧/喜剧</span></p>
+            <p>豆瓣评分:<span class="movie-result-rating">7.0</span>/10</p>
+            <a href="#" class="movie-result-alt">详情</a>
+            <a href="#" class="return-search">返回</a>
+          </div>
+          <div class="movie-poster">
+            <img alt="" class="movie-result-poster">
+          </div>
         </div>
       </div>
       <!-- 即将上映电影 -->
       <div class="soon-movie">
-      <h1>近期上映</h1>
-        <ul>
-          <li>
-            <div class="soon-movie-desc movie-desc">
-              <h2 class="soon-movie-title">梵蒂冈博物馆3D</h2>
-              <p>类型:<span class="soon-movie-type">动画/喜剧/喜剧</span></p>
-              <p>豆瓣评分:<span class="soon-movie-rating">7.0</span>/10</p>
-              <a href="#" class="soon-movie-alt" target="_blank">详情</a>
-            </div>
-            <div class="movie-poster">
-              <img alt="" class="soon-movie-poster">
-            </div>
-          </li>
-          <li>
-          <div class="soon-movie-desc movie-desc">
-            <h2 class="soon-movie-title">梵蒂冈博物馆3D</h2>
-            <p>类型:<span class="soon-movie-type">动画/喜剧/喜剧</span></p>
-            <p>豆瓣评分:<span class="soon-movie-rating">7.0</span>/10</p>
-            <a href="#" class="soon-movie-alt" target="_blank">详情</a>
-          </div>
-          <div class="movie-poster">
-            <img alt="" class="soon-movie-poster">
-          </div>
-          </li>
-           <li>
-          <div class="soon-movie-desc movie-desc">
-            <h2 class="soon-movie-title">梵蒂冈博物馆3D</h2>
-            <p>类型:<span class="soon-movie-type">动画/喜剧/喜剧</span></p>
-            <p>豆瓣评分:<span class="soon-movie-rating">7.0</span>/10</p>
-            <a href="#" class="soon-movie-alt" target="_blank">详情</a>
-          </div>
-          <div class="movie-poster">
-            <img alt="" class="soon-movie-poster">
-          </div>
-          </li>
+        <h1 class="soon-text">近期上映</h1>
+        <ul class="show-movie">
+          <p class="loadText"></p>
         </ul>
+      </div>
+      <div class="github-code">
+        <a href="#">view on github</a>
       </div>
     </div>
   </section>
   <section class="top-movie">
   </section>
+  <script type="text/javascript">
+  
+  </script>
   <script type="text/javascript" src="js/weather.js"></script>
   <script type="text/javascript" src="js/movie.js"></script>
 </body>

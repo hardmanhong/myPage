@@ -1,9 +1,3 @@
-var soonMovieTitle = document.getElementsByClassName("soon-movie-title"); //标题
-var soonMovieType = document.getElementsByClassName("soon-movie-type"); //类型
-var soonMovieRating = document.getElementsByClassName("soon-movie-rating"); //评分
-var soonMovieAlt = document.getElementsByClassName("soon-movie-alt"); //详情
-var soonMoviePoster = document.getElementsByClassName("soon-movie-poster"); //海报
-
 var searchMovie = document.getElementsByClassName("search-movie")[0]; //搜索按钮
 var returnSearch = document.getElementsByClassName("return-search")[0]; //返回
 var movieName = document.getElementsByClassName("movie-name")[0]; //搜索框
@@ -21,17 +15,12 @@ var seeTopMovie = document.getElementsByClassName("see-topMovie")[0];
 var topMovie = document.getElementsByClassName("top-movie")[0];
 
 var weather = document.getElementsByClassName("weather")[0];
-
+var getSoonTime = 0;//监听获得 近期上映 的调用次数
 /**
  * [initMovie 初始化函数]
  */
 function initMovie() {
-
-
-    var soonArray = [0, 3];
-    getSoonMovie(soonArray);
-
-
+    getSoonMovie([0, 6]);
     searchMovie.onclick = function() {
         var movie = movieName.value;
         var searchArray = [movie, 0, 1];
@@ -41,9 +30,6 @@ function initMovie() {
     returnSearch.onclick = function() {
         movieSearchResult.style.display = "none";
     }
-
-
-
     seeTopMovie.onclick = function() {
         topMovie.style["z-index"] = 1;
         weather.style["z-index"] = 0;
@@ -51,16 +37,19 @@ function initMovie() {
         removeClassName(frame, "sidebar-left-hide");
 
     }
-
 }
 initMovie();
+
 /**
  * [getSoonMovie 获取即将上映电影]
  * @param  {[array]} array [需要的传递参数]
  */
+
 function getSoonMovie(array) {
     var soonMovieUrl = getMovieUrl().soonMovieUrl;
     getJSONP(soonMovieUrl, soonMovieCallBack, array);
+    console.log(getSoonTime);
+    getSoonTime++;
 }
 /**
  * [getSearchMovie 获取搜索的电影]
@@ -98,23 +87,72 @@ function getMovieUrl() {
  */
 function soonMovieCallBack(data) {
     var _soonArr = data.subjects;
+    var showMovieLiHeight;
+    var showMovie = document.getElementsByClassName("show-movie")[0];
+
     _soonArr.forEach(function(item, index) {
+        var loadt = document.getElementsByClassName("loadText")[0];
+        loadt.innerText = "";
+        loadt.style.height = 0;
         var typeArr = _soonArr[index].genres;
         var typeStr = typeArr.join("/");
-        soonMovieTitle[index].innerText = _soonArr[index].title;
-        soonMovieType[index].innerText = typeStr;
-        soonMovieRating[index].innerText =
+        var titleH2 = document.createElement("h2");
+        titleH2.innerText = _soonArr[index].title;
+
+        var typeP = document.createElement("p");
+        typeP.innerText = "类型：";
+        var typeSpan = document.createElement("span");
+        typeSpan.innerText = typeStr;
+        typeP.appendChild(typeSpan);
+
+        var ratingP = document.createElement("p");
+        ratingP.innerText = "评分：";
+        var ratingSpan = document.createElement("span");
+        ratingSpan.innerText =
             _soonArr[index].rating.average === 0 ? "暂无评分" : _soonArr[index].rating.average
-        soonMovieAlt[index].href = _soonArr[index].alt;
-        soonMoviePoster[index].src = _soonArr[index].images.small;
+        ratingP.appendChild(ratingSpan);
+
+        var detailsA = document.createElement("a");
+        detailsA.innerText = "详情";
+        detailsA.href = _soonArr[index].alt;
+
+        var posterImg = document.createElement("img");
+        posterImg.src = _soonArr[index].images.small;
+
+        var showMovieLi = document.createElement("li");
+        var descDiv = document.createElement("div");
+        var posterDiv = document.createElement("div");
+
+        descDiv.appendChild(titleH2);
+        descDiv.appendChild(typeP);
+        descDiv.appendChild(ratingP);
+        descDiv.appendChild(detailsA);
+        posterDiv.appendChild(posterImg);
+
+        showMovieLi.appendChild(descDiv);
+        showMovieLi.appendChild(posterDiv);
+
+        showMovie.insertBefore(showMovieLi, loadt);
+        showMovieLiHeight = showMovieLi.offsetHeight;
     });
+    console.log(showMovieLiHeight);
+    showMovie.style.height = setHeight(showMovieLiHeight) * showMovieLiHeight + "px";
+}
+
+function setHeight(liheight) {
+    var movieHeight = document.getElementsByClassName("movie")[0].offsetHeight;
+    var movieTopHeight = document.getElementsByClassName("movie-top")[0].offsetHeight;
+    var searchAreaHeight = document.getElementsByClassName("search-area")[0].offsetHeight;
+    var soonTextHeight = document.getElementsByClassName("soon-text")[0].offsetHeight;
+    var githubHeight = document.getElementsByClassName("github-code")[0].offsetHeight;
+    var h = movieHeight - movieTopHeight - searchAreaHeight - soonTextHeight - githubHeight;
+    return parseInt(h / liheight);
 }
 /**
  * [searchMovieCallBack 搜索电影的回调函数]
  * @param  {[JSONP]} data [返回的数据]
  */
 function searchMovieCallBack(data) {
-    console.log(data)
     var _searchArr = data.subjects;
     var typeArr = _searchArr[0].genres;
     var typeStr = typeArr.join("/");
@@ -132,4 +170,35 @@ function searchMovieCallBack(data) {
  */
 function topMovieCallBack(data) {
 
+}
+
+var showMovie = document.getElementsByClassName("show-movie")[0];
+showMovie.addEventListener("scroll", function(e) {
+    var scrollLen = this.scrollHeight - this.offsetHeight;
+    if (this.scrollTop === scrollLen) {
+        showMovie.addEventListener("touchstart", touchstart);
+        showMovie.addEventListener("touchmove", touchmove);
+        showMovie.addEventListener("touchend", touchend);
+    }
+});
+
+function touchstart(e) {
+    this.startpageY = e.changedTouches[0].pageY;
+}
+
+function touchmove(e) {
+    var move = this.startpageY - e.changedTouches[0].pageY;
+    var loadt = document.getElementsByClassName("loadText")[0];
+    loadt.innerText = "松开加载";
+    loadt.style.height = move + "px";
+}
+
+function touchend(e) {
+    this.touchLen = this.startpageY - e.changedTouches[0].pageY;
+    if (this.touchLen > 20) {
+        var loadt = document.getElementsByClassName("loadText")[0];
+        loadt.innerText = "加载中";
+        loadt.style.height = 2 + "rem";
+        getSoonMovie([getSoonTime * 6, 6]);
+    }
 }

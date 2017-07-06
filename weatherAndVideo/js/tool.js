@@ -9,7 +9,6 @@ function getJSONP(url, callback, array) {
     //创建一个唯一函数名称。
     var cbname = 'jsonp' + (new Date()).getTime();
     var i = 0;
-    // console.log(array);
     /* 
      * 匹配 ？符号，进去先+1，找到第一个，不改变，return old，
      * 继续寻找 ？ 符号，找到第二个，把唯一变量cbname替换第二个 ？符号,即 回调函数
