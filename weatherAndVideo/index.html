@@ -154,7 +154,11 @@
   	
   </section>
   <script type="text/javascript">
-    alert("okok")
+  var mo = document.getElementsByClassName("movie")[0];
+  alert(mo);
+  mo.onclick = function () {
+    alert("click");
+  }
   </script>
   <script type="text/javascript" src="js/weather.js"></script>
   <script type="text/javascript" src="js/movie.js"></script>
