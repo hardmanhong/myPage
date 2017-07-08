@@ -83,16 +83,7 @@ function setSoonMovieHeight(liheight) {
     var mainTopHeight = document.getElementsByClassName("main-top")[0].offsetHeight;
     var searchAreaHeight = document.getElementsByClassName("search-area")[0].offsetHeight;
     var soonTextHeight = document.getElementsByClassName("soon-text")[0].offsetHeight;
-    var githubHeight = document.getElementsByClassName("github-code")[0].offsetHeight;
-    var h = mainHeight - mainTopHeight - searchAreaHeight - soonTextHeight - githubHeight;
-    console.log("liheight:  ",liheight);
-    console.log("mainHeight:  ",mainHeight);
-    console.log("mainTopHeight:  ",mainTopHeight);
-    console.log("searchAreaHeight:  ",searchAreaHeight);
-    console.log("soonTextHeight:  ",soonTextHeight);
-    console.log("githubHeight:  ",githubHeight);
-    console.log("h:  ",h);
-    console.log("h / liheight:  ",h / liheight);
+    var h = mainHeight - mainTopHeight - searchAreaHeight - soonTextHeight;
     return parseInt(h / liheight);
 }
 /**
