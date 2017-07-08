@@ -4,6 +4,8 @@
  * @param  {Function} callback [回调函数]
  * @param  {[array]}   array     [参数]
  */
+// var html = document.getElementsByTagName("html")[0];
+
 function getJSONP(url, callback, array) {
     var paramLength = url.match(/\?/g).length; //匹配参数数量
     //创建一个唯一函数名称。
