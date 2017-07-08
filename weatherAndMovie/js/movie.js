@@ -144,7 +144,6 @@ function soonMovieCallBack(data) {
         showMovieLiHeight = showMovieLi.offsetHeight;
     });
     showSoonMovie.style.height = setSoonMovieHeight(showMovieLiHeight) * showMovieLiHeight + "px";
-    console.log(showSoonMovie.style.height);
     showSoonMovie.removeEventListener("touchstart", touchstart);
     showSoonMovie.removeEventListener("touchmove", touchmove);
     showSoonMovie.removeEventListener("touchend", touchend);
