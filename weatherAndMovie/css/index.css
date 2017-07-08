@@ -378,6 +378,12 @@ ul.show-movie li div:nth-child(2){
     height: 100%;
     background-color: #0c7fb3;
 }
+.top-movie .top-movie-initload {
+    font-size: 1.3rem;
+    height: 3rem;
+    line-height: 3rem;
+    text-align: center;
+}
 .github-code {
     position: absolute;
     bottom: 0;

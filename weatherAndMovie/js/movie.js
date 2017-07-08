@@ -14,7 +14,6 @@ var showSoonMovie = document.getElementsByClassName("show-soonMovie")[0]; //近�
 var showSearchMovie = document.getElementsByClassName("show-searchMovie")[0]; //搜索电影
 var showTopMovie = document.getElementsByClassName("show-topMovie")[0]; //top电影
 
-
 /**
  * [getMovieUrl 获取豆瓣电影JSONP的调用url]
  * @return {[Object]} [地址]
@@ -153,6 +152,8 @@ function soonMovieCallBack(data) {
  * @param  {[JSONP]} data [返回的数据]
  */
 function topMovieCallBack(data) {
+    var initText = topMovie.getElementsByClassName("top-movie-initload")[0];
+    initText && topMovie.removeChild(initText);
     var _topArr = data.subjects;
     var showMovieLiHeight;
     var loadt = document.getElementsByClassName("loadText")[1];
@@ -245,6 +246,7 @@ function initMovie() {
     }
 
     seeTopMovie.onclick = function() {
+        var initLoadText = document.getElementsByClassName("top-movie-initload")[0];
         topMovie.style["z-index"] = 1;
         weather.style["z-index"] = 0;
         toggleSideBar(frame, frame.className, "right");
