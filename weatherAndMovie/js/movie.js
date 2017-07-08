@@ -207,9 +207,12 @@ function touchend(e) {
         var loadt = this.getElementsByClassName("loadText")[0];
         loadt.innerText = "加载中";
         loadt.style.height = 2 + "rem";
-        if (this.className.includes("show-soonMovie")) {
+        console.log(this.className)
+        if (this.className.search("show-soonMovie")>=0) {
+            console.log("热映")
             getSoonMovie([getSoonTime * 6, 6]);
-        } else if (this.className.includes("show-topMovie")) {
+        } else if (this.className.search("show-topMovie")>=0) {
+            console.log("top")
             getTopMovie([getTopTime * 10, 10]);
         }
     }
@@ -240,9 +243,14 @@ function initMovie() {
     getSoonMovie([0, 6]);
     searchMovie.onclick = function() {
         var movie = movieName.value;
-        var searchArray = [movie, 0, 1];
-        getSearchMovie(searchArray);
-        mainSearchResult.style.display = "flex";
+        if(movie) {
+            var searchArray = [movie, 0, 1];
+            getSearchMovie(searchArray);
+            mainSearchResult.style.display = "flex";
+        }else {
+            return;
+        }
+        
     }
 
     seeTopMovie.onclick = function() {
