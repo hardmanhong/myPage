@@ -48,28 +48,20 @@ h6 {
 }
 
 .sidebar-left-show .main {
-    /*overflow: hidden;
-    height: 100%;*/
     -webkit-transition: -webkit-transform 400ms;
     -webkit-transform: translate3d(80%, 0, 0);
 }
 
 .sidebar-left-hide .main {
-    /*overflow: hidden;
-    height: 100%;*/
     -webkit-transition: -webkit-transform 400ms;
     -webkit-transform: translate3d(0, 0, 0);
 }
 .sidebar-right-show .main {
-    /*overflow: hidden;
-    height: 100%;*/
     -webkit-transition: -webkit-transform 400ms;
     -webkit-transform: translate3d(-80%, 0, 0);
 }
 
 .sidebar-right-hide .main {
-    /*overflow: hidden;
-    height: 100%;*/
     -webkit-transition: -webkit-transform 400ms;
     -webkit-transform: translate3d(0, 0, 0);
 }

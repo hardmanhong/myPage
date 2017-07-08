@@ -85,7 +85,9 @@ function setSoonMovieHeight(liheight) {
     var soonTextHeight = document.getElementsByClassName("soon-text")[0].offsetHeight;
     var githubHeight = document.getElementsByClassName("github-code")[0].offsetHeight;
     var h = mainHeight - mainTopHeight - searchAreaHeight - soonTextHeight - githubHeight;
-    return parseInt(h / liheight);
+    console.log(h / liheight);
+    console.log(Math.floor(h / liheight));
+    return Math.floor(h / liheight);
 }
 /**
  * [setHeight 设置显示top电影 ul的高度]
