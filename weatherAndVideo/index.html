@@ -13,10 +13,7 @@
   <script type="text/javascript" src="lib/CryptoJS/enc-base64.js"></script>
   <script type="text/javascript" src="js/tool.js"></script>
   <style type="text/css">
-  .loadText {
-    text-align: center;
-    background-color: red;
-  }
+
   </style>
 </head>
 
@@ -87,51 +84,46 @@
       </ul>
     </div>
   </section>
-  <section class="movie">
+  <section class="main">
     <!-- 顶部按钮 -->
-    <div class="movie-top">
+    <div class="main-top">
       <a href="#" class="see-weather">天气</a>
       <a href="#" class="see-topMovie">Top10电影</a>
     </div>
     <!-- 下方电影内容区 -->
-    <div class="movie-bottom">
+    <div class="main-bottom">
       <!-- 搜索区域 -->
       <div class="search-area">
         <!-- 搜索电影 -->
-        <div class="movie-search search">
+        <div class="main-search search">
           <input type="text" placeholder="电影" class="movie-name search-input">
           <i class="search-btn search-movie fa fa-search fa-2x"></i>
         </div>
         <!-- 电影搜索结果 -->
-        <div class="movie-search-result">
-          <div class="movie-result-desc movie-desc">
-            <h2><span class="movie-result-title"></span><span class="movie-result-year">1994</span></h2>
-            <p>类型:<span class="movie-result-type">动画/喜剧/喜剧</span></p>
-            <p>豆瓣评分:<span class="movie-result-rating">7.0</span>/10</p>
-            <a href="#" class="movie-result-alt">详情</a>
-            <a href="#" class="return-search">返回</a>
-          </div>
-          <div class="movie-poster">
-            <img alt="" class="movie-result-poster">
-          </div>
+        <div class="main-search-result">
+          <ul class="show-movie show-searchMovie">
+          </ul>
         </div>
       </div>
       <!-- 即将上映电影 -->
       <div class="soon-movie">
-        <h1 class="soon-text">近期上映</h1>
-        <ul class="show-movie">
+        <h1 class="soon-text">正在热映</h1>
+        <ul class="show-movie show-soonMovie">
           <p class="loadText"></p>
         </ul>
       </div>
       <div class="github-code">
-        <a href="#">view on github</a>
+        <a href="https://github.com/hardmanhong/myPage/tree/master/weatherAndVideo">view on github</a>
       </div>
     </div>
   </section>
   <section class="top-movie">
+    <h1 class="top-text">Top250电影</h1>
+    <ul class="show-movie show-topMovie">
+      <p class="loadText"></p>
+    </ul>
   </section>
   <script type="text/javascript">
-  
   </script>
   <script type="text/javascript" src="js/weather.js"></script>
   <script type="text/javascript" src="js/movie.js"></script>

@@ -47,29 +47,29 @@ h6 {
     height: 100%;
 }
 
-.sidebar-left-show .movie {
-    overflow: hidden;
-    /*height: 100%;*/
+.sidebar-left-show .main {
+    /*overflow: hidden;
+    height: 100%;*/
     -webkit-transition: -webkit-transform 400ms;
     -webkit-transform: translate3d(80%, 0, 0);
 }
 
-.sidebar-left-hide .movie {
-    overflow: hidden;
-    /*height: 100%;*/
+.sidebar-left-hide .main {
+    /*overflow: hidden;
+    height: 100%;*/
     -webkit-transition: -webkit-transform 400ms;
     -webkit-transform: translate3d(0, 0, 0);
 }
-.sidebar-right-show .movie {
-    overflow: hidden;
-    /*height: 100%;*/
+.sidebar-right-show .main {
+    /*overflow: hidden;
+    height: 100%;*/
     -webkit-transition: -webkit-transform 400ms;
     -webkit-transform: translate3d(-80%, 0, 0);
 }
 
-.sidebar-right-hide .movie {
-    overflow: hidden;
-    /*height: 100%;*/
+.sidebar-right-hide .main {
+    /*overflow: hidden;
+    height: 100%;*/
     -webkit-transition: -webkit-transform 400ms;
     -webkit-transform: translate3d(0, 0, 0);
 }
@@ -232,23 +232,24 @@ h1 {
 
 /* 电影区*/
 
-.movie {
+.main {
     position: relative;
     background-color: #356479;
     z-index: 2;
     height: 100%;
+    overflow: hidden;
 }
 
 
 /* 顶部按钮*/
 
-.movie .movie-top {
+.main .main-top {
     display: flex;
     display: -webkit-flex;
 }
 
-.movie .movie-top .see-weather,
-.movie .movie-top .see-topMovie{
+.main .main-top .see-weather,
+.main .main-top .see-topMovie{
     font-size: 1.2rem;
     flex: 1;
     -webkit-flex: 1;
@@ -259,7 +260,7 @@ h1 {
     border-radius: 10px;
 }
 
-.movie .movie-top .see-topMovie {
+.main .main-top .see-topMovie {
     margin-right: 0;
 }
 
@@ -269,14 +270,14 @@ h1 {
 
 /* 搜索区 */
 
-.movie .movie-bottom .search-area {
+.main .main-bottom .search-area {
     position: relative;
 }
 
 
 /*搜索结果 */
 
-.movie-bottom .search-area .movie-search-result {
+.main-bottom .search-area .main-search-result {
     display: none;
     position: fixed;
     width: 100%;
@@ -286,19 +287,20 @@ h1 {
     z-index: 1;
 }
 
-.movie-search-result .movie-result-desc a {
+.main-search-result .main-result-desc a {
     display: inline-block;
     margin-right: 3rem;
 }
 
 
-/*即将上映电影*/
+/*正在热映 电影*/
 
-.movie-bottom .soon-movie {
+.main-bottom .soon-movie {
     z-index: 2;
 }
 
-.movie-bottom .soon-movie h1 {
+.soon-movie h1,
+.top-movie h1 {
     font-size: 1.5rem;
     flex: 1;
     -webkit-flex: 1;
@@ -308,63 +310,64 @@ h1 {
     margin-top: 0;
     border-radius: 10px;
 }
-.movie-bottom .soon-movie ul {
+ul.show-movie {
+    width: 100%;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
 }
-.movie-bottom .soon-movie ul::-webkit-scrollbar{
+ul.show-movie::-webkit-scrollbar{
   display: none
 }
-.movie-bottom .soon-movie ul li,
-.movie-search-result {
+ul.show-movie  li{
     display: flex;
     display: -webkit-flex;
     padding: 1rem 0;
 }
 
-.show-movie li div:nth-child(1),
-.movie-desc {
+ul.show-movie li div:nth-child(1){
     flex: 5;
     -webkit-flex: 5;
     padding-left: 2rem;
     font-size: 1.3rem;
 }
 
-.show-movie li div:nth-child(1) h2,
-.movie-desc h2 {
+ul.show-movie li div:nth-child(1) h2{
     font-size: 1.5rem;
     color: #380d0d;
     margin-top: 0;
 }
 
-.show-movie li div:nth-child(1) p,
-.movie-desc p {
+ul.show-movie li div:nth-child(1) p{
     color: #000;
 }
 
-.show-movie li div:nth-child(1) p span,
-.movie-desc p span {
+ul.show-movie li div:nth-child(1) p span {
     color: #980707;
 }
 
-.show-movie li div:nth-child(1) a,
-.movie-desc a {
+ul.show-movie li div:nth-child(1) a{
+    display: inline-block;
     width: 7rem;
     height: 3rem;
     line-height: 3rem;
     margin-top: 1rem;
+    margin-right: 1rem;
     text-align: center;
     background-color: #000;
     color: #fff;
     border-radius: 0.3rem;
 }
 
-.show-movie li div:nth-child(2),
-.movie-poster {
+ul.show-movie li div:nth-child(2){
     flex: 2;
     -webkit-flex: 2;
 }
-
+.loadText {
+    text-align: center;
+    background-color: #ccc;
+    color: #998;
+    line-height: 2rem;
+}
 /*top电影*/
 .top-movie {
     position: absolute;
@@ -373,17 +376,15 @@ h1 {
     z-index: 1;
     width: 80%;
     height: 100%;
-    background-color: #21b5fb;
+    background-color: #0c7fb3;
 }
 .github-code {
     position: absolute;
     bottom: 0;
-    left: 38%;
+    left: 36%;
 }
 .github-code a {
-    width: 8rem;
-    height: 3rem;
-    line-height: 3rem;
+    padding: 1rem;
     text-align: center;
     font-size: 1.2rem;
     border-radius: 5px;
