@@ -1,4 +1,4 @@
-### weatherAndVideo [预览(移动端)](https://hardmanhong.github.io/myPage/weatherAndVideo/index.html)
+### weatherAndMovie [预览(移动端)](https://hardmanhong.github.io/myPage/weatherAndMovie/index.html)
 * 移动端meta标签的运用及web app开发基本规范
 * 抛弃float布局，采用flex布局
 * 原生 JSONP 跨域调用心和天气API 、豆瓣电影API
