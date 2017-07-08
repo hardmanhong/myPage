@@ -1,10 +1,10 @@
 ### weatherAndVideo [预览(移动端)](https://hardmanhong.github.io/myPage/weatherAndVideo/index.html)
 * 移动端meta标签的运用及web app开发基本规范
 * 抛弃float布局，采用flex布局
-* 运用原生 JSONP 跨域调用心和天气API
-* 实现查看当前城市天气、搜索指定城市天气
-* 原生JSONP 跨域调用豆瓣电影API
-* 实现查看热映电影、Top250电影,搜索电影
+* 原生 JSONP 跨域调用心和天气API 、豆瓣电影API
+* 可查看当前城市天气、搜索指定城市天气
+* 可查看热映电影、Top250电影,搜索电影
+* 可上拉加载数据
 * 代码规范、可读性、可扩展性高
 ---
 
