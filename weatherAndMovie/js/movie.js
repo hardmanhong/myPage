@@ -85,6 +85,14 @@ function setSoonMovieHeight(liheight) {
     var soonTextHeight = document.getElementsByClassName("soon-text")[0].offsetHeight;
     var githubHeight = document.getElementsByClassName("github-code")[0].offsetHeight;
     var h = mainHeight - mainTopHeight - searchAreaHeight - soonTextHeight - githubHeight;
+    console.log("liheight:  ",liheight);
+    console.log("mainHeight:  ",mainHeight);
+    console.log("mainTopHeight:  ",mainTopHeight);
+    console.log("searchAreaHeight:  ",searchAreaHeight);
+    console.log("soonTextHeight:  ",soonTextHeight);
+    console.log("githubHeight:  ",githubHeight);
+    console.log("h:  ",h);
+    console.log("h / liheight:  ",h / liheight);
     return parseInt(h / liheight);
 }
 /**
@@ -92,6 +100,7 @@ function setSoonMovieHeight(liheight) {
  * @param {[element]} liheight [li高度]
  * @return {Number} [显示多少个li]
  */
+
 function setTopMovieHeight(liheight) {
     var topmovieHeight = document.getElementsByClassName("top-movie")[0].offsetHeight;
     var topTextHeight = document.getElementsByClassName("top-text")[0].offsetHeight;
@@ -143,6 +152,7 @@ function soonMovieCallBack(data) {
         showMovieLiHeight = showMovieLi.offsetHeight;
     });
     showSoonMovie.style.height = setSoonMovieHeight(showMovieLiHeight) * showMovieLiHeight + "px";
+    console.log(showSoonMovie.style.height);
     showSoonMovie.removeEventListener("touchstart", touchstart);
     showSoonMovie.removeEventListener("touchmove", touchmove);
     showSoonMovie.removeEventListener("touchend", touchend);
@@ -207,7 +217,6 @@ function touchend(e) {
         var loadt = this.getElementsByClassName("loadText")[0];
         loadt.innerText = "加载中";
         loadt.style.height = 2 + "rem";
-        console.log(this.className)
         if (this.className.search("show-soonMovie")>=0) {
             getSoonMovie([getSoonTime * 6, 6]);
         } else if (this.className.search("show-topMovie")>=0) {
