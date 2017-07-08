@@ -209,10 +209,8 @@ function touchend(e) {
         loadt.style.height = 2 + "rem";
         console.log(this.className)
         if (this.className.search("show-soonMovie")>=0) {
-            console.log("热映")
             getSoonMovie([getSoonTime * 6, 6]);
         } else if (this.className.search("show-topMovie")>=0) {
-            console.log("top")
             getTopMovie([getTopTime * 10, 10]);
         }
     }
