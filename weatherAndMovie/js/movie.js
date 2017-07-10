@@ -1,18 +1,19 @@
 var searchMovie = document.getElementsByClassName("search-movie")[0]; //搜索按钮
-var movieName = document.getElementsByClassName("movie-name")[0]; //搜索框
-var mainSearchResult = document.getElementsByClassName("main-search-result")[0]; //搜索区域
+movieName = document.getElementsByClassName("movie-name")[0], //搜索框
+    mainSearchResult = document.getElementsByClassName("main-search-result")[0], //搜索区域
 
-var frame = document.getElementsByClassName("frame")[0];
-var seeTopMovie = document.getElementsByClassName("see-topMovie")[0];//top电影 按钮
-var topMovie = document.getElementsByClassName("top-movie")[0]; //top电影界面
+    frame = document.getElementsByClassName("frame")[0],
+    seeTopMovie = document.getElementsByClassName("see-topMovie")[0], //top电影 按钮
+    topMovie = document.getElementsByClassName("top-movie")[0], //top电影界面
 
-var weather = document.getElementsByClassName("weather")[0];//天气
-var getSoonTime = 0; //监听获得 近期上映 的调用次数
-var getTopTime = 0; //监听获得 Top电影 的调用次数
+    weather = document.getElementsByClassName("weather")[0], //天气
+    showSoonMovie = document.getElementsByClassName("show-soonMovie")[0], //近期上映
+    showSearchMovie = document.getElementsByClassName("show-searchMovie")[0], //搜索电影
+    showTopMovie = document.getElementsByClassName("show-topMovie")[0]; //top电影
+var getSoonTime = 0, //监听获得 近期上映 的调用次数
+    getTopTime = 0; //监听获得 Top电影 的调用次数
 
-var showSoonMovie = document.getElementsByClassName("show-soonMovie")[0]; //近期上映
-var showSearchMovie = document.getElementsByClassName("show-searchMovie")[0]; //搜索电影
-var showTopMovie = document.getElementsByClassName("show-topMovie")[0]; //top电影
+
 
 /**
  * [getMovieUrl 获取豆瓣电影JSONP的调用url]
@@ -79,14 +80,12 @@ function createElemForShowMovie(item) {
  * @return {Number} [显示多少个li]
  */
 function setSoonMovieHeight(liheight) {
-    var mainHeight = document.getElementsByClassName("main")[0].offsetHeight;
-    var mainTopHeight = document.getElementsByClassName("main-top")[0].offsetHeight;
-    var searchAreaHeight = document.getElementsByClassName("search-area")[0].offsetHeight;
-    var soonTextHeight = document.getElementsByClassName("soon-text")[0].offsetHeight;
-    var githubHeight = document.getElementsByClassName("github-code")[0].offsetHeight;
-    var h = mainHeight - mainTopHeight - searchAreaHeight - soonTextHeight - githubHeight;
-    console.log(h / liheight);
-    console.log(Math.floor(h / liheight));
+    var mainHeight = document.getElementsByClassName("main")[0].offsetHeight,
+        mainTopHeight = document.getElementsByClassName("main-top")[0].offsetHeight,
+        searchAreaHeight = document.getElementsByClassName("search-area")[0].offsetHeight,
+        soonTextHeight = document.getElementsByClassName("soon-text")[0].offsetHeight,
+        githubHeight = document.getElementsByClassName("github-code")[0].offsetHeight,
+        h = mainHeight - mainTopHeight - searchAreaHeight - soonTextHeight - githubHeight;
     return Math.floor(h / liheight);
 }
 /**
@@ -177,6 +176,7 @@ function topMovieCallBack(data) {
  * @param  {[JSONP]} data [返回的数据]
  */
 function searchMovieCallBack(data) {
+    showSearchMovie.innerHTML = "";
     var _searchArr = data.subjects;
     var typeArr = _searchArr[0].genres;
     var typeStr = typeArr.join("/");
@@ -210,9 +210,9 @@ function touchend(e) {
         var loadt = this.getElementsByClassName("loadText")[0];
         loadt.innerText = "加载中";
         loadt.style.height = 2 + "rem";
-        if (this.className.search("show-soonMovie")>=0) {
+        if (this.className.search("show-soonMovie") >= 0) {
             getSoonMovie([getSoonTime * 6, 6]);
-        } else if (this.className.search("show-topMovie")>=0) {
+        } else if (this.className.search("show-topMovie") >= 0) {
             getTopMovie([getTopTime * 10, 10]);
         }
     }
@@ -243,14 +243,14 @@ function initMovie() {
     getSoonMovie([0, 6]);
     searchMovie.onclick = function() {
         var movie = movieName.value;
-        if(movie) {
+        if (movie) {
             var searchArray = [movie, 0, 1];
             getSearchMovie(searchArray);
             mainSearchResult.style.display = "flex";
-        }else {
+        } else {
             return;
         }
-        
+
     }
 
     seeTopMovie.onclick = function() {

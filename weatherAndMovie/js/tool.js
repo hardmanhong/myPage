@@ -1,6 +1,6 @@
 /**
  * [getJSONP JSONP函数]
- * @param  {[String]}   url      [心和天气API]
+ * @param  {[String]}   url      [API]
  * @param  {Function} callback [回调函数]
  * @param  {[array]}   array     [参数]
  */
@@ -41,7 +41,7 @@ function getJSONP(url, callback, array) {
 /**
  * [toggleSideBar 切换类名]
  * @param  {[element]} elem      [指定元素]
- * @param  {[String]} className [类名]
+ * @param  {[String]} className [指定元素的类名]
  */
 function toggleSideBar(elem, className, direction) {
     (className.indexOf(direction) === -1) && (className = className + " sidebar-"+ direction + "-hide");
@@ -56,7 +56,7 @@ function toggleSideBar(elem, className, direction) {
 /**
  * [removeClassName 移除指定元素的类名]
  * @param  {[element]} elem      [指定元素]
- * @param  {[String]} className [类名]
+ * @param  {[String]} className [指定元素的类名]
  */
 function removeClassName(elem, className) {
     var re = new RegExp(className);

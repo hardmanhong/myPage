@@ -1,29 +1,21 @@
-var seeWeather = document.getElementsByClassName("see-weather")[0];
-var frame = document.getElementsByClassName("frame")[0];
-var searchCity = document.getElementsByClassName("search-city")[0];
-var cityName = document.getElementsByClassName("city-name")[0];
-var weatherNowIcon = document.getElementsByClassName("weather-now-icon")[0];
-var weatherNowTem = document.getElementsByClassName("weather-now-tem")[0];
-var weatherNowText = document.getElementsByClassName("weather-now-text")[0];
-var weatherNowCity = document.getElementsByClassName("weather-now-city")[0];
+var seeWeather = document.getElementsByClassName("see-weather")[0],
+    frame = document.getElementsByClassName("frame")[0],
+    searchCity = document.getElementsByClassName("search-city")[0],
+    cityName = document.getElementsByClassName("city-name")[0],
+    weatherNowIcon = document.getElementsByClassName("weather-now-icon")[0],
+    weatherNowTem = document.getElementsByClassName("weather-now-tem")[0],
+    weatherNowText = document.getElementsByClassName("weather-now-text")[0],
+    weatherNowCity = document.getElementsByClassName("weather-now-city")[0],
 
-var textDay = document.getElementsByClassName("text-day");
-var weatherDailyIcon = document.getElementsByClassName("weather-daily-icon");
-var temperatureLow = document.getElementsByClassName("temperature-low");
-var temperatureHigh = document.getElementsByClassName("temperature-high");
-var dailyDate = document.getElementsByClassName("daily-date");
-seeWeather.onclick = function() {
-    initWeather();
-    var topMovie = document.getElementsByClassName("top-movie")[0];
-    var weather = document.getElementsByClassName("weather")[0];
-    weather.style["z-index"] = 1;
-    topMovie.style["z-index"] = 0;
-    toggleSideBar(frame, frame.className, "left");
-    removeClassName(frame, "sidebar-right-hide");
-}
-/**
- * [getWeatherUrl 获取天气api]
- */
+    textDay = document.getElementsByClassName("text-day"),
+    weatherDailyIcon = document.getElementsByClassName("weather-daily-icon"),
+    temperatureLow = document.getElementsByClassName("temperature-low"),
+    temperatureHigh = document.getElementsByClassName("temperature-high"),
+    dailyDate = document.getElementsByClassName("daily-date");
+
+    /**
+     * [getWeatherUrl 获取天气api]
+     */
 function getWeatherUrl() {
     var _time = Math.round(new Date().getTime() / 1000);
     var _str = "ts=" + _time + "&ttl=30&uid=U4A2739901";
@@ -89,5 +81,13 @@ function initWeather() {
         var _arr = [city];
         getWeather(_arr);
     }
-
+}
+seeWeather.onclick = function() {
+    initWeather();
+    var topMovie = document.getElementsByClassName("top-movie")[0];
+    var weather = document.getElementsByClassName("weather")[0];
+    weather.style["z-index"] = 1;
+    topMovie.style["z-index"] = 0;
+    toggleSideBar(frame, frame.className, "left");
+    removeClassName(frame, "sidebar-right-hide");
 }
