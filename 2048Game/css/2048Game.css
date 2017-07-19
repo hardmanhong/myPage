@@ -164,12 +164,10 @@ h1,h2,h3,h4,h5,h6 { font-weight: normal;font-style: normal; }
 	from {
 		transform: scale(0,0);
 		-webkit-transform: scale(0,0);
-		left: 0;
 	}
 	to {
 		transform: scale(1,1);
 		-webkit-transform: scale(1,1);
-		left: 222px;
 	}
 }
 @-webkit-keyframes scale {
@@ -181,21 +179,85 @@ h1,h2,h3,h4,h5,h6 { font-weight: normal;font-style: normal; }
 	to {
 		transform: scale(1,1);
 		-webkit-transform: scale(1,1);
-		left: 222px;
-	}
-}
-@keyframes scale1 {
-	from {
-	}
-	to {
-		left: 222px;
 	}
 }
 .game-2048 .game-grid ul li div.scale {
-	animation: scale 1.2s;
+	animation: scale 1s;
 	animation-fill-mode: forwards;
-	-webkit-animation: scale 1.2s;
+	-webkit-animation: scale 1s;
 	-webkit-animation-fill-mode: forwards;
 }
-
+.game-2048 .game-grid ul li div.right0-1 {
+	animation: right0-1 0.5s;
+	animation-fill-mode: forwards;
+	-webkit-animation: right0-1 0.5s;
+	-webkit-animation-fill-mode: forwards;
+}
+.game-2048 .game-grid ul li div.right0-2 {
+	animation: right0-2 0.5s;
+	animation-fill-mode: forwards;
+	-webkit-animation: right0-2 0.5s;
+	-webkit-animation-fill-mode: forwards;
+}
+.game-2048 .game-grid ul li div.right0-3 {
+	animation: right0-3 0.5s;
+	animation-fill-mode: forwards;
+	-webkit-animation: right0-3 0.5s;
+	-webkit-animation-fill-mode: forwards;
+}
+.game-2048 .game-grid ul li div.right1-2 {
+	animation: right1-2 0.5s;
+	animation-fill-mode: forwards;
+	-webkit-animation: right1-2 0.5s;
+	-webkit-animation-fill-mode: forwards;
+}
+.game-2048 .game-grid ul li div.right1-3 {
+	animation: right1-3 0.5s;
+	animation-fill-mode: forwards;
+	-webkit-animation: right1-3 0.5s;
+	-webkit-animation-fill-mode: forwards;
+}
+.game-2048 .game-grid ul li div.right2-3 {
+	animation: right2-3 0.5s;
+	animation-fill-mode: forwards;
+	-webkit-animation: right2-3 0.5s;
+	-webkit-animation-fill-mode: forwards;
+}
 /*滑动动画*/
+@keyframes right0-1 {
+	from { left: 0; } to { left: 74px; }
+}
+@-webkit-keyframes right0-1 {
+	from { left: 0; } to { left: 74px; }
+}
+@keyframes right0-2 {
+	from { left: 0; } to { left: 148px; }
+}
+@-webkit-keyframes right0-2 {
+	from { left: 0; } to { left: 148px; }
+}
+@keyframes right0-3 {
+	from { left: 0; } to { left: 222px; }
+}
+@-webkit-keyframes right0-3 {
+	from { left: 0; } to { left: 222px; }
+}
+@keyframes right1-2 {
+	from { left: 74px; } to { left: 148px; }
+}
+@-webkit-keyframes right1-2 {
+	from { left: 74px; } to { left: 148px; }
+}
+@keyframes right1-3 {
+	from { left: 74px; } to { left: 222px; }
+}
+@-webkit-keyframes right1-3 {
+	from { left: 74px; } to { left: 222px; }
+}
+@keyframes right2-3 {
+	from { left: 148px; } to { left: 222px; }
+}
+@-webkit-keyframes right2-3 {
+	from { left: 148px; } to { left: 222px; }
+}
+
