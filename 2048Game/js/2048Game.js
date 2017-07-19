@@ -89,7 +89,7 @@ Game2048pro.createBox = function() {
     if (holderBox) { //如果该位置已有盒子
         this.createBox();
     } else {
-        newBox.className = "box grid-0" + num + holderClassName;
+        newBox.className = "box grid-" + num + holderClassName;
         newBox.style.left = theBoxLeft + "px";
         newBox.innerText = num;
         newBox.style["z-index"] = 1;
@@ -97,7 +97,13 @@ Game2048pro.createBox = function() {
     }
 }
 Game2048pro.rightMove = function() {
-    var allArr = [];
+    var _this = this;
+    /**
+     * 创建数组
+     * arr => 原始位置
+     * sortArr => 把原始数组 0 提前
+     * 
+     */
     for (var i = 0; i < 4; i++) {
         var arr = [];
         var sortArr = [];
@@ -113,54 +119,76 @@ Game2048pro.rightMove = function() {
             divItemText > 0 && sortArr.push(gridInfo);
 
         }
+
+        // 对排序后的数组进行处理，合并
+        // 
         for (var k = sortArr.length - 1; k > 0; k--) {
             //如果排序后的数组
-            if (sortArr[k].value != 0 && sortArr[k].value === sortArr[k - 1].value) {
-                var move = k - 1;
-                sortArr[k - 1].value = sortArr[k].value + sortArr[k - 1].value;
-                var num = sortArr[k].className.substr(4,1);
-                var moveNode = document.getElementsByClassName(sortArr[k - 1].className)[0];
-                moveNode.innerText = sortArr[k - 1].value;
-                var removeNode = document.getElementsByClassName(sortArr[k].className)[0];
-                sortArr.splice(k, 1);
-                sortArr.unshift({vale:0,className:null});
-                //移除的元素对应Li中要移除的盒子
-                var li = document.getElementsByTagName('li')[num];
+            if (sortArr[k].value == 0) {
+                continue;
+
+            }
+            // if (sortArr[k].value != 0 && sortArr[k].value === sortArr[k - 1].value) {
+            if (sortArr[k].value === sortArr[k - 1].value) {
+                var moveIndex = k - 1; //要移动的元素的数组下标
+                _this.moveBeforeClassName = sortArr[moveIndex].className; //移动元素在移动前的类名
+                _this.removeNodeClassName = sortArr[k].className; //要移除元素的类名
+                _this.moveBeforeValue = sortArr[moveIndex].value;
+                _this.moveAfterValue = sortArr[k].value + sortArr[moveIndex].value; //移动元素在移动后的值
+                var num = _this.removeNodeClassName.substr(4, 1); //获取该元素是在第几个li
+
+                var li = document.getElementsByTagName('li')[num],
+                    removeNode = document.getElementsByClassName(_this.removeNodeClassName)[0],
+                    moveNode = document.getElementsByClassName(_this.moveBeforeClassName)[0];
+
                 li.removeChild(removeNode);
+                sortArr[moveIndex].value = _this.moveAfterValue;
+                sortArr.splice(k, 1);
+                sortArr.unshift({ vale: 0, className: null });
+
+                // moveNode.innerText = _this.moveAfterValue;
+                // this.addClassName(moveNode, removeNodeClassName);
             }
         }
         /**
          * 遍历原数组，取得每一个元素对象的className与排序后的数组中每一个元素对象的calssName比较，
          * 相同则，取出该对象在两个数组中的下标，用排序后的数组对象下标-原来的数组对象下标，得到要位移的
-         * 格子*74，就是位移的距离
+         *
+         * 找出变化后的数组与原来数组中相同元素的变化
          */
-        for(var l = 0;l<arr.length;l++) {
-            if(arr[l].value == 0) { continue;} 
+        for (var l = 0; l < arr.length; l++) {
+            if (arr[l].value == 0) { continue; }
             var arrClassName = arr[l].className;
-            for(var p = 0;p<sortArr.length;p++){
+            for (var p = 0; p < sortArr.length; p++) {
+                if (sortArr[p].value == 0) { continue; }
                 var sortClassName = sortArr[p].className;
-                if(arrClassName == sortClassName) {
-                    var boxNum = p - l;
+                if (arrClassName == sortClassName) {
+                    if (p - l == 0) { continue; }
+                    var num = arrClassName.substr(4, 1);
                     var moveBox = document.getElementsByClassName(arrClassName)[0];
-                    this.addClassName(moveBox,["scale","right"+l+"-"+p]);
+                    this.addClassName(moveBox, [_this.removeNodeClassName, "right" + l + "-" + p, "grid" + num + "-" + p]);
+                    console.log('_this.removeNodeClassName', _this.removeNodeClassName);
+                    this.removeClassName(moveBox, sortClassName);
+                    if (!!_this.moveAfterValue) {
+                        moveBox.innerText = _this.moveAfterValue;
+                        this.removeClassName(moveBox, "grid-" + _this.moveBeforeValue);
+                        this.addClassName(moveBox, "grid-" + _this.moveAfterValue);
+                    }
+                    this.addClassName(moveBox, "scale");
+                    _this.moveAfterValue = null;
+                    _this.moveAfterValue = null;
+                    _this.removeNodeClassName = null;
+                    _this.moveBeforeClassName = null;
                     //bug1:移动后，元素的类名不是对应当前位置的类名 如grid0-1移动到grid0-2后，类名还是grid0-1
                     //bug2:对于存在的类名不要重复添加
                     //bug3:先加再移动，应该移动后再显示数字，同时添加放大动画
                 }
             }
         }
-        
-        allArr.push(arr);
     }
 
 }
-Game2048pro.addClassName = function(node,className) {
-   for(var i=0;i<className.length;i++) {
-        if(node.className)
-        var str = node.className + " "
-        node.className = str + className[i];
-      }
-}
+
 Game2048pro.leftMove = function() {
 
 }
@@ -181,7 +209,6 @@ Game2048pro.touchend = function(e, context) {
     var absY = Math.abs(this.moveY); //Y绝对值
     if (absX < 5 && absY < 5) return;
     if (absX > absY && this.moveX > 0) {
-        console.log("right");
         context.rightMove();
     }
     if (absX > absY && this.moveX < 0) {
@@ -193,6 +220,49 @@ Game2048pro.touchend = function(e, context) {
     if (absX < absY && this.moveY < 0) {
         console.log("top")
     }
-    context.createBox();
+    setTimeout(function() {
+        context.createBox();
+    }, 500);
+
+}
+Game2048pro.addClassName = function(node, className) {
+    switch (typeof className) {
+        case "string":
+            var re = new RegExp(className);
+            if (node.className.search(re) != -1) return;
+            var str = node.className + " ";
+            node.className = str + className;
+            break;
+        case "object":
+            if (Object.prototype.toString.call(className) == "[object Array]") {
+                for (var i = 0; i < className.length; i++) {
+                    var re = new RegExp(className[i]);
+                    if (node.className.search(re) != -1) continue;
+                    var str = node.className + " ";
+                    node.className = str + className[i];
+                }
+            }
+            break;
+    }
+}
+Game2048pro.removeClassName = function(node, className) {
+    switch (typeof className) {
+        case "string":
+            var re = new RegExp(className);
+            node.className = node.className.replace(re, function() {
+                return '';
+            });
+            break;
+        case "object":
+            if (Object.prototype.toString.call(className) == "[object Array]") {
+                for (var i = 0; i < className.length; i++) {
+                    var re = new RegExp(className[i]);
+                    node.className = node.className.replace(re, function() {
+                        return '';
+                    });
+                }
+            }
+            break;
+    }
 }
 new Game2048;

@@ -125,13 +125,13 @@ h1,h2,h3,h4,h5,h6 { font-weight: normal;font-style: normal; }
 .game-2048 .game-grid ul li div{
 	background-color: #c1d2c5;
 }
-.game-2048 .game-grid ul li div.grid-02{
+.game-2048 .game-grid ul li div.grid-2{
 	background-color: #c0af9b;
 }
-.game-2048 .game-grid ul li div.grid-04{
+.game-2048 .game-grid ul li div.grid-4{
 	background-color: #f7deb8;
 }
-.game-2048 .game-grid ul li div.grid-08{
+.game-2048 .game-grid ul li div.grid-8{
 	background-color: #f2b179;
 }
 .game-2048 .game-grid ul li div.grid-16{
