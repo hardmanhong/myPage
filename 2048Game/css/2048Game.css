@@ -35,7 +35,6 @@ h1,h2,h3,h4,h5,h6 { font-weight: normal;font-style: normal; }
 .game-2048 .game-info{
 	display: flex;
 	display: -webkit-flex;
-	margin-bottom: 
 }
 .game-2048 .game-info .game-name {
 	flex: 1;

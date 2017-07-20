@@ -55,6 +55,10 @@ Game2048pro.init = function() {
     this.game2048.addEventListener("touchend", function(e) {
         _this.touchend(e, _this);
     });
+    this.relayBtn = document.getElementsByClassName("game-btns")[0];
+    this.relayBtn.addEventListener("click", function () {
+        _this.rePlay(_this);
+    });
 }
 Game2048pro.createBox = function() {
     // 生成格子
@@ -89,7 +93,7 @@ Game2048pro.createBox = function() {
     if (holderBox) { //如果该位置已有盒子
         this.createBox();
     } else {
-        newBox.className = "box grid-" + num + holderClassName;
+        newBox.className = "create-box grid-" + num + holderClassName;
         newBox.style.left = theBoxLeft + "px";
         newBox.innerText = num;
         newBox.style["z-index"] = 1;
@@ -166,14 +170,14 @@ Game2048pro.rightMove = function() {
                     if (p - l == 0) { continue; }
                     var num = arrClassName.substr(4, 1);
                     var moveBox = document.getElementsByClassName(arrClassName)[0];
-                    this.addClassName(moveBox, [_this.removeNodeClassName, "right" + l + "-" + p, "grid" + num + "-" + p]);
+                    this.addClassName(moveBox, ["right" + l + "-" + p, "grid" + num + "-" + p]);
                     console.log('_this.removeNodeClassName', _this.removeNodeClassName);
                     this.removeClassName(moveBox, sortClassName);
-                    if (!!_this.moveAfterValue) {
-                        moveBox.innerText = _this.moveAfterValue;
-                        this.removeClassName(moveBox, "grid-" + _this.moveBeforeValue);
-                        this.addClassName(moveBox, "grid-" + _this.moveAfterValue);
-                    }
+                    // if (!!_this.moveAfterValue) {
+                    moveBox.innerText = sortArr[p].value;
+                    this.removeClassName(moveBox, "grid-" + _this.moveBeforeValue);
+                    this.addClassName(moveBox, "grid-" + sortArr[p].value);
+                    // }
                     this.addClassName(moveBox, "scale");
                     _this.moveAfterValue = null;
                     _this.moveAfterValue = null;
@@ -224,6 +228,18 @@ Game2048pro.touchend = function(e, context) {
         context.createBox();
     }, 500);
 
+}
+Game2048pro.rePlay = function(context) {
+    var rowLis = document.getElementsByClassName("row");
+    for (var i = 0; i < rowLis.length; i++) {
+        var boxs = rowLis[i].getElementsByClassName("create-box");
+        if (boxs.length <= 0) { continue; }
+        for (var j = 0; j < boxs.length; j++) {
+            var box = boxs[j];
+            rowLis[i].removeChild(box);
+        }
+    }
+    context.createBox();
 }
 Game2048pro.addClassName = function(node, className) {
     switch (typeof className) {
