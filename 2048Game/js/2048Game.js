@@ -93,7 +93,7 @@ Game2048pro.createBox = function() {
     if (holderBox) { //如果该位置已有盒子
         this.createBox();
     } else {
-        newBox.className = "create-box grid-" + num + holderClassName;
+        newBox.className = "box create-box grid-" + num + holderClassName;
         newBox.style.left = theBoxLeft + "px";
         newBox.innerText = num;
         newBox.style["z-index"] = 1;
@@ -128,10 +128,7 @@ Game2048pro.rightMove = function() {
         // 
         for (var k = sortArr.length - 1; k > 0; k--) {
             //如果排序后的数组
-            if (sortArr[k].value == 0) {
-                continue;
-
-            }
+            if (sortArr[k].value == 0) continue;
             // if (sortArr[k].value != 0 && sortArr[k].value === sortArr[k - 1].value) {
             if (sortArr[k].value === sortArr[k - 1].value) {
                 var moveIndex = k - 1; //要移动的元素的数组下标
@@ -161,7 +158,7 @@ Game2048pro.rightMove = function() {
          * 找出变化后的数组与原来数组中相同元素的变化
          */
         for (var l = 0; l < arr.length; l++) {
-            if (arr[l].value == 0) { continue; }
+            if (arr[l].value == 0) continue;
             var arrClassName = arr[l].className;
             for (var p = 0; p < sortArr.length; p++) {
                 if (sortArr[p].value == 0) { continue; }
@@ -234,8 +231,8 @@ Game2048pro.rePlay = function(context) {
     for (var i = 0; i < rowLis.length; i++) {
         var boxs = rowLis[i].getElementsByClassName("create-box");
         if (boxs.length <= 0) { continue; }
-        for (var j = 0; j < boxs.length; j++) {
-            var box = boxs[j];
+        for (var j = 0; j < 4; j++) {
+            var box = boxs[0];
             rowLis[i].removeChild(box);
         }
     }
