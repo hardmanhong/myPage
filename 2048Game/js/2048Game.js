@@ -56,7 +56,7 @@ Game2048pro.init = function() {
         _this.touchend(e, _this);
     });
     this.relayBtn = document.getElementsByClassName("game-btns")[0];
-    this.relayBtn.addEventListener("click", function () {
+    this.relayBtn.addEventListener("click", function() {
         _this.rePlay(_this);
     });
 }
@@ -74,7 +74,7 @@ Game2048pro.createBox = function() {
     //第一步取得位置后，生成2或4
     //1.parseInt(Math.random() * (4 - 2 + 1) + 2); 生成2-4的 [2-4]
     //对结果进行取余，如果能被2整除，则生成，不能则继续，好了就return 
-    var blankBoxs = document.getElementsByClassName("grid-00"),
+    var blankBoxs = document.getElementsByClassName("place-holder-box"),
         boxs = document.getElementsByClassName("box"),
         lis = document.getElementsByClassName("row");
     var divIndex = parseInt(Math.random() * blankBoxs.length);
@@ -93,7 +93,7 @@ Game2048pro.createBox = function() {
     if (holderBox) { //如果该位置已有盒子
         this.createBox();
     } else {
-        newBox.className = "box create-box grid-" + num + holderClassName;
+        newBox.className = "box create-box number-" + num + holderClassName;
         newBox.style.left = theBoxLeft + "px";
         newBox.innerText = num;
         newBox.style["z-index"] = 1;
@@ -113,15 +113,19 @@ Game2048pro.rightMove = function() {
         var sortArr = [];
         for (var j = 0; j < 4; j++) {
             var str = "grid" + i + "-" + j;
+            var moveClassName;
             var gridInfo = {};
+            var divItemText;
             var divItem = document.getElementsByClassName(str)[0];
+            moveClassName = !!divItem ? divItem.className.match(/right\d\-\d/g) : null;
+            moveClassName = !!moveClassName ? moveClassName[0] : null;
             divItemText = !!divItem ? parseInt(divItem.innerText) : 0;
             gridInfo.value = divItemText;
             gridInfo.className = str;
+            gridInfo.moveClassName = moveClassName;
             arr.push(gridInfo);
             divItemText == 0 && sortArr.unshift(gridInfo);
             divItemText > 0 && sortArr.push(gridInfo);
-
         }
 
         // 对排序后的数组进行处理，合并
@@ -167,19 +171,27 @@ Game2048pro.rightMove = function() {
                     if (p - l == 0) { continue; }
                     var num = arrClassName.substr(4, 1);
                     var moveBox = document.getElementsByClassName(arrClassName)[0];
-                    this.addClassName(moveBox, ["right" + l + "-" + p, "grid" + num + "-" + p]);
-                    console.log('_this.removeNodeClassName', _this.removeNodeClassName);
+
+                    this.addClassName(moveBox,"grid" + num + "-" + p);
+                    // this.addClassName(moveBox, ["right" + l + "-" + p, "grid" + num + "-" + p]);
+                    // 
+
+                    // console.log('_this.removeNodeClassName', _this.removeNodeClassName);
                     this.removeClassName(moveBox, sortClassName);
                     // if (!!_this.moveAfterValue) {
                     moveBox.innerText = sortArr[p].value;
-                    this.removeClassName(moveBox, "grid-" + _this.moveBeforeValue);
-                    this.addClassName(moveBox, "grid-" + sortArr[p].value);
+                    // this.removeClassName(moveBox, "number-" + _this.moveBeforeValue);
+                    // this.addClassName(moveBox, "number-" + sortArr[p].value);
+                    this.replaceClassName(moveBox,"number-" + _this.moveBeforeValue,"number-" + sortArr[p].value);
                     // }
+                    !!sortArr[p].moveClassName 
+                    ? this.replaceClassName(moveBox,sortArr[p].moveClassName,"right" + l + "-" + p)
+                    : this.addClassName(moveBox,"right" + l + "-" + p);
                     this.addClassName(moveBox, "scale");
-                    _this.moveAfterValue = null;
-                    _this.moveAfterValue = null;
-                    _this.removeNodeClassName = null;
-                    _this.moveBeforeClassName = null;
+                    // _this.moveAfterValue = null;
+                    // _this.moveAfterValue = null;
+                    // _this.removeNodeClassName = null;
+                    // _this.moveBeforeClassName = null;
                     //bug1:移动后，元素的类名不是对应当前位置的类名 如grid0-1移动到grid0-2后，类名还是grid0-1
                     //bug2:对于存在的类名不要重复添加
                     //bug3:先加再移动，应该移动后再显示数字，同时添加放大动画
@@ -230,8 +242,9 @@ Game2048pro.rePlay = function(context) {
     var rowLis = document.getElementsByClassName("row");
     for (var i = 0; i < rowLis.length; i++) {
         var boxs = rowLis[i].getElementsByClassName("create-box");
-        if (boxs.length <= 0) { continue; }
-        for (var j = 0; j < 4; j++) {
+        if (boxs.length <= 0) { continue;}
+        var len = boxs.length;
+        for (var j = 0; j < len; j++) {
             var box = boxs[0];
             rowLis[i].removeChild(box);
         }
@@ -277,5 +290,11 @@ Game2048pro.removeClassName = function(node, className) {
             }
             break;
     }
+}
+Game2048pro.replaceClassName = function(node, oldClassName, newClassName) {
+    var re = new RegExp(oldClassName);
+    node.className = node.className.replace(re, function() {
+        return newClassName;
+    });
 }
 new Game2048;

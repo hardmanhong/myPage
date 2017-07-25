@@ -124,37 +124,37 @@ h1,h2,h3,h4,h5,h6 { font-weight: normal;font-style: normal; }
 .game-2048 .game-grid ul li div{
 	background-color: #c1d2c5;
 }
-.game-2048 .game-grid ul li div.grid-2{
+.game-2048 .game-grid ul li div.number-2{
 	background-color: #c0af9b;
 }
-.game-2048 .game-grid ul li div.grid-4{
+.game-2048 .game-grid ul li div.number-4{
 	background-color: #f7deb8;
 }
-.game-2048 .game-grid ul li div.grid-8{
+.game-2048 .game-grid ul li div.number-8{
 	background-color: #f2b179;
 }
-.game-2048 .game-grid ul li div.grid-16{
+.game-2048 .game-grid ul li div.number-16{
 	background-color: #f9a257;
 }
-.game-2048 .game-grid ul li div.grid-32{
+.game-2048 .game-grid ul li div.number-32{
 	background-color: #f57c5f;
 }
-.game-2048 .game-grid ul li div.grid-64{
+.game-2048 .game-grid ul li div.number-64{
 	background-color: #f74216;
 }
-.game-2048 .game-grid ul li div.grid-128{
+.game-2048 .game-grid ul li div.number-128{
 	background-color: #edce71;
 }
-.game-2048 .game-grid ul li div.grid-256{
+.game-2048 .game-grid ul li div.number-256{
 	background-color: #ffcf2e;
 }
-.game-2048 .game-grid ul li div.grid-512{
+.game-2048 .game-grid ul li div.number-512{
 	background-color: #72b514;
 }
-.game-2048 .game-grid ul li div.grid-1024{
+.game-2048 .game-grid ul li div.number-1024{
 	background-color: #86700b;
 }
-.game-2048 .game-grid ul li div.grid-2048{
+.game-2048 .game-grid ul li div.number-2048{
 	background-color: #772b00;
 }
 
