@@ -181,11 +181,12 @@ h1,h2,h3,h4,h5,h6 { font-weight: normal;font-style: normal; }
 	}
 }
 .game-2048 .game-grid ul li div.scale {
-	animation: scale 1s;
+	animation: scale 0.4s;
 	animation-fill-mode: forwards;
-	-webkit-animation: scale 1s;
+	-webkit-animation: scale 0.4s;
 	-webkit-animation-fill-mode: forwards;
 }
+/*right*/
 .game-2048 .game-grid ul li div.right0-1 {
 	animation: right0-1 0.4s;
 	animation-fill-mode: forwards;
@@ -259,4 +260,225 @@ h1,h2,h3,h4,h5,h6 { font-weight: normal;font-style: normal; }
 @-webkit-keyframes right2-3 {
 	from { left: 148px; } to { left: 222px; }
 }
-
+/*bottom*/
+.game-2048 .game-grid ul li div.bottom0-1 {
+	animation: bottom0-1 0.4s;
+	animation-fill-mode: forwards;
+	-webkit-animation: bottom0-1 0.4s;
+	-webkit-animation-fill-mode: forwards;
+}
+.game-2048 .game-grid ul li div.bottom0-2 {
+	animation: bottom0-2 0.4s;;
+	animation-fill-mode: forwards;
+	-webkit-animation: bottom0-2 0.4s;
+	-webkit-animation-fill-mode: forwards;
+}
+.game-2048 .game-grid ul li div.bottom0-3 {
+	animation: bottom0-3 0.4s;
+	animation-fill-mode: forwards;
+	-webkit-animation: bottom0-3 0.4s;
+	-webkit-animation-fill-mode: forwards;
+}
+.game-2048 .game-grid ul li div.bottom1-2 {
+	animation: bottom1-2 0.4s;
+	animation-fill-mode: forwards;
+	-webkit-animation: bottom1-2 0.4s;
+	-webkit-animation-fill-mode: forwards;
+}
+.game-2048 .game-grid ul li div.bottom1-3 {
+	animation: bottom1-3 0.4s;
+	animation-fill-mode: forwards;
+	-webkit-animation: bottom1-3 0.4s;
+	-webkit-animation-fill-mode: forwards;
+}
+.game-2048 .game-grid ul li div.bottom2-3 {
+	animation: bottom2-3 0.4s;
+	animation-fill-mode: forwards;
+	-webkit-animation: bottom2-3 0.4s;
+	-webkit-animation-fill-mode: forwards;
+}
+/*滑动动画*/
+@keyframes bottom0-1 {
+	from { top: 0; } to { top: 74px; }
+}
+@-webkit-keyframes bottom0-1 {
+	from { top: 0; } to { top: 74px; }
+}
+@keyframes bottom0-2 {
+	from { top: 0; } to { top: 148px; }
+}
+@-webkit-keyframes bottom0-2 {
+	from { top: 0; } to { top: 148px; }
+}
+@keyframes bottom0-3 {
+	from { top: 0; } to { top: 222px; }
+}
+@-webkit-keyframes bottom0-3 {
+	from { top: 0; } to { top: 222px; }
+}
+@keyframes bottom1-2 {
+	from { top: 0; } to { top: 74px; }
+}
+@-webkit-keyframes bottom1-2 {
+	from { top: 0; } to { top: 74px; }
+}
+@keyframes bottom1-3 {
+	from { top: 0; } to { top: 148px; }
+}
+@-webkit-keyframes bottom1-3 {
+	from { top: 0; } to { top: 148px; }
+}
+@keyframes bottom2-3 {
+	from { top: 0; } to { top: 74px; }
+}
+@-webkit-keyframes bottom2-3 {
+	from { top: 0; } to { top: 74px; }
+}
+/* left */
+.game-2048 .game-grid ul li div.left3-2 {
+	animation: left3-2 0.4s;
+	animation-fill-mode: forwards;
+	-webkit-animation: left3-2 0.4s;
+	-webkit-animation-fill-mode: forwards;
+}
+.game-2048 .game-grid ul li div.left3-1 {
+	animation: left3-1 0.4s;;
+	animation-fill-mode: forwards;
+	-webkit-animation: left3-1 0.4s;
+	-webkit-animation-fill-mode: forwards;
+}
+.game-2048 .game-grid ul li div.left3-0 {
+	animation: left3-0 0.4s;
+	animation-fill-mode: forwards;
+	-webkit-animation: left3-0 0.4s;
+	-webkit-animation-fill-mode: forwards;
+}
+.game-2048 .game-grid ul li div.left2-1 {
+	animation: left2-1 0.4s;
+	animation-fill-mode: forwards;
+	-webkit-animation: left2-1 0.4s;
+	-webkit-animation-fill-mode: forwards;
+}
+.game-2048 .game-grid ul li div.left2-0 {
+	animation: left2-0 0.4s;
+	animation-fill-mode: forwards;
+	-webkit-animation: left2-0 0.4s;
+	-webkit-animation-fill-mode: forwards;
+}
+.game-2048 .game-grid ul li div.left1-0 {
+	animation: left1-0 0.4s;
+	animation-fill-mode: forwards;
+	-webkit-animation: left1-0 0.4s;
+	-webkit-animation-fill-mode: forwards;
+}
+/*滑动动画*/
+@keyframes left3-2 {
+	from { left: 222px; } to { left: 148px; }
+}
+@-webkit-keyframes left3-2 {
+	from { left: 222px; } to { left: 148px; }
+}
+@keyframes left3-1 {
+	from { left: 222px; } to { left: 74px; }
+}
+@-webkit-keyframes left3-1 {
+	from { left: 222px; } to { left: 74px; }
+}
+@keyframes left3-0 {
+	from { left: 222px; } to { left: 0; }
+}
+@-webkit-keyframes left3-0 {
+	from { left: 222px; } to { left: 0; }
+}
+@keyframes left2-1 {
+	from { left: 148px; } to { left: 74px; }
+}
+@-webkit-keyframes left2-1 {
+	from { left: 148px; } to { left: 74px; }
+}
+@keyframes left2-0 {
+	from { left: 148px; } to { left: 0; }
+}
+@-webkit-keyframes left2-0 {
+	from { left: 148px; } to { left: 0; }
+}
+@keyframes left1-0 {
+	from { left: 74px; } to { left: 0; }
+}
+@-webkit-keyframes left1-0 {
+	from { left: 74px; } to { left: 0; }
+}
+/* top */
+.game-2048 .game-grid ul li div.top3-2 {
+	animation: top3-2 0.4s;
+	animation-fill-mode: forwards;
+	-webkit-animation: top3-2 0.4s;
+	-webkit-animation-fill-mode: forwards;
+}
+.game-2048 .game-grid ul li div.top3-1 {
+	animation: top3-1 0.4s;;
+	animation-fill-mode: forwards;
+	-webkit-animation: top3-1 0.4s;
+	-webkit-animation-fill-mode: forwards;
+}
+.game-2048 .game-grid ul li div.top3-0 {
+	animation: top3-0 0.4s;
+	animation-fill-mode: forwards;
+	-webkit-animation: top3-0 0.4s;
+	-webkit-animation-fill-mode: forwards;
+}
+.game-2048 .game-grid ul li div.top2-1 {
+	animation: top2-1 0.4s;
+	animation-fill-mode: forwards;
+	-webkit-animation: top2-1 0.4s;
+	-webkit-animation-fill-mode: forwards;
+}
+.game-2048 .game-grid ul li div.top2-0 {
+	animation: top2-0 0.4s;
+	animation-fill-mode: forwards;
+	-webkit-animation: top2-0 0.4s;
+	-webkit-animation-fill-mode: forwards;
+}
+.game-2048 .game-grid ul li div.top1-0 {
+	animation: top1-0 0.4s;
+	animation-fill-mode: forwards;
+	-webkit-animation: top1-0 0.4s;
+	-webkit-animation-fill-mode: forwards;
+}
+/*滑动动画*/
+@keyframes top3-2 {
+	from { top: 0; } to { top: -74px; }
+}
+@-webkit-keyframes top3-2 {
+	from { top: 0; } to { top: -74px; }
+}
+@keyframes top3-1 {
+	from { top: 0; } to { top: -148px; }
+}
+@-webkit-keyframes top3-1 {
+	from { top: 0; } to { top: -148px; }
+}
+@keyframes top3-0 {
+	from { top: 0; } to { top: -222px; }
+}
+@-webkit-keyframes top3-0 {
+	from { top: 0; } to { top: 222px; }
+}
+@keyframes top2-1 {
+	from { top: 0; } to { top: -74px; }
+}
+@-webkit-keyframes top2-1 {
+	from { top: 0; } to { top: -74px; }
+}
+@keyframes top2-0 {
+	from { top: 0; } to { top: -148px; }
+}
+@-webkit-keyframes top2-0 {
+	from { top: 0; } to { top: -148px; }
+}
+@keyframes top1-0 {
+	from { top: 0; } to { top: -74px; }
+}
+@-webkit-keyframes top1-0 {
+	from { top: 0; } to { top: -74px; }
+}

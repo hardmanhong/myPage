@@ -1,44 +1,8 @@
 /**
- *  生成格子
- *  获取类为 grid-00 的元素即空格子，parseInt(Math.random()*16)，16为 grid-00 类的长度，
- *  随机生成一个[0-16}的数字，再通过 获取 grid-00 集合的下标找到某个空格，接着获得该空格的left、top
- *  用该元素在数组中的下标除以4，liItem = parseInt(i/4)得到li的第几行（第一行为0），divItem = i%4 得到余数为该li的第几个元素
- *  为生成的元素添加类名grid+liItem+"-"+divItem，此步为了以后滑动时方便操作
- * 
- * 1.右滑
- *   第一步、遍历for(var i=0;i<4;i++)
- *   分别取得 grid0-0 , grid0-1 , grid0-2 , grid0-3
- *            grid1-0 , grid1-1 , grid1-2 , grid1-3
- *            grid2-0 , grid2-1 , grid2-2 , grid2-3
- *            grid3-0 , grid3-1 , grid3-2 , grid3-3
- *
- *            如果找到，就把innerText取得push进一个数组 
- *            如果没有找到 undefined 就push一个为0的数值
- *   第二步、遍历上面的数组for(var i=3;i>=1;i--)
- *   1.从数组后面开始判断元素数值是否为0，
- *   if(arr[i]===0) { if(arr[i-1]) {var prev = arr[i-1]; arr[i-1] = arr[i];arr[i]=prev}}
- *   目的：把格子为空的元素（在数组中为0），提到前面，为后面判断相邻格子是否相同做好基础；
- *   2.从数组后面开始判断相邻元素是否相同并且该元素不等于0,
- *   相同则把arr[i-1]的值换为相加后的值，删除位置i的元素0，接着在头部加入一个为0的数值.。
- *   move为要位移的元素，对应grid-x-move，
- *   if(arr[i]!=0 && arr[i] === arr[i-1]) { var move = i-1;arr[i-1] = arr[i] + arr[i-1];arr.splice(i,1);arr.unshift(0);}
- *   这样做是为了把0都提前
- *
- *   要移动，有两个条件
- *   1.后面元素为空，对原数组，从当前位置寻找直到不为0的元素或者为数组的最长度，获取该元素的数组下标减去当前元素，
- *   则该元素要移动 74*3
- *   2.遇到可以合并的元素，按照上面的逻辑去进行判断
- *
- *   从最后一个元素开始寻找，遍历原数组，寻找直到不为0的元素，
- *   若该元素与当前元素不同，则（该元素下标-1-当前元素下标）* 74，得到当前元素要移动的距离；
- *   若该元素与当前元素相同，则（该元素下标-当前元素下标）* 74，得到当前元素要移动的距离；
- *
- *   
- *            
- * 
- * 2.左滑
- * 3.下滑
- * 4.上滑
+ *  grid0-0 , grid0-1 , grid0-2 , grid0-3
+ *  grid1-0 , grid1-1 , grid1-2 , grid1-3
+ *  grid2-0 , grid2-1 , grid2-2 , grid2-3
+ *  grid3-0 , grid3-1 , grid3-2 , grid3-3
  */
 
 var Game2048 = function() {
@@ -48,56 +12,168 @@ var Game2048pro = Game2048.prototype;
 Game2048pro.init = function() {
     var _this = this;
     this.createBox();
-    this.game2048 = document.getElementsByClassName("game-2048")[0];
+    this.game2048 = util.getElement(".game-2048")[0];
     this.game2048.addEventListener("touchstart", function(e) {
         _this.touchstart(e, _this);
     });
     this.game2048.addEventListener("touchend", function(e) {
         _this.touchend(e, _this);
     });
-    this.relayBtn = document.getElementsByClassName("game-btns")[0];
+    this.relayBtn = util.getElement(".game-btns")[0];
     this.relayBtn.addEventListener("click", function() {
         _this.rePlay(_this);
     });
 }
 Game2048pro.createBox = function() {
-    // 生成格子
-    // *    获取类为 grid-00 的元素即空格子，parseInt(Math.random()*16)，16为 grid-00 类的长度，
-    // *    随机生成一个[0-16}的数字，再通过 获取 grid-00 集合的下标找到某个空格，设置该空格的类名为 ""，接着获得该空格的left、top
-    // *    用该元素在数组中的下标除以4，liItem = parseInt(i/4)得到li的第几行（第一行为0），divItem = i%4 得到余数为该li的第几个元素
-    // *    为生成的元素添加类名grid+liItem+"-"+divItem，设置其left值，添加到lis[liItem]中,
-    //  此步为了以后滑动时方便操作
-    //在空格位置生成
-    //
-    //1.parseInt(Math.random()*16);16为空格的类的长度。length
-    //
-    //第一步取得位置后，生成2或4
-    //1.parseInt(Math.random() * (4 - 2 + 1) + 2); 生成2-4的 [2-4]
-    //对结果进行取余，如果能被2整除，则生成，不能则继续，好了就return 
-    var blankBoxs = document.getElementsByClassName("place-holder-box"),
-        boxs = document.getElementsByClassName("box"),
-        lis = document.getElementsByClassName("row");
-    var divIndex = parseInt(Math.random() * blankBoxs.length);
-    var theBox = blankBoxs[divIndex], //某个空盒子
+    var blankBoxs = util.getElement(".place-holder-box"),
+        boxs = util.getElement(".box"),
+        lis = util.getElement(".row"),
+        divIndex = parseInt(Math.random() * blankBoxs.length),
+        theBox = blankBoxs[divIndex], //某个空盒子
         liItem = parseInt(divIndex / 4), //第几个li
-        divItem = divIndex % 4; //第几个li中的第几个div盒子
-    var theBoxLeft = theBox.offsetLeft; //该盒子的left值
-    var num = parseInt(Math.random() * (4 - 2 + 1) + 2);
-    var rem = num % 2;
+        divItem = divIndex % 4, //第几个li中的第几个div盒子
+        theBoxLeft = theBox.offsetLeft, //该盒子的left值
+        num = parseInt(Math.random() * (4 - 2 + 1) + 2),
+        rem = num % 2;
     num = rem == 0 ? num : num - 1; //对余数进行判断，生成2或4
 
     var newBox = document.createElement("div");
-    var holderClassName = " grid" + liItem + "-" + divItem;
-    var holderBox = document.getElementsByClassName(holderClassName)[0];
+    var holderClassName = "grid" + liItem + "-" + divItem;
+    var numberClassName = "number-" + num;
+    var holderBox = util.getElement("." + holderClassName)[0];
     if (boxs.length == 32) return; //如果格子已满
     if (holderBox) { //如果该位置已有盒子
         this.createBox();
     } else {
-        newBox.className = "box create-box number-" + num + holderClassName;
+        util.addClass(newBox, "box scale create-box " + numberClassName + " " + holderClassName);
         newBox.style.left = theBoxLeft + "px";
         newBox.innerText = num;
         newBox.style["z-index"] = 1;
         lis[liItem].appendChild(newBox);
+    }
+}
+Game2048pro.saveGridInfo = function(arrIndex, arr, sortArr, direction) {
+    var count = 0;
+    for (var j = 0; j < 4; j++) {
+        var str,
+            moveClassName,
+            divItemText,
+            gridInfo,
+            divItem,
+            re;
+        switch (direction) {
+            case "right":
+            case "left":
+                str = "grid" + arrIndex + "-" + j;
+                break;
+            case "top":
+            case "bottom":
+                str = "grid" + j + "-" + arrIndex;
+                break;
+        }
+        gridInfo = {};
+        divItem = util.getElement("." + str)[0];
+        // re = new RegExp(direction + "\\d\\-\\d", "g");
+        re = new RegExp("(right|left|top|bottom)\\d\\-\\d", "g");
+        // /right\d\-\d/g
+        moveClassName = !!divItem ? divItem.className.match(re) : null;
+        moveClassName = !!moveClassName ? moveClassName[0] : null;
+        divItemText = !!divItem ? parseInt(divItem.innerText) : 0;
+        gridInfo.value = divItemText;
+        gridInfo.className = str;
+        gridInfo.moveClassName = moveClassName;
+        arr.push(gridInfo);
+        switch (direction) {
+            case "right":
+            case "bottom":
+                divItemText == 0 && sortArr.unshift(gridInfo); //左右区别在这里 push()
+                divItemText > 0 && sortArr.push(gridInfo); //左右区别 unshift()
+                break;
+            case "left":
+            case "top":
+                divItemText > 0 && sortArr.push(gridInfo); //左右区别在这里 push()
+                divItemText == 0 && count++;
+                // divItemText > 0 && sortArr.unshift(gridInfo); //左右区别 unshift()
+                break;
+        }
+    }
+    for (var o = 0; o < count; o++) {
+        sortArr.push({ value: 0, className: null, moveClassName: null });
+    }
+}
+Game2048pro.sortoutBox = function(sortArr, k, moveIndex) {
+    var _this = this;
+    _this.removeNodeClassName = sortArr[k].className; //要移除元素的类名
+    _this.moveBeforeValue = sortArr[moveIndex].value;
+    _this.moveAfterValue = sortArr[k].value + sortArr[moveIndex].value; //移动元素在移动后的值
+    var num = _this.removeNodeClassName.substr(4, 1); //获取该元素是在第几个li top substr(6,1);
+    var li = util.getElement('li')[num],
+        removeNode = util.getElement("." + _this.removeNodeClassName)[0];
+    li.removeChild(removeNode);
+    sortArr[moveIndex].value = _this.moveAfterValue;
+    sortArr.splice(k, 1);
+}
+Game2048pro.sortGridInfo = function(sortArr, direction) {
+    switch (direction) {
+        case "right":
+        case "bottom":
+            for (var k = sortArr.length - 1; k > 0; k--) { //right bottom
+                //如果排序后的数组
+                if (sortArr[k].value == 0) continue;
+                if (sortArr[k].value === sortArr[k - 1].value) {
+                    var moveIndex = k - 1; //要移动的元素的数组下标
+                    this.sortoutBox(sortArr, k, moveIndex);
+                    sortArr.unshift({ value: 0, className: null });
+                }
+            }
+            break;
+        case "left":
+        case "top":
+            for (var k = 0; k < sortArr.length - 1; k++) { // left top
+                if (sortArr[k].value == 0) continue;
+                if (sortArr[k].value === sortArr[k + 1].value) {
+                    var moveIndex = k + 1;
+                    this.sortoutBox(sortArr, k, moveIndex);
+                    sortArr.push({ value: 0, className: null }); //left top push()
+                }
+            }
+            break;
+    }
+}
+
+Game2048pro.moveBoxs = function(arr, sortArr, direction) {
+    console.log("arr", arr);
+    console.log("sortArr", sortArr)
+    console.log("===============================================================");
+    console.log("===============================================================");
+    var _this = this;
+    for (var l = 0; l < arr.length; l++) {
+        if (arr[l].value == 0) continue;
+        var arrClassName = arr[l].className;
+        for (var p = 0; p < sortArr.length; p++) {
+            if (sortArr[p].value == 0) continue;
+            var sortClassName = sortArr[p].className;
+            if (arrClassName == sortClassName) {
+                if (p - l == 0) continue;
+                var moveBox = util.getElement("." + arrClassName)[0];
+                switch (direction) {
+                    case "right":
+                    case "left":
+                        var num = arrClassName.substr(4, 1); // 右滑，下滑区别在这里 下滑substr(6,1)
+                        util.replaceClass(moveBox, sortClassName, "grid" + num + "-" + p);
+                        break;
+                    case "top":
+                    case "bottom":
+                        var num = arrClassName.substr(6, 1); // 右滑，下滑区别在这里 下滑substr(6,1)
+                        util.replaceClass(moveBox, sortClassName, "grid" + p + "-" + num);
+                        break;
+                }
+                // util.removeClass(moveBox, sortClassName);
+                moveBox.innerText = sortArr[p].value;
+                util.replaceClass(moveBox, "number-" + _this.moveBeforeValue, "number-" + sortArr[p].value);
+                !!sortArr[p].moveClassName ? util.replaceClass(moveBox, sortArr[p].moveClassName, direction + l + "-" + p) : util.addClass(moveBox, direction + l + "-" + p);
+            }
+        }
     }
 }
 Game2048pro.rightMove = function() {
@@ -116,9 +192,13 @@ Game2048pro.rightMove = function() {
             var moveClassName;
             var gridInfo = {};
             var divItemText;
-            var divItem = document.getElementsByClassName(str)[0];
-            moveClassName = !!divItem ? divItem.className.match(/right\d\-\d/g) : null;
+            var divItem = util.getElement("." + str)[0];
+            var direction = "right";
+            var re = new RegExp(direction + "\\d\\-\\d", "g");
+            // /right\d\-\d/g
+            moveClassName = !!divItem ? divItem.className.match(re) : null;
             moveClassName = !!moveClassName ? moveClassName[0] : null;
+
             divItemText = !!divItem ? parseInt(divItem.innerText) : 0;
             gridInfo.value = divItemText;
             gridInfo.className = str;
@@ -133,26 +213,19 @@ Game2048pro.rightMove = function() {
         for (var k = sortArr.length - 1; k > 0; k--) {
             //如果排序后的数组
             if (sortArr[k].value == 0) continue;
-            // if (sortArr[k].value != 0 && sortArr[k].value === sortArr[k - 1].value) {
             if (sortArr[k].value === sortArr[k - 1].value) {
                 var moveIndex = k - 1; //要移动的元素的数组下标
-                _this.moveBeforeClassName = sortArr[moveIndex].className; //移动元素在移动前的类名
                 _this.removeNodeClassName = sortArr[k].className; //要移除元素的类名
                 _this.moveBeforeValue = sortArr[moveIndex].value;
                 _this.moveAfterValue = sortArr[k].value + sortArr[moveIndex].value; //移动元素在移动后的值
                 var num = _this.removeNodeClassName.substr(4, 1); //获取该元素是在第几个li
 
-                var li = document.getElementsByTagName('li')[num],
-                    removeNode = document.getElementsByClassName(_this.removeNodeClassName)[0],
-                    moveNode = document.getElementsByClassName(_this.moveBeforeClassName)[0];
-
+                var li = util.getElement('li')[num],
+                    removeNode = util.getElement("." + _this.removeNodeClassName)[0];
                 li.removeChild(removeNode);
                 sortArr[moveIndex].value = _this.moveAfterValue;
                 sortArr.splice(k, 1);
-                sortArr.unshift({ vale: 0, className: null });
-
-                // moveNode.innerText = _this.moveAfterValue;
-                // this.addClassName(moveNode, removeNodeClassName);
+                sortArr.unshift({ value: 0, className: null });
             }
         }
         /**
@@ -165,51 +238,37 @@ Game2048pro.rightMove = function() {
             if (arr[l].value == 0) continue;
             var arrClassName = arr[l].className;
             for (var p = 0; p < sortArr.length; p++) {
-                if (sortArr[p].value == 0) { continue; }
+                if (sortArr[p].value == 0) continue;
                 var sortClassName = sortArr[p].className;
                 if (arrClassName == sortClassName) {
-                    if (p - l == 0) { continue; }
-                    var num = arrClassName.substr(4, 1);
-                    var moveBox = document.getElementsByClassName(arrClassName)[0];
+                    if (p - l == 0) continue;
+                    var num = arrClassName.substr(4, 1); // 右滑，下滑区别在这里 下滑substr(6,1)
+                    var moveBox = util.getElement("." + arrClassName)[0];
+                    util.addClass(moveBox, "grid" + num + "-" + p);
+                    util.removeClass(moveBox, sortClassName);
 
-                    this.addClassName(moveBox,"grid" + num + "-" + p);
-                    // this.addClassName(moveBox, ["right" + l + "-" + p, "grid" + num + "-" + p]);
-                    // 
-
-                    // console.log('_this.removeNodeClassName', _this.removeNodeClassName);
-                    this.removeClassName(moveBox, sortClassName);
-                    // if (!!_this.moveAfterValue) {
                     moveBox.innerText = sortArr[p].value;
-                    // this.removeClassName(moveBox, "number-" + _this.moveBeforeValue);
-                    // this.addClassName(moveBox, "number-" + sortArr[p].value);
-                    this.replaceClassName(moveBox,"number-" + _this.moveBeforeValue,"number-" + sortArr[p].value);
-                    // }
-                    !!sortArr[p].moveClassName 
-                    ? this.replaceClassName(moveBox,sortArr[p].moveClassName,"right" + l + "-" + p)
-                    : this.addClassName(moveBox,"right" + l + "-" + p);
-                    this.addClassName(moveBox, "scale");
-                    // _this.moveAfterValue = null;
-                    // _this.moveAfterValue = null;
-                    // _this.removeNodeClassName = null;
-                    // _this.moveBeforeClassName = null;
-                    //bug1:移动后，元素的类名不是对应当前位置的类名 如grid0-1移动到grid0-2后，类名还是grid0-1
-                    //bug2:对于存在的类名不要重复添加
-                    //bug3:先加再移动，应该移动后再显示数字，同时添加放大动画
+                    util.replaceClass(moveBox, "number-" + _this.moveBeforeValue, "number-" + sortArr[p].value);
+
+                    !!sortArr[p].moveClassName ?
+                        util.replaceClass(moveBox, sortArr[p].moveClassName, "right" + l + "-" + p) :
+                        util.addClass(moveBox, "right" + l + "-" + p);
+                    //bug1:移动后，元素的类名不是对应当前位置的类名 如grid0-1移动到grid0-2后，类名还是grid0-1:以解决
+                    //bug2:对于存在的类名不要重复添加 :以解决
                 }
             }
         }
     }
 
 }
-
-Game2048pro.leftMove = function() {
-
-}
-Game2048pro.topMove = function() {
-
-}
-Game2048pro.bottomMove = function() {
-
+Game2048pro.move = function(direction) {
+    for (var i = 0; i < 4; i++) {
+        var arr = [];
+        var sortArr = [];
+        this.saveGridInfo(i, arr, sortArr, direction);
+        this.sortGridInfo(sortArr, direction);
+        this.moveBoxs(arr, sortArr, direction);
+    }
 }
 Game2048pro.touchstart = function(e, context) {
     this.startX = e.changedTouches[0].pageX;
@@ -222,16 +281,16 @@ Game2048pro.touchend = function(e, context) {
     var absY = Math.abs(this.moveY); //Y绝对值
     if (absX < 5 && absY < 5) return;
     if (absX > absY && this.moveX > 0) {
-        context.rightMove();
+        context.move("right");
     }
     if (absX > absY && this.moveX < 0) {
-        console.log("left");
+        context.move("left");
     }
     if (absX < absY && this.moveY > 0) {
-        console.log("bottom")
+        context.move("bottom");
     }
     if (absX < absY && this.moveY < 0) {
-        console.log("top")
+        context.move("top");
     }
     setTimeout(function() {
         context.createBox();
@@ -239,10 +298,11 @@ Game2048pro.touchend = function(e, context) {
 
 }
 Game2048pro.rePlay = function(context) {
-    var rowLis = document.getElementsByClassName("row");
+    var rowLis = util.getElement(".row");
     for (var i = 0; i < rowLis.length; i++) {
-        var boxs = rowLis[i].getElementsByClassName("create-box");
-        if (boxs.length <= 0) { continue;}
+        var boxs = util.getElement(".create-box", rowLis[i]);
+        // var boxs = rowLis[i].getElementsByClassName("create-box");
+        if (boxs.length <= 0) continue;
         var len = boxs.length;
         for (var j = 0; j < len; j++) {
             var box = boxs[0];
@@ -250,51 +310,5 @@ Game2048pro.rePlay = function(context) {
         }
     }
     context.createBox();
-}
-Game2048pro.addClassName = function(node, className) {
-    switch (typeof className) {
-        case "string":
-            var re = new RegExp(className);
-            if (node.className.search(re) != -1) return;
-            var str = node.className + " ";
-            node.className = str + className;
-            break;
-        case "object":
-            if (Object.prototype.toString.call(className) == "[object Array]") {
-                for (var i = 0; i < className.length; i++) {
-                    var re = new RegExp(className[i]);
-                    if (node.className.search(re) != -1) continue;
-                    var str = node.className + " ";
-                    node.className = str + className[i];
-                }
-            }
-            break;
-    }
-}
-Game2048pro.removeClassName = function(node, className) {
-    switch (typeof className) {
-        case "string":
-            var re = new RegExp(className);
-            node.className = node.className.replace(re, function() {
-                return '';
-            });
-            break;
-        case "object":
-            if (Object.prototype.toString.call(className) == "[object Array]") {
-                for (var i = 0; i < className.length; i++) {
-                    var re = new RegExp(className[i]);
-                    node.className = node.className.replace(re, function() {
-                        return '';
-                    });
-                }
-            }
-            break;
-    }
-}
-Game2048pro.replaceClassName = function(node, oldClassName, newClassName) {
-    var re = new RegExp(oldClassName);
-    node.className = node.className.replace(re, function() {
-        return newClassName;
-    });
 }
 new Game2048;
