@@ -79,9 +79,11 @@ Game2048pro.saveGridInfo = function(arrIndex, arr, sortArr, direction) {
         moveClassName = !!divItem ? divItem.className.match(re) : null;
         moveClassName = !!moveClassName ? moveClassName[0] : null;
         divItemText = !!divItem ? parseInt(divItem.innerText) : 0;
+        gridInfo.divElement = !!divItem ? divItem : null;
         gridInfo.value = divItemText;
         gridInfo.className = str;
         gridInfo.moveClassName = moveClassName;
+
         arr.push(gridInfo);
         switch (direction) {
             case "right":
@@ -98,7 +100,7 @@ Game2048pro.saveGridInfo = function(arrIndex, arr, sortArr, direction) {
         }
     }
     for (var o = 0; o < count; o++) {
-        sortArr.push({ value: 0, className: null, moveClassName: null });
+        sortArr.push({ value: 0, className: null, moveClassName: null, divElement: null });
     }
 }
 Game2048pro.sortoutBox = function(sortArr, k, moveIndex) {
@@ -123,7 +125,7 @@ Game2048pro.sortGridInfo = function(sortArr, direction) {
                 if (sortArr[k].value === sortArr[k - 1].value) {
                     var moveIndex = k - 1; //要移动的元素的数组下标
                     this.sortoutBox(sortArr, k, moveIndex);
-                    sortArr.unshift({ value: 0, className: null });
+                    sortArr.unshift({ value: 0, className: null, moveClassName: null, divElement: null });
                 }
             }
             break;
@@ -134,48 +136,101 @@ Game2048pro.sortGridInfo = function(sortArr, direction) {
                 if (sortArr[k].value === sortArr[k + 1].value) {
                     var moveIndex = k + 1;
                     this.sortoutBox(sortArr, k, moveIndex);
-                    sortArr.push({ value: 0, className: null }); //left top push()
+                    sortArr.push({ value: 0, className: null, moveClassName: null, divElement: null }); //left top push()
                 }
             }
             break;
     }
 }
-
 Game2048pro.moveBoxs = function(arr, sortArr, direction) {
     console.log("arr", arr);
     console.log("sortArr", sortArr)
     console.log("===============================================================");
-    console.log("===============================================================");
     var _this = this;
     for (var l = 0; l < arr.length; l++) {
-        if (arr[l].value == 0) continue;
+        if (!arr[l].divElement) continue;
+        var arrElement = arr[l].divElement;
         var arrClassName = arr[l].className;
         for (var p = 0; p < sortArr.length; p++) {
-            if (sortArr[p].value == 0) continue;
-            var sortClassName = sortArr[p].className;
-            if (arrClassName == sortClassName) {
-                if (p - l == 0) continue;
-                var moveBox = util.getElement("." + arrClassName)[0];
+            if (!sortArr[p].divElement) continue;
+            var sortArrElement = sortArr[p].divElement;
+            if (arrElement === sortArrElement) {
+                if (p - l == 0) break;
+                /*
+                    假如前面有盒子的类名改变之后与当前要获取的类名一样，
+                    那么获取的盒子就不确定是哪一个了，
+                    所以我把元素存进数组，遍历获取的类名元素，与数组中的原来的元素进行比较
+                */
+                var boxs = util.getElement("." + arrClassName);
+                var moveBox;
+                for (var q = 0; q < boxs.length; q++) {
+                    if (boxs[q] === sortArrElement) {
+                        moveBox = boxs[q];
+                        break;
+                    }
+                }
                 switch (direction) {
                     case "right":
                     case "left":
                         var num = arrClassName.substr(4, 1); // 右滑，下滑区别在这里 下滑substr(6,1)
-                        util.replaceClass(moveBox, sortClassName, "grid" + num + "-" + p);
+                        util.replaceClass(moveBox, arrClassName, "grid" + num + "-" + p);
                         break;
                     case "top":
                     case "bottom":
                         var num = arrClassName.substr(6, 1); // 右滑，下滑区别在这里 下滑substr(6,1)
-                        util.replaceClass(moveBox, sortClassName, "grid" + p + "-" + num);
+                        util.replaceClass(moveBox, arrClassName, "grid" + p + "-" + num);
                         break;
                 }
-                // util.removeClass(moveBox, sortClassName);
                 moveBox.innerText = sortArr[p].value;
-                util.replaceClass(moveBox, "number-" + _this.moveBeforeValue, "number-" + sortArr[p].value);
-                !!sortArr[p].moveClassName ? util.replaceClass(moveBox, sortArr[p].moveClassName, direction + l + "-" + p) : util.addClass(moveBox, direction + l + "-" + p);
+                util.replaceClass(moveBox, "number-\\d+", "number-" + sortArr[p].value);
+                !!sortArr[p].moveClassName ?
+                    util.replaceClass(moveBox, sortArr[p].moveClassName, direction + l + "-" + p) :
+                    util.addClass(moveBox, direction + l + "-" + p);
+                break;
             }
         }
     }
 }
+// Game2048pro.moveBoxs = function(arr, sortArr, direction) {
+//     console.log("arr", arr);
+//     console.log("sortArr", sortArr)
+//     console.log("===============================================================");
+//     console.log("===============================================================");
+//     var _this = this;
+//     for (var l = 0; l < arr.length; l++) {
+//         if (arr[l].value == 0) continue;
+//         var arrClassName = arr[l].className;
+//         for (var p = 0; p < sortArr.length; p++) {
+//             if (sortArr[p].value == 0) continue;
+//             var sortClassName = sortArr[p].className;
+//             if (arrClassName == sortClassName) {
+//                 if (p - l == 0) break;
+//                 var moveBox = util.getElement("." + arrClassName)[0];
+//                 var showName = util.getElement("." + arrClassName);
+//                 console.log(showName);
+//                 switch (direction) {
+//                     case "right":
+//                     case "left":
+//                         var num = arrClassName.substr(4, 1); // 右滑，下滑区别在这里 下滑substr(6,1)
+//                         util.replaceClass(moveBox, sortClassName, "grid" + num + "-" + p);
+//                         break;
+//                     case "top":
+//                     case "bottom":
+//                         var num = arrClassName.substr(6, 1); // 右滑，下滑区别在这里 下滑substr(6,1)
+//                         util.replaceClass(moveBox, sortClassName, "grid" + p + "-" + num);
+//                         break;
+//                 }
+//                 // util.removeClass(moveBox, sortClassName);
+//                 moveBox.innerText = sortArr[p].value;
+//                 // util.replaceClass(moveBox, "number-"+_this.moveBeforeValue, "number-" + sortArr[p].value);
+//                 util.replaceClass(moveBox, "number-\\d+", "number-" + sortArr[p].value);
+//                 !!sortArr[p].moveClassName ? util.replaceClass(moveBox, sortArr[p].moveClassName, direction + l + "-" + p) : util.addClass(moveBox, direction + l + "-" + p);
+//                 // !!sortArr[p].moveClassName ? util.replaceClass(moveBox, "(right|left|top|bottom)\\d\\-\\d", direction + l + "-" + p) : util.addClass(moveBox, direction + l + "-" + p);
+//                 break;
+//             }
+//         }
+//     }
+// }
 Game2048pro.rightMove = function() {
     var _this = this;
     /**
