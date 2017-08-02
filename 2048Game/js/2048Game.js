@@ -321,7 +321,7 @@ Game2048pro.rightMove = function() {
 
 }
 Game2048pro.move = function(direction) {
-    if(this.gameOver()) return;
+    
     for (var i = 0; i < 4; i++) {
         var arr = [];
         var sortArr = [];
