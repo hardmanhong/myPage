@@ -1,484 +1,915 @@
 * {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
-html,body {
-	height: 100%;
-}
+
+html,
 body {
-	display: flex;
-	background-color: #faf7ee;
-	color: #fff;
+    height: 100%;
 }
-ul,li {
-	list-style: none;
+
+body {
+    display: flex;
+    background-color: #faf7ee;
+    color: #fff;
 }
-h1,h2,h3,h4,h5,h6 { font-weight: normal;font-style: normal; }
+
+ul,
+li {
+    list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+    font-style: normal;
+}
 
 
 .game-2048 {
     margin: 0 auto;
     margin-top: 100px;
 }
+
+
 /*按钮*/
+
 .game-2048 .game-btns {
-	margin: 20px 0;
-	text-align: right;
+    margin: 20px 0;
+    text-align: right;
 }
-.game-2048 .game-btns a{
-	padding: 10px;
-	background-color: #29aeb3;
-	border-radius: 5px;
-	text-align: center;
+
+.game-2048 .game-btns a {
+    padding: 10px;
+    background-color: #29aeb3;
+    border-radius: 5px;
+    text-align: center;
 }
+
+
 /* 上部分*/
-.game-2048 .game-info{
-	display: flex;
-	display: -webkit-flex;
+
+.game-2048 .game-info {
+    display: flex;
+    display: -webkit-flex;
 }
+
 .game-2048 .game-info .game-name {
-	flex: 1;
-	-webkit-flex: 1;
+    flex: 1;
+    -webkit-flex: 1;
 }
+
 .game-2048 .game-info .game-name h1 {
-	font-size: 50px;
-	color: #846648;
+    font-size: 50px;
+    color: #846648;
 }
+
 .game-2048 .game-info .game-score {
-	display: flex;
-	display: -webkit-flex;
-	flex: 1;
-	-webkit-flex: 1;
-	height: 50px;
+    display: flex;
+    display: -webkit-flex;
+    flex: 1;
+    -webkit-flex: 1;
+    height: 50px;
 }
+
 .game-info .game-score>div {
-	flex: 1;
-	-webkit-flex: 1;
-	padding: 5px 0;
-	border-radius: 5px;
-	background-color: #ce6c64;
-	text-align: center;
+    flex: 1;
+    -webkit-flex: 1;
+    padding: 5px 0;
+    border-radius: 5px;
+    background-color: #ce6c64;
+    text-align: center;
 }
+
 .game-info .game-score p {
-	font-size: 12px;
-	color: #d7cac1;
+    font-size: 12px;
+    color: #d7cac1;
 }
+
 .game-info .game-score h2 {
-	font-size: 16px;
-	margin-top: 4px;
-	font-weight: bold;
+    font-size: 16px;
+    margin-top: 4px;
+    font-weight: bold;
 }
 
 .game-info .game-score .current-score {
-	margin-right: 4px;
+    margin-right: 4px;
 }
+
+
 /* 下部分 */
-.game-2048 .game-grid{
-	padding: 10px;
-	background-color: #176886;
-	border-radius: 8px;
-	box-shadow: 0 0 10px #176886;
+
+.game-2048 .game-grid {
+    padding: 10px;
+    background-color: #176886;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #176886;
 }
-.game-2048 .game-grid ul{
-	
+
+.game-2048 .game-grid ul {}
+
+.game-2048 .game-grid ul li {
+    position: relative;
+    margin-bottom: 4px;
+    width: 292px;
+    height: 70px;
 }
-.game-2048 .game-grid ul li{
-	position: relative;
-	margin-bottom: 4px;
-	width: 292px;
-	height: 70px;
-}
+
 .game-2048 .game-grid ul li:last-child {
-	margin-bottom: 0;
+    margin-bottom: 0;
 }
+
 .game-2048 .game-grid ul li div {
-	position: absolute;
-	width: 70px;
-	height: 70px;
-	line-height: 70px;
-	margin-right: 4px;
-	border-radius: 5px;
-	text-align: center;
-	font-size: 20px;
-	font-weight: bold;
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    margin-right: 4px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
 }
+
 .game-2048 .game-grid ul li div:nth-child(1) {
-	left: 0;
-	top: 0;
+    left: 0;
+    top: 0;
 }
+
 .game-2048 .game-grid ul li div:nth-child(2) {
-	left: 74px;
-	top: 0;
+    left: 74px;
+    top: 0;
 }
+
 .game-2048 .game-grid ul li div:nth-child(3) {
-	left: 148px;
-	top: 0;
+    left: 148px;
+    top: 0;
 }
+
 .game-2048 .game-grid ul li div:nth-child(4) {
-	left: 222px;
-	top: 0;
+    left: 222px;
+    top: 0;
 }
+
 .game-2048 .game-grid ul li div:last-child {
-	margin-right: 0;
+    margin-right: 0;
 }
-.game-2048 .game-grid ul li div{
-	background-color: #c1d2c5;
+
+.game-2048 .game-grid ul li div {
+    background-color: #c1d2c5;
 }
-.game-2048 .game-grid ul li div.number-2{
-	background-color: #c0af9b;
+
+.game-2048 .game-grid ul li div.number-2 {
+    background-color: #c0af9b;
 }
-.game-2048 .game-grid ul li div.number-4{
-	background-color: #f7deb8;
+
+.game-2048 .game-grid ul li div.number-4 {
+    background-color: #f7deb8;
 }
-.game-2048 .game-grid ul li div.number-8{
-	background-color: #f2b179;
+
+.game-2048 .game-grid ul li div.number-8 {
+    background-color: #f2b179;
 }
-.game-2048 .game-grid ul li div.number-16{
-	background-color: #f9a257;
+
+.game-2048 .game-grid ul li div.number-16 {
+    background-color: #f9a257;
 }
-.game-2048 .game-grid ul li div.number-32{
-	background-color: #f57c5f;
+
+.game-2048 .game-grid ul li div.number-32 {
+    background-color: #f57c5f;
 }
-.game-2048 .game-grid ul li div.number-64{
-	background-color: #f74216;
+
+.game-2048 .game-grid ul li div.number-64 {
+    background-color: #f74216;
 }
-.game-2048 .game-grid ul li div.number-128{
-	background-color: #edce71;
+
+.game-2048 .game-grid ul li div.number-128 {
+    background-color: #edce71;
 }
-.game-2048 .game-grid ul li div.number-256{
-	background-color: #ffcf2e;
+
+.game-2048 .game-grid ul li div.number-256 {
+    background-color: #ffcf2e;
 }
-.game-2048 .game-grid ul li div.number-512{
-	background-color: #72b514;
+
+.game-2048 .game-grid ul li div.number-512 {
+    background-color: #72b514;
 }
-.game-2048 .game-grid ul li div.number-1024{
-	background-color: #86700b;
+
+.game-2048 .game-grid ul li div.number-1024 {
+    background-color: #86700b;
 }
-.game-2048 .game-grid ul li div.number-2048{
-	background-color: #772b00;
+
+.game-2048 .game-grid ul li div.number-2048 {
+    background-color: #772b00;
 }
+
 
 /*放大动画*/
-@keyframes scale {
-	from {
-		transform: scale(0,0);
-		-webkit-transform: scale(0,0);
-	}
-	to {
-		transform: scale(1,1);
-		-webkit-transform: scale(1,1);
-	}
-}
-@-webkit-keyframes scale {
-	from {
-		transform: scale(0,0);
-		-webkit-transform: scale(0,0);
 
-	}
-	to {
-		transform: scale(1,1);
-		-webkit-transform: scale(1,1);
-	}
+@keyframes scale {
+    from {
+        transform: scale(0, 0);
+        -webkit-transform: scale(0, 0);
+    }
+    to {
+        transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+    }
 }
+
+@-webkit-keyframes scale {
+    from {
+        transform: scale(0, 0);
+        -webkit-transform: scale(0, 0);
+    }
+    to {
+        transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+    }
+}
+
 .game-2048 .game-grid ul li div.scale {
-	animation: scale 0.4s;
-	animation-fill-mode: forwards;
-	-webkit-animation: scale 0.4s;
-	-webkit-animation-fill-mode: forwards;
+    animation: scale 0.4s;
+    animation-fill-mode: forwards;
+    -webkit-animation: scale 0.4s;
+    -webkit-animation-fill-mode: forwards;
 }
+
+
 /*right*/
+
 .game-2048 .game-grid ul li div.right0-1 {
-	animation: right0-1 0.4s;
-	animation-fill-mode: forwards;
-	-webkit-animation: right0-1 0.4s;
-	-webkit-animation-fill-mode: forwards;
+    animation: right0-1 0.4s;
+    animation-fill-mode: forwards;
+    -webkit-animation: right0-1 0.4s;
+    -webkit-animation-fill-mode: forwards;
 }
+
 .game-2048 .game-grid ul li div.right0-2 {
-	animation: right0-2 0.4s;;
-	animation-fill-mode: forwards;
-	-webkit-animation: right0-2 0.4s;
-	-webkit-animation-fill-mode: forwards;
+    animation: right0-2 0.4s;
+    ;
+    animation-fill-mode: forwards;
+    -webkit-animation: right0-2 0.4s;
+    -webkit-animation-fill-mode: forwards;
 }
+
 .game-2048 .game-grid ul li div.right0-3 {
-	animation: right0-3 0.4s;
-	animation-fill-mode: forwards;
-	-webkit-animation: right0-3 0.4s;
-	-webkit-animation-fill-mode: forwards;
+    animation: right0-3 0.4s;
+    animation-fill-mode: forwards;
+    -webkit-animation: right0-3 0.4s;
+    -webkit-animation-fill-mode: forwards;
 }
+
 .game-2048 .game-grid ul li div.right1-2 {
-	animation: right1-2 0.4s;
-	animation-fill-mode: forwards;
-	-webkit-animation: right1-2 0.4s;
-	-webkit-animation-fill-mode: forwards;
+    animation: right1-2 0.4s;
+    animation-fill-mode: forwards;
+    -webkit-animation: right1-2 0.4s;
+    -webkit-animation-fill-mode: forwards;
 }
+
 .game-2048 .game-grid ul li div.right1-3 {
-	animation: right1-3 0.4s;
-	animation-fill-mode: forwards;
-	-webkit-animation: right1-3 0.4s;
-	-webkit-animation-fill-mode: forwards;
+    animation: right1-3 0.4s;
+    animation-fill-mode: forwards;
+    -webkit-animation: right1-3 0.4s;
+    -webkit-animation-fill-mode: forwards;
 }
+
 .game-2048 .game-grid ul li div.right2-3 {
-	animation: right2-3 0.4s;
-	animation-fill-mode: forwards;
-	-webkit-animation: right2-3 0.4s;
-	-webkit-animation-fill-mode: forwards;
+    animation: right2-3 0.4s;
+    animation-fill-mode: forwards;
+    -webkit-animation: right2-3 0.4s;
+    -webkit-animation-fill-mode: forwards;
 }
+
+
 /*滑动动画*/
+
 @keyframes right0-1 {
-	from { left: 0; } to { left: 74px; }
+    from {
+        transform: translateX(0);
+        -webkit-transform: translateX(0);
+    }
+    to {
+        transform: translateX(74px);
+        -webkit-transform: translateX(74px);
+    }
 }
+
 @-webkit-keyframes right0-1 {
-	from { left: 0; } to { left: 74px; }
+    from {
+        transform: translateX(0);
+        -webkit-transform: translateX(0);
+    }
+    to {
+        transform: translateX(74px);
+        -webkit-transform: translateX(74px);
+    }
 }
+
 @keyframes right0-2 {
-	from { left: 0; } to { left: 148px; }
+    from {
+        transform: translateX(0);
+        -webkit-transform: translateX(0);
+    }
+    to {
+        transform: translateX(148px);
+        -webkit-transform: translateX(148px);
+    }
 }
+
 @-webkit-keyframes right0-2 {
-	from { left: 0; } to { left: 148px; }
+    from {
+        transform: translateX(0);
+        -webkit-transform: translateX(0);
+    }
+    to {
+        transform: translateX(148px);
+        -webkit-transform: translateX(148px);
+    }
 }
+
 @keyframes right0-3 {
-	from { left: 0; } to { left: 222px; }
+    from {
+        transform: translateX(0);
+        -webkit-transform: translateX(0);
+    }
+    to {
+        transform: translateX(222px);
+        -webkit-transform: translateX(222px);
+    }
 }
+
 @-webkit-keyframes right0-3 {
-	from { left: 0; } to { left: 222px; }
+    from {
+        transform: translateX(0);
+        -webkit-transform: translateX(0);
+    }
+    to {
+         transform: translateX(222px);
+        -webkit-transform: translateX(222px);
+    }
 }
+
 @keyframes right1-2 {
-	from { left: 74px; } to { left: 148px; }
+    from {
+         transform: translateX(74px);
+        -webkit-transform: translateX(74px);
+    }
+    to {
+        transform: translateX(148px);
+        -webkit-transform: translateX(148px);
+    }
 }
+
 @-webkit-keyframes right1-2 {
-	from { left: 74px; } to { left: 148px; }
+    from {
+        transform: translateX(74px);
+        -webkit-transform: translateX(74px);
+    }
+    to {
+        transform: translateX(148px);
+        -webkit-transform: translateX(148px);
+    }
 }
+
 @keyframes right1-3 {
-	from { left: 74px; } to { left: 222px; }
+    from {
+        transform: translateX(74px);
+        -webkit-transform: translateX(74px);
+    }
+    to {
+         transform: translateX(222px);
+        -webkit-transform: translateX(222px);
+    }
 }
+
 @-webkit-keyframes right1-3 {
-	from { left: 74px; } to { left: 222px; }
+    from {
+        transform: translateX(74px);
+        -webkit-transform: translateX(74px);
+    }
+    to {
+        transform: translateX(222px);
+        -webkit-transform: translateX(222px);
+    }
 }
+
 @keyframes right2-3 {
-	from { left: 148px; } to { left: 222px; }
+    from {
+        transform: translateX(148px);
+        -webkit-transform: translateX(148px);
+    }
+    to {
+         transform: translateX(222px);
+        -webkit-transform: translateX(222px);
+    }
 }
+
 @-webkit-keyframes right2-3 {
-	from { left: 148px; } to { left: 222px; }
+    from {
+        transform: translateX(148px);
+        -webkit-transform: translateX(148px);
+    }
+    to {
+        transform: translateX(222px);
+        -webkit-transform: translateX(222px);
+    }
 }
+
+
 /*bottom*/
+
 .game-2048 .game-grid ul li div.bottom0-1 {
-	animation: bottom0-1 0.4s;
-	animation-fill-mode: forwards;
-	-webkit-animation: bottom0-1 0.4s;
-	-webkit-animation-fill-mode: forwards;
+    animation: bottom0-1 0.4s;
+    animation-fill-mode: forwards;
+    -webkit-animation: bottom0-1 0.4s;
+    -webkit-animation-fill-mode: forwards;
 }
+
 .game-2048 .game-grid ul li div.bottom0-2 {
-	animation: bottom0-2 0.4s;;
-	animation-fill-mode: forwards;
-	-webkit-animation: bottom0-2 0.4s;
-	-webkit-animation-fill-mode: forwards;
+    animation: bottom0-2 0.4s;
+    ;
+    animation-fill-mode: forwards;
+    -webkit-animation: bottom0-2 0.4s;
+    -webkit-animation-fill-mode: forwards;
 }
+
 .game-2048 .game-grid ul li div.bottom0-3 {
-	animation: bottom0-3 0.4s;
-	animation-fill-mode: forwards;
-	-webkit-animation: bottom0-3 0.4s;
-	-webkit-animation-fill-mode: forwards;
+    animation: bottom0-3 0.4s;
+    animation-fill-mode: forwards;
+    -webkit-animation: bottom0-3 0.4s;
+    -webkit-animation-fill-mode: forwards;
 }
+
 .game-2048 .game-grid ul li div.bottom1-2 {
-	animation: bottom1-2 0.4s;
-	animation-fill-mode: forwards;
-	-webkit-animation: bottom1-2 0.4s;
-	-webkit-animation-fill-mode: forwards;
+    animation: bottom1-2 0.4s;
+    animation-fill-mode: forwards;
+    -webkit-animation: bottom1-2 0.4s;
+    -webkit-animation-fill-mode: forwards;
 }
+
 .game-2048 .game-grid ul li div.bottom1-3 {
-	animation: bottom1-3 0.4s;
-	animation-fill-mode: forwards;
-	-webkit-animation: bottom1-3 0.4s;
-	-webkit-animation-fill-mode: forwards;
+    animation: bottom1-3 0.4s;
+    animation-fill-mode: forwards;
+    -webkit-animation: bottom1-3 0.4s;
+    -webkit-animation-fill-mode: forwards;
 }
+
 .game-2048 .game-grid ul li div.bottom2-3 {
-	animation: bottom2-3 0.4s;
-	animation-fill-mode: forwards;
-	-webkit-animation: bottom2-3 0.4s;
-	-webkit-animation-fill-mode: forwards;
+    animation: bottom2-3 0.4s;
+    animation-fill-mode: forwards;
+    -webkit-animation: bottom2-3 0.4s;
+    -webkit-animation-fill-mode: forwards;
 }
+
+
 /*滑动动画*/
+
 @keyframes bottom0-1 {
-	from { top: 0; } to { top: 74px; }
+    from {
+        top: 0;
+    }
+    to {
+        top: 74px;
+    }
 }
+
 @-webkit-keyframes bottom0-1 {
-	from { top: 0; } to { top: 74px; }
+    from {
+        top: 0;
+    }
+    to {
+        top: 74px;
+    }
 }
+
 @keyframes bottom0-2 {
-	from { top: 0; } to { top: 148px; }
+    from {
+        top: 0;
+    }
+    to {
+        top: 148px;
+    }
 }
+
 @-webkit-keyframes bottom0-2 {
-	from { top: 0; } to { top: 148px; }
+    from {
+        top: 0;
+    }
+    to {
+        top: 148px;
+    }
 }
+
 @keyframes bottom0-3 {
-	from { top: 0; } to { top: 222px; }
+    from {
+        top: 0;
+    }
+    to {
+        top: 222px;
+    }
 }
+
 @-webkit-keyframes bottom0-3 {
-	from { top: 0; } to { top: 222px; }
+    from {
+        top: 0;
+    }
+    to {
+        top: 222px;
+    }
 }
+
 @keyframes bottom1-2 {
-	from { top: 0; } to { top: 74px; }
+    from {
+        top: 0;
+    }
+    to {
+        top: 74px;
+    }
 }
+
 @-webkit-keyframes bottom1-2 {
-	from { top: 0; } to { top: 74px; }
+    from {
+        top: 0;
+    }
+    to {
+        top: 74px;
+    }
 }
+
 @keyframes bottom1-3 {
-	from { top: 0; } to { top: 148px; }
+    from {
+        top: 0;
+    }
+    to {
+        top: 148px;
+    }
 }
+
 @-webkit-keyframes bottom1-3 {
-	from { top: 0; } to { top: 148px; }
+    from {
+        top: 0;
+    }
+    to {
+        top: 148px;
+    }
 }
+
 @keyframes bottom2-3 {
-	from { top: 0; } to { top: 74px; }
+    from {
+        top: 0;
+    }
+    to {
+        top: 74px;
+    }
 }
+
 @-webkit-keyframes bottom2-3 {
-	from { top: 0; } to { top: 74px; }
+    from {
+        top: 0;
+    }
+    to {
+        top: 74px;
+    }
 }
+
+
 /* left */
+
 .game-2048 .game-grid ul li div.left3-2 {
-	animation: left3-2 0.4s;
-	animation-fill-mode: forwards;
-	-webkit-animation: left3-2 0.4s;
-	-webkit-animation-fill-mode: forwards;
+    animation: left3-2 0.4s;
+    animation-fill-mode: forwards;
+    -webkit-animation: left3-2 0.4s;
+    -webkit-animation-fill-mode: forwards;
 }
+
 .game-2048 .game-grid ul li div.left3-1 {
-	animation: left3-1 0.4s;;
-	animation-fill-mode: forwards;
-	-webkit-animation: left3-1 0.4s;
-	-webkit-animation-fill-mode: forwards;
+    animation: left3-1 0.4s;
+    animation-fill-mode: forwards;
+    -webkit-animation: left3-1 0.4s;
+    -webkit-animation-fill-mode: forwards;
 }
+
 .game-2048 .game-grid ul li div.left3-0 {
-	animation: left3-0 0.4s;
-	animation-fill-mode: forwards;
-	-webkit-animation: left3-0 0.4s;
-	-webkit-animation-fill-mode: forwards;
+    animation: left3-0 0.4s;
+    animation-fill-mode: forwards;
+    -webkit-animation: left3-0 0.4s;
+    -webkit-animation-fill-mode: forwards;
 }
+
 .game-2048 .game-grid ul li div.left2-1 {
-	animation: left2-1 0.4s;
-	animation-fill-mode: forwards;
-	-webkit-animation: left2-1 0.4s;
-	-webkit-animation-fill-mode: forwards;
+    animation: left2-1 0.4s;
+    animation-fill-mode: forwards;
+    -webkit-animation: left2-1 0.4s;
+    -webkit-animation-fill-mode: forwards;
 }
+
 .game-2048 .game-grid ul li div.left2-0 {
-	animation: left2-0 0.4s;
-	animation-fill-mode: forwards;
-	-webkit-animation: left2-0 0.4s;
-	-webkit-animation-fill-mode: forwards;
+    animation: left2-0 0.4s;
+    animation-fill-mode: forwards;
+    -webkit-animation: left2-0 0.4s;
+    -webkit-animation-fill-mode: forwards;
 }
+
 .game-2048 .game-grid ul li div.left1-0 {
-	animation: left1-0 0.4s;
-	animation-fill-mode: forwards;
-	-webkit-animation: left1-0 0.4s;
-	-webkit-animation-fill-mode: forwards;
+    animation: left1-0 0.4s;
+    animation-fill-mode: forwards;
+    -webkit-animation: left1-0 0.4s;
+    -webkit-animation-fill-mode: forwards;
 }
+
+
 /*滑动动画*/
+
 @keyframes left3-2 {
-	from { left: 222px; } to { left: 148px; }
+    from {
+        transform: translateX(222px);
+        -webkit-transform: translateX(222px);
+    }
+    to {
+        transform: translateX(148px);
+        -webkit-transform: translateX(148px);
+    }
 }
+
 @-webkit-keyframes left3-2 {
-	from { left: 222px; } to { left: 148px; }
+    from {
+        transform: translateX(222px);
+        -webkit-transform: translateX(222px);
+    }
+    to {
+        transform: translateX(148px);
+        -webkit-transform: translateX(148px);
+    }
 }
+
 @keyframes left3-1 {
-	from { left: 222px; } to { left: 74px; }
+    from {
+        transform: translateX(222px);
+        -webkit-transform: translateX(222px);
+    }
+    to {
+        transform: translateX(74px);
+        -webkit-transform: translateX(74px);
+    }
 }
+
 @-webkit-keyframes left3-1 {
-	from { left: 222px; } to { left: 74px; }
+    from {
+        transform: translateX(222px);
+        -webkit-transform: translateX(222px);
+    }
+    to {
+        transform: translateX(74px);
+        -webkit-transform: translateX(74px);
+    }
 }
+
 @keyframes left3-0 {
-	from { left: 222px; } to { left: 0; }
+    from {
+        transform: translateX(222px);
+        -webkit-transform: translateX(222px);
+    }
+    to {
+        transform: translateX(0);
+        -webkit-transform: translateX(0);
+    }
 }
+
 @-webkit-keyframes left3-0 {
-	from { left: 222px; } to { left: 0; }
+    from {
+        transform: translateX(222px);
+        -webkit-transform: translateX(222px);
+    }
+    to {
+        transform: translateX(0);
+        -webkit-transform: translateX(0);
+    }
 }
+
 @keyframes left2-1 {
-	from { left: 148px; } to { left: 74px; }
+    from {
+        transform: translateX(148px);
+        -webkit-transform: translateX(148px);
+    }
+    to {
+        transform: translateX(74px);
+        -webkit-transform: translateX(74px);
+    }
 }
+
 @-webkit-keyframes left2-1 {
-	from { left: 148px; } to { left: 74px; }
+    from {
+        transform: translateX(148px);
+        -webkit-transform: translateX(148px);
+    }
+    to {
+        transform: translateX(74px);
+        -webkit-transform: translateX(74px);
+    }
 }
+
 @keyframes left2-0 {
-	from { left: 148px; } to { left: 0; }
+    from {
+        transform: translateX(148px);
+        -webkit-transform: translateX(148px);
+    }
+    to {
+        transform: translateX(0);
+        -webkit-transform: translateX(0);
+    }
 }
+
 @-webkit-keyframes left2-0 {
-	from { left: 148px; } to { left: 0; }
+    from {
+        transform: translateX(148px);
+        -webkit-transform: translateX(148px);
+    }
+    to {
+        transform: translateX(0);
+        -webkit-transform: translateX(0);
+    }
 }
+
 @keyframes left1-0 {
-	from { left: 74px; } to { left: 0; }
+    from {
+        transform: translateX(74px);
+        -webkit-transform: translateX(74px);
+    }
+    to {
+        transform: translateX(0);
+        -webkit-transform: translateX(0);
+    }
 }
+
 @-webkit-keyframes left1-0 {
-	from { left: 74px; } to { left: 0; }
+    from {
+        transform: translateX(74px);
+        -webkit-transform: translateX(74px);
+    }
+    to {
+        transform: translateX(0);
+        -webkit-transform: translateX(0);
+    }
 }
+
+
 /* top */
+
 .game-2048 .game-grid ul li div.top3-2 {
-	animation: top3-2 0.4s;
-	animation-fill-mode: forwards;
-	-webkit-animation: top3-2 0.4s;
-	-webkit-animation-fill-mode: forwards;
+    animation: top3-2 0.4s;
+    animation-fill-mode: forwards;
+    -webkit-animation: top3-2 0.4s;
+    -webkit-animation-fill-mode: forwards;
 }
+
 .game-2048 .game-grid ul li div.top3-1 {
-	animation: top3-1 0.4s;;
-	animation-fill-mode: forwards;
-	-webkit-animation: top3-1 0.4s;
-	-webkit-animation-fill-mode: forwards;
+    animation: top3-1 0.4s;
+    ;
+    animation-fill-mode: forwards;
+    -webkit-animation: top3-1 0.4s;
+    -webkit-animation-fill-mode: forwards;
 }
+
 .game-2048 .game-grid ul li div.top3-0 {
-	animation: top3-0 0.4s;
-	animation-fill-mode: forwards;
-	-webkit-animation: top3-0 0.4s;
-	-webkit-animation-fill-mode: forwards;
+    animation: top3-0 0.4s;
+    animation-fill-mode: forwards;
+    -webkit-animation: top3-0 0.4s;
+    -webkit-animation-fill-mode: forwards;
 }
+
 .game-2048 .game-grid ul li div.top2-1 {
-	animation: top2-1 0.4s;
-	animation-fill-mode: forwards;
-	-webkit-animation: top2-1 0.4s;
-	-webkit-animation-fill-mode: forwards;
+    animation: top2-1 0.4s;
+    animation-fill-mode: forwards;
+    -webkit-animation: top2-1 0.4s;
+    -webkit-animation-fill-mode: forwards;
 }
+
 .game-2048 .game-grid ul li div.top2-0 {
-	animation: top2-0 0.4s;
-	animation-fill-mode: forwards;
-	-webkit-animation: top2-0 0.4s;
-	-webkit-animation-fill-mode: forwards;
+    animation: top2-0 0.4s;
+    animation-fill-mode: forwards;
+    -webkit-animation: top2-0 0.4s;
+    -webkit-animation-fill-mode: forwards;
 }
+
 .game-2048 .game-grid ul li div.top1-0 {
-	animation: top1-0 0.4s;
-	animation-fill-mode: forwards;
-	-webkit-animation: top1-0 0.4s;
-	-webkit-animation-fill-mode: forwards;
+    animation: top1-0 0.4s;
+    animation-fill-mode: forwards;
+    -webkit-animation: top1-0 0.4s;
+    -webkit-animation-fill-mode: forwards;
 }
+
+
 /*滑动动画*/
+
 @keyframes top3-2 {
-	from { top: 0; } to { top: -74px; }
+    from {
+        top: 0;
+    }
+    to {
+        top: -74px;
+    }
 }
+
 @-webkit-keyframes top3-2 {
-	from { top: 0; } to { top: -74px; }
+    from {
+        top: 0;
+    }
+    to {
+        top: -74px;
+    }
 }
+
 @keyframes top3-1 {
-	from { top: 0; } to { top: -148px; }
+    from {
+        top: 0;
+    }
+    to {
+        top: -148px;
+    }
 }
+
 @-webkit-keyframes top3-1 {
-	from { top: 0; } to { top: -148px; }
+    from {
+        top: 0;
+    }
+    to {
+        top: -148px;
+    }
 }
+
 @keyframes top3-0 {
-	from { top: 0; } to { top: -222px; }
+    from {
+        top: 0;
+    }
+    to {
+        top: -222px;
+    }
 }
+
 @-webkit-keyframes top3-0 {
-	from { top: 0; } to { top: 222px; }
+    from {
+        top: 0;
+    }
+    to {
+        top: 222px;
+    }
 }
+
 @keyframes top2-1 {
-	from { top: 0; } to { top: -74px; }
+    from {
+        top: 0;
+    }
+    to {
+        top: -74px;
+    }
 }
+
 @-webkit-keyframes top2-1 {
-	from { top: 0; } to { top: -74px; }
+    from {
+        top: 0;
+    }
+    to {
+        top: -74px;
+    }
 }
+
 @keyframes top2-0 {
-	from { top: 0; } to { top: -148px; }
+    from {
+        top: 0;
+    }
+    to {
+        top: -148px;
+    }
 }
+
 @-webkit-keyframes top2-0 {
-	from { top: 0; } to { top: -148px; }
+    from {
+        top: 0;
+    }
+    to {
+        top: -148px;
+    }
 }
+
 @keyframes top1-0 {
-	from { top: 0; } to { top: -74px; }
+    from {
+        top: 0;
+    }
+    to {
+        top: -74px;
+    }
 }
+
 @-webkit-keyframes top1-0 {
-	from { top: 0; } to { top: -74px; }
+    from {
+        top: 0;
+    }
+    to {
+        top: -74px;
+    }
 }

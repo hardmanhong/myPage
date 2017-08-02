@@ -24,9 +24,17 @@ Game2048pro.init = function() {
         _this.rePlay(_this);
     });
 }
+Game2048pro.gameOver = function () {
+    var boxs = util.getElement(".box");
+    var isOver = false;
+    if (boxs.length == 32) {
+        return isOver = true;
+    }
+    return isOver;
+}
 Game2048pro.createBox = function() {
+    if(this.gameOver()) return;
     var blankBoxs = util.getElement(".place-holder-box"),
-        boxs = util.getElement(".box"),
         lis = util.getElement(".row"),
         divIndex = parseInt(Math.random() * blankBoxs.length),
         theBox = blankBoxs[divIndex], //某个空盒子
@@ -41,7 +49,6 @@ Game2048pro.createBox = function() {
     var holderClassName = "grid" + liItem + "-" + divItem;
     var numberClassName = "number-" + num;
     var holderBox = util.getElement("." + holderClassName)[0];
-    if (boxs.length == 32) return; //如果格子已满
     if (holderBox) { //如果该位置已有盒子
         this.createBox();
     } else {
@@ -75,7 +82,6 @@ Game2048pro.saveGridInfo = function(arrIndex, arr, sortArr, direction) {
         divItem = util.getElement("." + str)[0];
         // re = new RegExp(direction + "\\d\\-\\d", "g");
         re = new RegExp("(right|left|top|bottom)\\d\\-\\d", "g");
-        // /right\d\-\d/g
         moveClassName = !!divItem ? divItem.className.match(re) : null;
         moveClassName = !!moveClassName ? moveClassName[0] : null;
         divItemText = !!divItem ? parseInt(divItem.innerText) : 0;
@@ -143,9 +149,6 @@ Game2048pro.sortGridInfo = function(sortArr, direction) {
     }
 }
 Game2048pro.moveBoxs = function(arr, sortArr, direction) {
-    console.log("arr", arr);
-    console.log("sortArr", sortArr)
-    console.log("===============================================================");
     var _this = this;
     for (var l = 0; l < arr.length; l++) {
         if (!arr[l].divElement) continue;
@@ -186,6 +189,7 @@ Game2048pro.moveBoxs = function(arr, sortArr, direction) {
                 !!sortArr[p].moveClassName ?
                     util.replaceClass(moveBox, sortArr[p].moveClassName, direction + l + "-" + p) :
                     util.addClass(moveBox, direction + l + "-" + p);
+                moveBox.style.left = 0;//清除定位，避免动画无法正常执行
                 break;
             }
         }
@@ -317,6 +321,7 @@ Game2048pro.rightMove = function() {
 
 }
 Game2048pro.move = function(direction) {
+    if(this.gameOver()) return;
     for (var i = 0; i < 4; i++) {
         var arr = [];
         var sortArr = [];
