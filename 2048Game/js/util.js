@@ -14,10 +14,8 @@
             }
         },
         replaceClass: function(el, oldCls, newCls) {
-            // if (this.hasClass(el, oldCls)) {
                 var reg = new RegExp(oldCls);
                 el.className = el.className.replace(reg, newCls);
-            // }
         },
         clearClass: function(el) {
             el.className = "";
