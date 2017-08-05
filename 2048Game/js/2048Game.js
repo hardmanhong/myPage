@@ -37,11 +37,9 @@ Game2048pro.init = function() {
     });
 }
 Game2048pro.fullBoxs = function() {
-    var boxs = util.getElement(".box");
-    var isFull = false;
-    if (boxs.length == 32) {
-        return isFull = true;
-    }
+    var boxs = util.getElement(".box"),
+        isFull;
+    isFull = boxs.length == 32 ? true : false;
     return isFull;
 }
 Game2048pro.createBox = function() {
@@ -58,10 +56,10 @@ Game2048pro.createBox = function() {
         rem = num % 2;
     num = rem == 0 ? num : num - 1; //对余数进行判断，生成2或4
 
-    var newBox = document.createElement("div");
-    var holderClassName = "grid" + liItem + "-" + divItem;
-    var numberClassName = "number-" + num;
-    var holderBox = util.getElement("." + holderClassName)[0];
+    var newBox = document.createElement("div"),
+        holderClassName = "grid" + liItem + "-" + divItem,
+        numberClassName = "number-" + num,
+        holderBox = util.getElement("." + holderClassName)[0];
     if (holderBox) { //如果该位置已有盒子
         this.createBox();
     } else {
@@ -106,12 +104,12 @@ Game2048pro.saveGridInfo = function(arrIndex, arr, sortArr, direction) {
         switch (direction) {
             case "right":
             case "bottom":
-                divItemText == 0 && sortArr.unshift(gridInfo); //左右区别在这里 push()
-                divItemText > 0 && sortArr.push(gridInfo); //左右区别 unshift()
+                divItemText == 0 && sortArr.unshift(gridInfo);
+                divItemText > 0 && sortArr.push(gridInfo);
                 break;
             case "left":
             case "top":
-                divItemText > 0 && sortArr.push(gridInfo); //左右区别在这里 push()
+                divItemText > 0 && sortArr.push(gridInfo);
                 divItemText == 0 && count++;
                 break;
         }
@@ -130,29 +128,31 @@ Game2048pro.sortoutBox = function(sortArr, k, moveIndex) {
     sortArr.splice(k, 1);
 }
 Game2048pro.sortGridInfo = function(sortArr, direction) {
+    this.isright = this.isleft = this.istop = this.isbottom = false;
     switch (direction) {
         case "right":
         case "bottom":
-            for (var k = sortArr.length - 1; k > 0; k--) { //right bottom
-                //如果排序后的数组
+            for (var k = sortArr.length - 1; k > 0; k--) {
                 if (sortArr[k].value == 0) continue;
                 if (sortArr[k].value === sortArr[k - 1].value) {
-                    var moveIndex = k - 1; //要移动的元素的数组下标
+                    var moveIndex = k - 1;
                     this.sortoutBox(sortArr, k, moveIndex);
                     sortArr.unshift({ value: 0, className: null, moveClassName: null, divElement: null });
                     this.count = 0;
+                    this["is"+direction] = true;
                 }
             }
             break;
         case "left":
         case "top":
-            for (var k = 0; k < sortArr.length - 1; k++) { // left top
+            for (var k = 0; k < sortArr.length - 1; k++) {
                 if (sortArr[k].value == 0) continue;
                 if (sortArr[k].value === sortArr[k + 1].value) {
                     var moveIndex = k + 1;
                     this.sortoutBox(sortArr, k, moveIndex);
                     sortArr.push({ value: 0, className: null, moveClassName: null, divElement: null }); //left top push()
                     this.count = 0;
+                    this["is"+direction] = true;
                 }
             }
             break;
@@ -161,8 +161,8 @@ Game2048pro.sortGridInfo = function(sortArr, direction) {
 Game2048pro.moveBoxs = function(arr, sortArr, direction) {
     for (var l = 0; l < arr.length; l++) {
         if (!arr[l].divElement) continue;
-        var arrElement = arr[l].divElement;
-        var arrClassName = arr[l].className;
+        var arrElement   = arr[l].divElement,
+            arrClassName = arr[l].className;
         for (var p = 0; p < sortArr.length; p++) {
             if (!sortArr[p].divElement) continue;
             var sortArrElement = sortArr[p].divElement;
@@ -174,8 +174,8 @@ Game2048pro.moveBoxs = function(arr, sortArr, direction) {
                     那么获取的盒子就不确定是哪一个了，
                     所以我把元素存进数组，遍历获取的类名元素，与数组中的原来的元素进行比较
                 */
-                var boxs = util.getElement("." + arrClassName);
-                var moveBox;
+                var boxs = util.getElement("." + arrClassName),
+                    moveBox;
                 for (var q = 0; q < boxs.length; q++) {
                     if (boxs[q] === sortArrElement) {
                         moveBox = boxs[q];
@@ -185,21 +185,22 @@ Game2048pro.moveBoxs = function(arr, sortArr, direction) {
                 switch (direction) {
                     case "right":
                     case "left":
-                        var num = arrClassName.substr(4, 1); // 右滑，下滑区别在这里 下滑substr(6,1)
-                        util.replaceClass(moveBox, arrClassName, "grid" + num + "-" + p);
+                        var numIndex = arrClassName.substr(4, 1); // 右滑，下滑区别在这里 下滑substr(6,1)
+                        util.replaceClass(moveBox, arrClassName, "grid" + numIndex + "-" + p);
                         if (!!moveBox.lastTopLocation) moveBox.style.top = (moveBox.lastTopLocation * 74) + "px";
-                        moveBox.style.left = 0; //清除定位，避免左右滑动动画无法正常执行
-                        moveBox.lastLeftLocation = p; //相对父元素left值，下面向上/下滑动时会用到
+                        moveBox.style.left = 0;
+                        moveBox.lastLeftLocation = p;
                         break;
                     case "top":
                     case "bottom":
                         var numIndex = arrClassName.substr(6, 1); // 右滑，下滑区别在这里 下滑substr(6,1)
                         util.replaceClass(moveBox, arrClassName, "grid" + p + "-" + numIndex);
                         if (!!moveBox.lastLeftLocation) moveBox.style.left = (moveBox.lastLeftLocation * 74) + "px";
-                        moveBox.lastTopLocation = p; //相对父元素top值，下面向左/右滑动时会用到
+                        moveBox.lastTopLocation = p;
                         moveBox.style.top = 0;
                         break;
-                }!!sortArr[p].moveClassName ?
+                }
+                !!sortArr[p].moveClassName ?
                     util.replaceClass(moveBox, sortArr[p].moveClassName, direction + l + "-" + p) :
                     util.addClass(moveBox, direction + l + "-" + p);
                 moveBox.innerText = sortArr[p].value;
@@ -211,8 +212,8 @@ Game2048pro.moveBoxs = function(arr, sortArr, direction) {
 }
 Game2048pro.move = function(direction) {
     for (var i = 0; i < 4; i++) {
-        var arr = [];
-        var sortArr = [];
+        var arr     = [],
+            sortArr = [];
         this.saveGridInfo(i, arr, sortArr, direction);
         this.sortGridInfo(sortArr, direction);
         this.moveBoxs(arr, sortArr, direction);
@@ -225,24 +226,16 @@ Game2048pro.touchstart = function(e, context) {
 Game2048pro.touchend = function(e, context) {
     this.moveX = e.changedTouches[0].pageX - this.startX;
     this.moveY = e.changedTouches[0].pageY - this.startY;
-    var absX = Math.abs(this.moveX); //X绝对值
-    var absY = Math.abs(this.moveY); //Y绝对值
+    var absX = Math.abs(this.moveX), //X绝对值
+        absY = Math.abs(this.moveY); //Y绝对值
     if (absX < 5 && absY < 5) return;
-    if (absX > absY && this.moveX > 0) {
-        context.move("right");
-    }
-    if (absX > absY && this.moveX < 0) {
-        context.move("left");
-    }
-    if (absX < absY && this.moveY > 0) {
-        context.move("bottom");
-    }
-    if (absX < absY && this.moveY < 0) {
-        context.move("top");
-    }
+    if (absX > absY && this.moveX > 0) context.move("right");
+    if (absX > absY && this.moveX < 0) context.move("left");
+    if (absX < absY && this.moveY > 0) context.move("bottom");
+    if (absX < absY && this.moveY < 0) context.move("top");
     if (this.fullBoxs()) {
             this.count++;
-            if(this.count>=4) {
+            if(this.count>=4 && !this.isright && !this.isleft && !this.istop && !this.isbottom) {
                 context.overlay.style.display = 'block';
                 util.addClass(context.overlay,"scale");
                 return;
