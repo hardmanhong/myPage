@@ -1,5 +1,13 @@
-### 2048Game [预览(移动端)](https://hardmanhong.github.io/nativeJS/2048Game/2048Game.html)
- 
+### 2048Game [预览](https://hardmanhong.github.io/nativeJS/2048Game/2048Game.html)
+* 已完成  
+1.格子能够上下左右移动，并合并相同数字的格子
+
+* 待完成  
+1.得分的计算
+
+* 重构  
+1.打算用Vue重构整个项目
+
 ---
 
 ### weatherAndMovie [预览(移动端)](https://hardmanhong.github.io/nativeJS/weatherAndMovie/index.html)
