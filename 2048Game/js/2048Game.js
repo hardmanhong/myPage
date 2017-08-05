@@ -1,7 +1,7 @@
 /**
  * 作者: Up Hong
- * 开发时间: 10 days
- * 已完成: 数字格子上下左右移动并合并
+ * 开发时间: 11 days
+ * 已完成: 数字格子上下左右移动并合并，游戏结束判定
  * 未完成: 分数计算
  */
 
@@ -9,11 +9,21 @@ var Game2048 = function() {
     this.init();
 }
 var Game2048pro = Game2048.prototype;
+/**
+ * 初始化
+ * @return {[type]} [description]
+ */
 Game2048pro.init = function() {
-    var _this = this;
-    this.count;
-    this.overlay = util.getElement(".game-over")[0];
+    this.event();
     this.createBox();
+}
+/**
+ * 事件
+ * @return {[type]} [description]
+ */
+Game2048pro.event = function () {
+    var _this = this;
+    //game2048
     this.game2048 = util.getElement(".game-2048")[0];
     this.game2048.addEventListener("touchstart", function(e) {
         _this.touchstart(e, _this);
@@ -21,27 +31,83 @@ Game2048pro.init = function() {
     this.game2048.addEventListener("touchend", function(e) {
         _this.touchend(e, _this);
     });
+    //遮罩层
+    this.overlay = util.getElement(".game-over")[0];
+    //右上角重玩按钮
     this.relayBtn = util.getElement(".game-btns")[0];
     this.relayBtn.addEventListener("click", function() {
         if (_this.overlay.style.display == "block") {
-            util.addClass(_this.overlay,"scalesmall");
-            // _this.overlay.style.display = "none";
+            util.addClass(_this.overlay, "scalesmall");
         }
         _this.rePlay(_this);
     });
+    //遮罩层重玩按钮
     this.overlayBtn = util.getElement(".game-over-btn")[0];
     this.overlayBtn.addEventListener("click", function() {
-        // _this.overlay.style.display = 'none';
-        util.addClass(_this.overlay,"scalesmall");
+        util.addClass(_this.overlay, "scalesmall");
         _this.rePlay(_this);
     });
 }
+/**
+ * 重玩
+ * @param  {[type]} context Game2048
+ * @return {[type]}         [description]
+ */
+Game2048pro.rePlay = function(context) {
+    var rowLis = util.getElement(".row");
+    for (var i = 0; i < rowLis.length; i++) {
+        var boxs = util.getElement(".create-box", rowLis[i]);
+        if (boxs.length <= 0) continue;
+        var len = boxs.length;
+        for (var j = 0; j < len; j++) {
+            var box = boxs[0];
+            rowLis[i].removeChild(box);
+        }
+    }
+    context.createBox();
+}
+/**
+ * 判断满盒子
+ * @return {[type]} [description]
+ */
 Game2048pro.fullBoxs = function() {
     var boxs = util.getElement(".box"),
         isFull;
     isFull = boxs.length == 32 ? true : false;
     return isFull;
 }
+/**
+ * 判断游戏结束
+ * @return {[type]} [description]
+ */
+Game2048pro.gameOver = function() {
+    if (this.isGameOver) return;
+    this.isGameOver = false;
+    if (this.fullBoxs()) {
+        this.isright = this.isleft = this.istop = this.isbottom = false
+        this.canAdd("right");
+        this.canAdd("left");
+        this.canAdd("top");
+        this.canAdd("bottom");
+        if (!this.isright && !this.isleft && !this.istop && !this.isbottom) this.isGameOver = true;
+    }
+    return this.isGameOver;
+}
+/**
+ * 判断数组合并
+ * @param  {[type]} direction 方向
+ */
+Game2048pro.canAdd = function(direction) {
+    for (var i = 0; i < 4; i++) {
+        var arr = [],
+            sortArr = [];
+        this.saveGridInfo(i, arr, sortArr, direction);
+        this.sortGridInfo(sortArr, direction, true);
+    }
+}
+/**
+ * 创建盒子
+ */
 Game2048pro.createBox = function() {
     var _this = this;
     if (this.fullBoxs()) return;
@@ -55,7 +121,6 @@ Game2048pro.createBox = function() {
         num = parseInt(Math.random() * (4 - 2 + 1) + 2),
         rem = num % 2;
     num = rem == 0 ? num : num - 1; //对余数进行判断，生成2或4
-
     var newBox = document.createElement("div"),
         holderClassName = "grid" + liItem + "-" + divItem,
         numberClassName = "number-" + num,
@@ -70,6 +135,13 @@ Game2048pro.createBox = function() {
         lis[liItem].appendChild(newBox);
     }
 }
+/**
+ * 保存数组
+ * @param  {[type]} arrIndex  原始数组下标
+ * @param  {[type]} arr       原始数组
+ * @param  {[type]} sortArr   排序数组
+ * @param  {[type]} direction 方向
+ */
 Game2048pro.saveGridInfo = function(arrIndex, arr, sortArr, direction) {
     var count = 0;
     for (var j = 0; j < 4; j++) {
@@ -118,6 +190,12 @@ Game2048pro.saveGridInfo = function(arrIndex, arr, sortArr, direction) {
         sortArr.push({ value: 0, className: null, moveClassName: null, divElement: null });
     }
 }
+/**
+ * 排序数组，移除盒子元素
+ * @param  {[type]} sortArr   排序数组
+ * @param  {[type]} k         排序数组下标
+ * @param  {[type]} moveIndex 移动盒子下标
+ */
 Game2048pro.sortoutBox = function(sortArr, k, moveIndex) {
     var _this = this;
     var removeNode = sortArr[k].divElement;
@@ -127,19 +205,24 @@ Game2048pro.sortoutBox = function(sortArr, k, moveIndex) {
     sortArr[moveIndex].value = _this.moveAfterValue;
     sortArr.splice(k, 1);
 }
-Game2048pro.sortGridInfo = function(sortArr, direction) {
-    this.isright = this.isleft = this.istop = this.isbottom = false;
+/**
+ * 过滤排序数组
+ * @param  {[type]} sortArr   排序数组
+ * @param  {[type]} direction 方向
+ * @param  {[type]} gameOver  盒子是否满
+ */
+Game2048pro.sortGridInfo = function(sortArr, direction, gameOver) {
     switch (direction) {
         case "right":
         case "bottom":
             for (var k = sortArr.length - 1; k > 0; k--) {
                 if (sortArr[k].value == 0) continue;
                 if (sortArr[k].value === sortArr[k - 1].value) {
+                    if (gameOver) { this["is" + direction] = true; return; }//满格子才会执行
                     var moveIndex = k - 1;
                     this.sortoutBox(sortArr, k, moveIndex);
                     sortArr.unshift({ value: 0, className: null, moveClassName: null, divElement: null });
-                    this.count = 0;
-                    this["is"+direction] = true;
+
                 }
             }
             break;
@@ -148,20 +231,26 @@ Game2048pro.sortGridInfo = function(sortArr, direction) {
             for (var k = 0; k < sortArr.length - 1; k++) {
                 if (sortArr[k].value == 0) continue;
                 if (sortArr[k].value === sortArr[k + 1].value) {
+                    if (gameOver) { this["is" + direction] = true; return; }//满格子才会执行
                     var moveIndex = k + 1;
                     this.sortoutBox(sortArr, k, moveIndex);
                     sortArr.push({ value: 0, className: null, moveClassName: null, divElement: null }); //left top push()
-                    this.count = 0;
-                    this["is"+direction] = true;
+                    this["is" + direction] = true;
                 }
             }
             break;
     }
 }
+/**
+ * 移动盒子
+ * @param  {[type]} arr       原始数组
+ * @param  {[type]} sortArr   排序数组
+ * @param  {[type]} direction 方向
+ */
 Game2048pro.moveBoxs = function(arr, sortArr, direction) {
     for (var l = 0; l < arr.length; l++) {
         if (!arr[l].divElement) continue;
-        var arrElement   = arr[l].divElement,
+        var arrElement = arr[l].divElement,
             arrClassName = arr[l].className;
         for (var p = 0; p < sortArr.length; p++) {
             if (!sortArr[p].divElement) continue;
@@ -210,9 +299,13 @@ Game2048pro.moveBoxs = function(arr, sortArr, direction) {
         }
     }
 }
+/**
+ * 移动，触摸结束后调用
+ * @param  direction 方向
+ */
 Game2048pro.move = function(direction) {
     for (var i = 0; i < 4; i++) {
-        var arr     = [],
+        var arr = [],
             sortArr = [];
         this.saveGridInfo(i, arr, sortArr, direction);
         this.sortGridInfo(sortArr, direction);
@@ -233,30 +326,21 @@ Game2048pro.touchend = function(e, context) {
     if (absX > absY && this.moveX < 0) context.move("left");
     if (absX < absY && this.moveY > 0) context.move("bottom");
     if (absX < absY && this.moveY < 0) context.move("top");
-    if (this.fullBoxs()) {
-            this.count++;
-            if(this.count>=4 && !this.isright && !this.isleft && !this.istop && !this.isbottom) {
-                context.overlay.style.display = 'block';
-                util.addClass(context.overlay,"scale");
-                return;
-            }
-    }
     setTimeout(function() {
         context.createBox();
-    }, 500);
-
-}
-Game2048pro.rePlay = function(context) {
-    var rowLis = util.getElement(".row");
-    for (var i = 0; i < rowLis.length; i++) {
-        var boxs = util.getElement(".create-box", rowLis[i]);
-        if (boxs.length <= 0) continue;
-        var len = boxs.length;
-        for (var j = 0; j < len; j++) {
-            var box = boxs[0];
-            rowLis[i].removeChild(box);
+        if (context.gameOver()) {
+            context.overlay.style.display = 'block';
+            util.addClass(context.overlay, "scale");
         }
-    }
-    context.createBox();
+    }, 500);
+}
+/**
+ * 获取分数
+ * 1.合并之后得到分数，
+ * 2.游戏结束后获取最终分数，存到localstorage中
+ * 3.在 init 方法中获取localstorage的分数 ，没有就取0
+ */
+Game2048pro.getScore = function () {
+    
 }
 new Game2048;
