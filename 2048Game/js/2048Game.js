@@ -134,6 +134,10 @@ Game2048pro.isGameOver = function() {
         this.canAdd("left");
         this.canAdd("top");
         this.canAdd("bottom");
+        console.log("this.isright",this.isright)
+        console.log("this.isleft",this.isleft)
+        console.log("this.istop",this.istop)
+        console.log("this.isbottom",this.isbottom)
         if (!this.isright && !this.isleft && !this.istop && !this.isbottom) this.isOver = true;
     }
     this.setBestScore();
@@ -185,7 +189,7 @@ Game2048pro.canAdd = function(direction) {
         var arr = [],
             sortArr = [];
         this.saveGridInfo(i, arr, sortArr, direction);
-        this.sortGridInfo(sortArr, direction, true);
+        this.sortGridInfo(arr,sortArr, direction, true);
     }
 }
 /**
