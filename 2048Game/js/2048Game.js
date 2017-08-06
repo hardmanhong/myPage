@@ -72,9 +72,7 @@ Game2048pro.touchend = function(e, context) {
     if (absX < absY && this.moveY < 0) this.move("top");
     if (this.isWin()) { this.win(); return; }
     setTimeout(function() {
-        console.log("!context.isborder",context.isborder);
-        console.log("!context.isborder",!context.isborder);
-        if(!context.isborder) context.createBox();
+        if(context.isBorder()) context.createBox();
         if (context.isGameOver()) context.gameOver();
     }, 500);
 }
@@ -302,7 +300,7 @@ Game2048pro.sortoutBox = function(sortArr, k, moveIndex) {
  * @param  {[type]} gameOver  盒子是否满
  */
 Game2048pro.sortGridInfo = function(arr,sortArr, direction, gameOver) {
-    this.isborder = false;
+    this.initIsBorderVar();
     switch (direction) {
         case "right":
         case "bottom":
@@ -331,15 +329,32 @@ Game2048pro.sortGridInfo = function(arr,sortArr, direction, gameOver) {
             }
             break;
     }
-    if(this.isBorder(arr,sortArr)){ this.isborder = true;console.log("this.isborder",this.isborder)};
+    if(this.isSame(arr,sortArr)){ this["isSame"+this.i] = true;};
 }
-Game2048pro.isBorder = function(arr,sortArr){
-    var isborder = arr.every(function (item,index) {
+/**
+ * 初始化判断是否在边缘的变量
+ */
+Game2048pro.initIsBorderVar = function () {
+    this.i = this.i || 0;
+    if(this.i>=4) this.i = 0;
+    this.i++
+    this["isSame"+this.i] = false;
+}
+/**
+ * 判断数组是否相同，以此来判断盒子是否在边缘
+ */
+Game2048pro.isSame = function(arr,sortArr){
+    var isSame = arr.every(function (item,index) {
         return item.value == sortArr[index].value;
     });
-    console.log(arr)
-    console.log(sortArr)
-    console.log(isborder)
+    return isSame;
+}
+/**
+ * 判断是否在边缘
+ */
+Game2048pro.isBorder = function () {
+    var isborder = false;
+    if(!this.isSame1 || !this.isSame2 || !this.isSame3 || !this.isSame4) isborder = true;
     return isborder;
 }
 /**
