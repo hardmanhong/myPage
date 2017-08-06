@@ -25,7 +25,7 @@ Game2048pro.init = function() {
  */
 Game2048pro.event = function() {
     //禁止浏览器默认滑动事件
-    document.body.addEventListener("touchstart", function(e) {
+    document.body.addEventListener("touchmove", function(e) {
         e.preventDefault();
     });
     var _this = this;
@@ -72,7 +72,9 @@ Game2048pro.touchend = function(e, context) {
     if (absX < absY && this.moveY < 0) this.move("top");
     if (this.isWin()) { this.win(); return; }
     setTimeout(function() {
-        context.createBox();
+        console.log("!context.isborder",context.isborder);
+        console.log("!context.isborder",!context.isborder);
+        if(!context.isborder) context.createBox();
         if (context.isGameOver()) context.gameOver();
     }, 500);
 }
@@ -299,7 +301,8 @@ Game2048pro.sortoutBox = function(sortArr, k, moveIndex) {
  * @param  {[type]} direction 方向
  * @param  {[type]} gameOver  盒子是否满
  */
-Game2048pro.sortGridInfo = function(sortArr, direction, gameOver) {
+Game2048pro.sortGridInfo = function(arr,sortArr, direction, gameOver) {
+    this.isborder = false;
     switch (direction) {
         case "right":
         case "bottom":
@@ -328,6 +331,16 @@ Game2048pro.sortGridInfo = function(sortArr, direction, gameOver) {
             }
             break;
     }
+    if(this.isBorder(arr,sortArr)){ this.isborder = true;console.log("this.isborder",this.isborder)};
+}
+Game2048pro.isBorder = function(arr,sortArr){
+    var isborder = arr.every(function (item,index) {
+        return item.value == sortArr[index].value;
+    });
+    console.log(arr)
+    console.log(sortArr)
+    console.log(isborder)
+    return isborder;
 }
 /**
  * 移动盒子
@@ -396,7 +409,7 @@ Game2048pro.move = function(direction) {
         var arr = [],
             sortArr = [];
         this.saveGridInfo(i, arr, sortArr, direction);
-        this.sortGridInfo(sortArr, direction);
+        this.sortGridInfo(arr,sortArr, direction);
         this.moveBoxs(arr, sortArr, direction);
     }
 }
