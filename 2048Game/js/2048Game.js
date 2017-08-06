@@ -29,6 +29,11 @@ Game2048pro.event = function() {
         e.preventDefault();
     });
     var _this = this;
+    //github
+    this.github = util.getElement(".github")[0];
+    this.github.addEventListener("click",function (e) {
+        e.defaultPrevented = true;        
+    });
     //game2048
     this.game2048 = util.getElement(".game-2048")[0];
     this.game2048.addEventListener("touchstart", function(e) {
