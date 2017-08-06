@@ -1,8 +1,7 @@
 /**
- * 作者: Up Hong
+ * 作者: Up Hong 独立完成
  * 开发时间: 11 days
- * 已完成: 数字格子上下左右移动并合并，游戏结束判定
- * 未完成: 分数计算 微信内置浏览禁止下拉
+ * 状态: 已完成
  */
 
 var Game2048 = function() {
@@ -11,53 +10,91 @@ var Game2048 = function() {
 var Game2048pro = Game2048.prototype;
 /**
  * 初始化
- * @return {[type]} [description]
  */
 Game2048pro.init = function() {
+    this.currentScoreELem = util.getElement(".score")[0];
+    this.bestScoreElem = util.getElement(".top-score")[0];
+    this.overlay = util.getElement(".game-over")[0];
+    this.overlayTitle = this.overlay.getElementsByTagName("h1")[0];
+    this.initScore();
     this.event();
     this.createBox();
 }
 /**
  * 事件
- * @return {[type]} [description]
  */
-Game2048pro.event = function () {
+Game2048pro.event = function() {
     //禁止浏览器默认滑动事件
-    document.body.addEventListener("touchstart", function (e) {
+    document.body.addEventListener("touchstart", function(e) {
         e.preventDefault();
     });
     var _this = this;
     //game2048
     this.game2048 = util.getElement(".game-2048")[0];
     this.game2048.addEventListener("touchstart", function(e) {
-        _this.touchstart(e, _this);
+        _this.touchstart(e);
     });
     this.game2048.addEventListener("touchend", function(e) {
         _this.touchend(e, _this);
     });
-    //遮罩层
-    this.overlay = util.getElement(".game-over")[0];
+
     //右上角重玩按钮
     this.relayBtn = util.getElement(".game-btns")[0];
     this.relayBtn.addEventListener("click", function() {
-        if (_this.overlay.style.display == "block") {
-            util.addClass(_this.overlay, "scalesmall");
-        }
-        _this.rePlay(_this);
+        _this.hideOverlay();
+        _this.rePlay();
     });
     //遮罩层重玩按钮
     this.overlayBtn = util.getElement(".game-over-btn")[0];
     this.overlayBtn.addEventListener("click", function() {
-        util.addClass(_this.overlay, "scalesmall");
-        _this.rePlay(_this);
+        _this.hideOverlay();
+        _this.rePlay();
     });
+}
+Game2048pro.touchstart = function(e) {
+    this.startX = e.changedTouches[0].pageX;
+    this.startY = e.changedTouches[0].pageY;
+}
+Game2048pro.touchend = function(e, context) {
+    this.moveX = e.changedTouches[0].pageX - this.startX;
+    this.moveY = e.changedTouches[0].pageY - this.startY;
+    var absX = Math.abs(this.moveX), //X绝对值
+        absY = Math.abs(this.moveY); //Y绝对值
+    if (absX < 5 && absY < 5) return;
+    if (absX > absY && this.moveX > 0) this.move("right");
+    if (absX > absY && this.moveX < 0) this.move("left");
+    if (absX < absY && this.moveY > 0) this.move("bottom");
+    if (absX < absY && this.moveY < 0) this.move("top");
+    if (this.isWin()) { this.win(); return; }
+    setTimeout(function() {
+        context.createBox();
+        if (context.isGameOver()) context.gameOver();
+    }, 500);
+}
+/**
+ * 初始化分数
+ */
+Game2048pro.initScore = function() {
+    this.currentScoreELem.innerText = 0;
+    this.bestScoreElem.innerText = this.getBestScore() || 0;
+}
+/**
+ * 设置最高分数
+ */
+Game2048pro.setBestScore = function() {
+    var bestScore = parseInt(this.bestScoreElem.innerText);
+    window.localStorage.setItem("2048GAME-BEST-SCORE", bestScore);
+}
+/**
+ * 获取最高分数
+ */
+Game2048pro.getBestScore = function() {
+    return window.localStorage.getItem("2048GAME-BEST-SCORE");
 }
 /**
  * 重玩
- * @param  {[type]} context Game2048
- * @return {[type]}         [description]
  */
-Game2048pro.rePlay = function(context) {
+Game2048pro.rePlay = function() {
     var rowLis = util.getElement(".row");
     for (var i = 0; i < rowLis.length; i++) {
         var boxs = util.getElement(".create-box", rowLis[i]);
@@ -68,11 +105,11 @@ Game2048pro.rePlay = function(context) {
             rowLis[i].removeChild(box);
         }
     }
-    context.createBox();
+    this.initScore();
+    this.createBox();
 }
 /**
  * 判断满盒子
- * @return {[type]} [description]
  */
 Game2048pro.fullBoxs = function() {
     var boxs = util.getElement(".box"),
@@ -82,24 +119,61 @@ Game2048pro.fullBoxs = function() {
 }
 /**
  * 判断游戏结束
- * @return {[type]} [description]
  */
-Game2048pro.gameOver = function() {
-    if (this.isGameOver) return;
-    this.isGameOver = false;
+Game2048pro.isGameOver = function() {
+    if (this.isOver) return;
+    this.isOver = false;
     if (this.fullBoxs()) {
         this.isright = this.isleft = this.istop = this.isbottom = false
         this.canAdd("right");
         this.canAdd("left");
         this.canAdd("top");
         this.canAdd("bottom");
-        if (!this.isright && !this.isleft && !this.istop && !this.isbottom) this.isGameOver = true;
+        if (!this.isright && !this.isleft && !this.istop && !this.isbottom) this.isOver = true;
     }
-    return this.isGameOver;
+    this.setBestScore();
+    return this.isOver;
+}
+/**
+ * 游戏结束
+ */
+Game2048pro.gameOver = function() {
+    this.overlayTitle.innerText = "Game Over!";
+    this.showOverlay();
+}
+/**
+ * 判断输赢
+ */
+Game2048pro.isWin = function() {
+    var isWin = false,
+        number2048 = util.getElement(".number-2048")[0];
+    isWin = !!number2048 ? true : false;
+    return isWin;
+}
+/**
+ * 游戏 赢
+ */
+Game2048pro.win = function() {
+    this.overlayTitle.innerText = "You Win!";
+    this.showOverlay();
+}
+/**
+ * 显示遮罩层
+ */
+Game2048pro.showOverlay = function() {
+    this.overlay.style.display = 'block';
+    util.addClass(this.overlay, "scale");
+}
+/**
+ * 隐藏遮罩层
+ */
+Game2048pro.hideOverlay = function() {
+    if (this.overlay.style.display == "block") {
+        util.addClass(this.overlay, "scalesmall");
+    }
 }
 /**
  * 判断数组合并
- * @param  {[type]} direction 方向
  */
 Game2048pro.canAdd = function(direction) {
     for (var i = 0; i < 4; i++) {
@@ -129,7 +203,7 @@ Game2048pro.createBox = function() {
         holderClassName = "grid" + liItem + "-" + divItem,
         numberClassName = "number-" + num,
         holderBox = util.getElement("." + holderClassName)[0];
-    if (holderBox) { //如果该位置已有盒子
+    if (holderBox) { //如果该位置已有盒子，递归
         this.createBox();
     } else {
         util.addClass(newBox, "box scale create-box " + numberClassName + " " + holderClassName);
@@ -201,13 +275,18 @@ Game2048pro.saveGridInfo = function(arrIndex, arr, sortArr, direction) {
  * @param  {[type]} moveIndex 移动盒子下标
  */
 Game2048pro.sortoutBox = function(sortArr, k, moveIndex) {
-    var _this = this;
+    var _this = this,
+        currentScore = parseInt(this.currentScoreELem.innerText),
+        bestScore = parseInt(this.bestScoreElem.innerText);
     var removeNode = sortArr[k].divElement;
     _this.moveBeforeValue = sortArr[moveIndex].value;
     _this.moveAfterValue = sortArr[k].value + sortArr[moveIndex].value; //移动元素在移动后的值
     removeNode.parentElement.removeChild(removeNode);
     sortArr[moveIndex].value = _this.moveAfterValue;
     sortArr.splice(k, 1);
+    this.currentScoreELem.innerText = currentScore + _this.moveAfterValue;
+    if (bestScore == 0 || bestScore <= parseInt(this.currentScoreELem.innerText)) this.bestScoreElem.innerText = bestScore + _this.moveAfterValue;
+
 }
 /**
  * 过滤排序数组
@@ -222,7 +301,7 @@ Game2048pro.sortGridInfo = function(sortArr, direction, gameOver) {
             for (var k = sortArr.length - 1; k > 0; k--) {
                 if (sortArr[k].value == 0) continue;
                 if (sortArr[k].value === sortArr[k - 1].value) {
-                    if (gameOver) { this["is" + direction] = true; return; }//满格子才会执行
+                    if (gameOver) { this["is" + direction] = true; return; } //满格子才会执行
                     var moveIndex = k - 1;
                     this.sortoutBox(sortArr, k, moveIndex);
                     sortArr.unshift({ value: 0, className: null, moveClassName: null, divElement: null });
@@ -235,7 +314,7 @@ Game2048pro.sortGridInfo = function(sortArr, direction, gameOver) {
             for (var k = 0; k < sortArr.length - 1; k++) {
                 if (sortArr[k].value == 0) continue;
                 if (sortArr[k].value === sortArr[k + 1].value) {
-                    if (gameOver) { this["is" + direction] = true; return; }//满格子才会执行
+                    if (gameOver) { this["is" + direction] = true; return; } //满格子才会执行
                     var moveIndex = k + 1;
                     this.sortoutBox(sortArr, k, moveIndex);
                     sortArr.push({ value: 0, className: null, moveClassName: null, divElement: null }); //left top push()
@@ -280,16 +359,16 @@ Game2048pro.moveBoxs = function(arr, sortArr, direction) {
                     case "left":
                         var numIndex = arrClassName.substr(4, 1); // 右滑，下滑区别在这里 下滑substr(6,1)
                         util.replaceClass(moveBox, arrClassName, "grid" + numIndex + "-" + p);
-                        if (!!moveBox.lastTopLocation) moveBox.style.top = (moveBox.lastTopLocation * 74) + "px";
+                        if (!!moveBox.prevTopLocation) moveBox.style.top = (moveBox.prevTopLocation * 74) + "px";
                         moveBox.style.left = 0;
-                        moveBox.lastLeftLocation = p;
+                        moveBox.prevLeftLocation = p;
                         break;
                     case "top":
                     case "bottom":
                         var numIndex = arrClassName.substr(6, 1); // 右滑，下滑区别在这里 下滑substr(6,1)
                         util.replaceClass(moveBox, arrClassName, "grid" + p + "-" + numIndex);
-                        if (!!moveBox.lastLeftLocation) moveBox.style.left = (moveBox.lastLeftLocation * 74) + "px";
-                        moveBox.lastTopLocation = p;
+                        if (!!moveBox.prevLeftLocation) moveBox.style.left = (moveBox.prevLeftLocation * 74) + "px";
+                        moveBox.prevTopLocation = p;
                         moveBox.style.top = 0;
                         break;
                 }
@@ -316,35 +395,6 @@ Game2048pro.move = function(direction) {
         this.moveBoxs(arr, sortArr, direction);
     }
 }
-Game2048pro.touchstart = function(e, context) {
-    this.startX = e.changedTouches[0].pageX;
-    this.startY = e.changedTouches[0].pageY;
-}
-Game2048pro.touchend = function(e, context) {
-    this.moveX = e.changedTouches[0].pageX - this.startX;
-    this.moveY = e.changedTouches[0].pageY - this.startY;
-    var absX = Math.abs(this.moveX), //X绝对值
-        absY = Math.abs(this.moveY); //Y绝对值
-    if (absX < 5 && absY < 5) return;
-    if (absX > absY && this.moveX > 0) context.move("right");
-    if (absX > absY && this.moveX < 0) context.move("left");
-    if (absX < absY && this.moveY > 0) context.move("bottom");
-    if (absX < absY && this.moveY < 0) context.move("top");
-    setTimeout(function() {
-        context.createBox();
-        if (context.gameOver()) {
-            context.overlay.style.display = 'block';
-            util.addClass(context.overlay, "scale");
-        }
-    }, 500);
-}
-/**
- * 获取分数
- * 1.合并之后得到分数，
- * 2.游戏结束后获取最终分数，存到localstorage中
- * 3.在 init 方法中获取localstorage的分数 ，没有就取0
- */
-Game2048pro.getScore = function () {
-    
-}
+
+
 new Game2048;
