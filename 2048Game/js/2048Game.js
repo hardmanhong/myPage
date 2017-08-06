@@ -2,7 +2,7 @@
  * 作者: Up Hong
  * 开发时间: 11 days
  * 已完成: 数字格子上下左右移动并合并，游戏结束判定
- * 未完成: 分数计算
+ * 未完成: 分数计算 微信内置浏览禁止下拉
  */
 
 var Game2048 = function() {
@@ -22,6 +22,10 @@ Game2048pro.init = function() {
  * @return {[type]} [description]
  */
 Game2048pro.event = function () {
+    //禁止浏览器默认滑动事件
+    document.body.addEventListener("touchstart", function (e) {
+        e.preventDefault();
+    });
     var _this = this;
     //game2048
     this.game2048 = util.getElement(".game-2048")[0];
