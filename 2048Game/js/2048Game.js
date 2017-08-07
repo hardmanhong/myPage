@@ -72,7 +72,8 @@ Game2048pro.touchend = function(e, context) {
     if (absX < absY && this.moveY < 0) this.move("top");
     if (this.isWin()) { this.win(); return; }
     setTimeout(function() {
-        if(context.isBorder()) context.createBox();
+        context.setBestScore();
+        if(!context.isBorder()) context.createBox();
         if (context.isGameOver()) context.gameOver();
     }, 500);
 }
@@ -87,6 +88,7 @@ Game2048pro.initScore = function() {
  * 设置最高分数
  */
 Game2048pro.setBestScore = function() {
+    console.log("setBestScore",this.bestScoreElem.innerText)
     var bestScore = parseInt(this.bestScoreElem.innerText);
     window.localStorage.setItem("2048GAME-BEST-SCORE", bestScore);
 }
@@ -134,13 +136,8 @@ Game2048pro.isGameOver = function() {
         this.canAdd("left");
         this.canAdd("top");
         this.canAdd("bottom");
-        console.log("this.isright",this.isright)
-        console.log("this.isleft",this.isleft)
-        console.log("this.istop",this.istop)
-        console.log("this.isbottom",this.isbottom)
         if (!this.isright && !this.isleft && !this.istop && !this.isbottom) this.isOver = true;
     }
-    this.setBestScore();
     return this.isOver;
 }
 /**
@@ -294,7 +291,7 @@ Game2048pro.sortoutBox = function(sortArr, k, moveIndex) {
     sortArr[moveIndex].value = _this.moveAfterValue;
     sortArr.splice(k, 1);
     this.currentScoreELem.innerText = currentScore + _this.moveAfterValue;
-    if (bestScore == 0 || bestScore <= parseInt(this.currentScoreELem.innerText)) this.bestScoreElem.innerText = bestScore + _this.moveAfterValue;
+    if (bestScore == 0 || bestScore <= parseInt(this.currentScoreELem.innerText)) this.bestScoreElem.innerText = parseInt(this.currentScoreELem.innerText);
 
 }
 /**
@@ -357,8 +354,8 @@ Game2048pro.isSame = function(arr,sortArr){
  * 判断是否在边缘
  */
 Game2048pro.isBorder = function () {
-    var isborder = false;
-    if(!this.isSame1 || !this.isSame2 || !this.isSame3 || !this.isSame4) isborder = true;
+    var isborder = true;
+    if(!this.isSame1 || !this.isSame2 || !this.isSame3 || !this.isSame4) isborder = false;
     return isborder;
 }
 /**
