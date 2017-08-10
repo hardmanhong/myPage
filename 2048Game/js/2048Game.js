@@ -1,7 +1,6 @@
 /**
  * 作者: Up Hong 独立完成
  * 开发时间: 11 days
- * 状态: 已完成
  */
 
 var Game2048 = function() {
@@ -75,7 +74,7 @@ Game2048pro.touchend = function(e, context) {
         context.setBestScore();
         if(!context.isBorder()) context.createBox();
         if (context.isGameOver()) context.gameOver();
-    }, 500);
+    }, 600);
 }
 /**
  * 初始化分数
@@ -202,9 +201,10 @@ Game2048pro.createBox = function() {
         liItem = parseInt(divIndex / 4), //第几个li
         divItem = divIndex % 4, //第几个li中的第几个div盒子
         theBoxLeft = theBox.offsetLeft, //该盒子的left值
-        num = parseInt(Math.random() * (4 - 2 + 1) + 2),
-        rem = num % 2;
-    num = rem == 0 ? num : num - 1; //对余数进行判断，生成2或4
+        num = Math.random() < 0.7 ? 2 : 4;
+        // num = parseInt(Math.random() * (4 - 2 + 1) + 2),
+        // rem = num % 2;
+    // num = rem == 0 ? num : num - 1; //对余数进行判断，生成2或4
     var newBox = document.createElement("div"),
         holderClassName = "grid" + liItem + "-" + divItem,
         numberClassName = "number-" + num,
@@ -325,7 +325,6 @@ Game2048pro.sortGridInfo = function(arr,sortArr, direction, gameOver) {
                     var moveIndex = k + 1;
                     this.sortoutBox(sortArr, k, moveIndex);
                     sortArr.push({ value: 0, className: null, moveClassName: null, divElement: null }); //left top push()
-                    this["is" + direction] = true;
                 }
             }
             break;
