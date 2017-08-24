@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+    body {
+    	background-color: #000;
+    }
+    .star {
+        position: relative;
+    	top: 100px;
+        left: 400px;
+        display: block;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: #fcdc8c;
+        box-shadow: 0 0 3px 3px rgba(252, 220, 140, .3);
+        animation: star-ani 5s infinite ease-out;
+        -webkit-animation: star-ani 5s infinite ease-out;
+        z-index: 1;
+    }
+    .star:after {
+    	position: absolute;
+        content: '';
+        display: block;
+        top: 0px;
+        left: 4px;
+        border: 0px solid #e4aa91;
+        border-width: 2px 90px 2px 90px;
+        border-color: transparent transparent transparent rgba(239, 200, 188, .3);
+        transform: rotate(-45deg) translate3d(3px, -1px, 0);
+        transform-origin: 0% 0%;
+    }
+
+    @keyframes star-ani {
+        0% {
+            transform: scale(0) rotate(0) translate3d(0, 0, 0);
+            -webkit-transform: scale(0) rotate(0) translate3d(0, 0, 0);
+        }
+        50% {
+            transform: scale(1) rotate(0) translate3d(-200px, 200px, 0);
+            -webkit-transform: scale(1) rotate(0) translate3d(-200px, 200px, 0);
+        }
+        100% {
+            transform: scale(1) rotate(0) translate3d(-300px, 300px, 0);
+            -webkit-transform: scale(1) rotate(0) translate3d(-300px, 300px, 0);
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    
+</body>
+
+</html>
