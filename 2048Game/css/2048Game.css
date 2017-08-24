@@ -361,7 +361,6 @@ a {
 
 .game-2048 .game-grid ul li div.right0-2 {
     animation: right0-2 0.3s;
-    ;
     animation-fill-mode: forwards;
     -webkit-animation: right0-2 0.3s;
     -webkit-animation-fill-mode: forwards;

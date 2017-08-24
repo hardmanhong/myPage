@@ -65,16 +65,24 @@ Game2048pro.touchend = function(e, context) {
     var absX = Math.abs(this.moveX), //X绝对值
         absY = Math.abs(this.moveY); //Y绝对值
     if (absX < 5 && absY < 5) return;
-    if (absX > absY && this.moveX > 0) this.move("right");
-    if (absX > absY && this.moveX < 0) this.move("left");
-    if (absX < absY && this.moveY > 0) this.move("bottom");
-    if (absX < absY && this.moveY < 0) this.move("top");
+    if (absX > absY && this.moveX > 0) {
+        this.move("right")
+    };
+    if (absX > absY && this.moveX < 0) {
+        this.move("left");
+    }
+    if (absX < absY && this.moveY > 0) {
+        this.move("bottom");
+    }
+    if (absX < absY && this.moveY < 0) {
+        this.move("top");
+    }
     if (this.isWin()) { this.win(); return; }
     setTimeout(function() {
         context.setBestScore();
         if(!context.isBorder()) context.createBox();
         if (context.isGameOver()) context.gameOver();
-    }, 600);
+    }, 300);
 }
 /**
  * 初始化分数
@@ -87,7 +95,6 @@ Game2048pro.initScore = function() {
  * 设置最高分数
  */
 Game2048pro.setBestScore = function() {
-    console.log("setBestScore",this.bestScoreElem.innerText)
     var bestScore = parseInt(this.bestScoreElem.innerText);
     window.localStorage.setItem("2048GAME-BEST-SCORE", bestScore);
 }
@@ -202,9 +209,6 @@ Game2048pro.createBox = function() {
         divItem = divIndex % 4, //第几个li中的第几个div盒子
         theBoxLeft = theBox.offsetLeft, //该盒子的left值
         num = Math.random() < 0.7 ? 2 : 4;
-        // num = parseInt(Math.random() * (4 - 2 + 1) + 2),
-        // rem = num % 2;
-    // num = rem == 0 ? num : num - 1; //对余数进行判断，生成2或4
     var newBox = document.createElement("div"),
         holderClassName = "grid" + liItem + "-" + divItem,
         numberClassName = "number-" + num,
